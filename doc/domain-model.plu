@@ -1,0 +1,49 @@
+@startuml
+class Flight {
+	- id: FlightID
+	- date: Date
+	- departure: Location
+	- destination: Location
+	- seats: Seat[]
+}
+class Seat {
+	- id: SeatID
+}
+
+class Hotel {
+	- name: String
+	- location: Location
+	- rooms: HotelRoom[]
+}
+class HotelRoom {
+	- number: RoomNumber
+	- beds: int
+}
+
+class DayTour {
+	- name: String
+	- location: Location
+	- date: Date
+	- time: Time
+}
+class TravelPackage {
+	- startDate: Date
+	- endDate: Date
+	- flight: Flight
+	- seats: Seat[]
+	- hotel: Hotel
+	- rooms: HotelRoom[]
+	- trip: DayTour
+	+ price(): int
+	+ book(): bool
+}
+
+TravelPackage "1" *-- Flight
+TravelPackage o-- Seat
+TravelPackage o-- HotelRoom
+TravelPackage "1" *-- Hotel
+TravelPackage "1" *-- DayTour
+
+Hotel *-- HotelRoom
+Flight *-- Seat
+@enduml

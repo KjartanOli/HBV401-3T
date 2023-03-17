@@ -1,0 +1,191 @@
+@startuml
+!procedure $controller()
+#header:lime
+!endprocedure
+
+!procedure $object()
+#header:cyan
+!endprocedure
+
+!procedure $repository()
+#header:pink
+!endprocedure
+
+class TravelPackage $object() {
+	- startDate: Date
+	- endDate: Date
+	- flight: Flight
+	- hotel: Hotel
+	- tour: DayTourDetails
+	- tourTime: DayTourTime
+	+ getPrice(): int
+}
+
+class PackageController $controller() {
+	- flights: Flight[]
+	- hotels: Hotel[]
+	- trips: DayTourDetails[]
+	- user: User
+	+ createPackages(<search criteria>): TravelPackage[]
+	+ bookPackage(TravelPackage): boolean
+	+ fetchData(user: User): void
+}
+
+class User $object() {
+	- name: String
+	- email: String
+	- ssn: String
+	- phone: String
+	- departureLocation: String
+	- destination: String
+	- groupSize: int
+	- departureDate: Date
+	- returnDate: Date
+}
+
+class UserController $controller() {
+	+ submit(): void
+}
+
+TravelPackage "1" --* "1" Flight.Flight
+TravelPackage "1" --* "1" Hotel.Hotel
+TravelPackage "1" --* "1" DayTour.DayTourDetails
+TravelPackage "1" --> "1" DayTour.DayTourTime
+TravelPackage "1" --> "1+" Flight.Seat
+TravelPackage "1" --> "1+" Hotel.Room
+
+PackageController --> Flight.Flight
+PackageController --> Hotel.Hotel
+PackageController --> DayTour.DayTourDetails
+PackageController --> User
+
+class Flight.Flight $object() {
+	- flightId: String
+	- seats: Seat[]
+	- numSeatsAvailable: int
+	- numSeatsReserved: int
+	- price: int
+	- arrivalTime: Date
+	- arrivalAddress: String
+	- departureTime: Date
+	- departureAddress: String
+}
+
+class Flight.Seat $object() {
+	- id: String
+	- flightId: String
+	- reserved: boolean
+}
+
+class Flight.User $object() {
+	- id: String
+	- name: String
+}
+
+class Flight.Booking $object() {
+	- userId: User
+	- bookingId: String
+	- seats: Seat[]
+	+ getPrice(): int
+}
+
+class Flight.FlightRepository $repository() {
+	+ listAll(T_departure: Date, T_arrival: Date, P_departure: String, P_arrival: String): List<Flight>
+	+ listAvailable(T_departure: Date, T_arrival: Date, P_departure: String, P_arrival: String): List<Flight>
+}
+
+class Flight.BookingRepository $repository() {
+	+ createBooking(booking: Booking): void
+}
+
+Flight.Booking --* Flight.Flight
+Flight.Booking --* Flight.User
+Flight.Booking --* Flight.Seat
+
+class Hotel.Hotel $object() {
+	- hotelId: int
+	- location: String
+	- numberOfRooms: int
+	- room: Room
+}
+
+class Hotel.Date $object() {
+	- dateInn: Datetime
+	- dateOut: Datetime
+}
+
+class Hotel.HotelRepository $repository() {
+	+ search(date: Hotel.Date, adults: int, children: int location: String): List<Hotel>
+}
+
+class Hotel.Room $object() {
+	- roomId: int
+	- accomodates: int
+	- isBooked: boolean
+	- date: Hotel.Date
+}
+
+class Hotel.User $object() {
+	- name: String
+	- email: String
+}
+
+class Hotel.Booking $object() {
+	- hotel: Hotel
+	- user: User
+}
+
+Hotel.Booking --* Hotel.User
+Hotel.Hotel --* Hotel.Room
+
+class DayTour.DayTourDetails $object() {
+	- tourID: int
+	- region: String
+	- town: String
+	- name: String
+	- rating: double
+	- popularity: int
+	- price: int
+	- pictures: String[]
+	- times: List<DayTourTime>
+	- reviews: List<Review>
+	- filters: String
+	- description: String
+	- openingHours: String
+	+ getTimes(date: String): int[]
+	+ getDates(): String[]
+}
+
+class DayTour.DayTourTime $object() {
+	- date: String
+	- available: Map<int, int>
+	+ getAvailable(time: int): int
+	+ getDate(): String
+}
+
+class DayTour.Booking $object() {
+	- name: String
+	- email: String
+	- date: String
+	- time: int
+	- noPersons: int
+	- pickUp: boolean
+	- payment: String
+	- price: int
+	- tour: DayTourDetails
+}
+
+DayTour.Booking "1" --* "*" DayTour.DayTourDetails
+
+class DayTour.Query $repository() {
+	+ searchToursDetails(tour: String, date: String, orderBy: char, filter: String): DayTourDetails[]
+	+ addBooking(bookinginfo: Booking): int
+}
+
+
+Flight.Flight "1" --* "1+" Flight.Seat
+
+Hotel.Hotel "1" --* "1+" Hotel.Room
+
+DayTour.DayTourDetails "1" --> "*" DayTour.DayTourTime
+@enduml

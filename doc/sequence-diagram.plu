@@ -1,0 +1,33 @@
+@startuml
+title Pakkaval notanda
+autoactivate on
+hide footbox
+actor user
+participant UserController
+participant "user: User" as User
+participant PackageController
+participant FlightRepository
+participant HotelRepository
+participant Query
+
+user -> UserController: submit()
+UserController -> User ** : <<create>>
+UserController -> PackageController: fetchData(user)
+destroy UserController
+PackageController -> FlightRepository: listAvailable()
+return Flight[]
+PackageController -> HotelRepository: search()
+return List<Hotel>
+PackageController -> Query: searchTourDetails()
+return DayTourDetails[]
+PackageController -> PackageController: createPackages(<search criteria>)
+PackageController --> user: TravelPackage[]
+opt
+    loop
+        user -> PackageController: <refine search>
+        PackageController -> PackageController: createPackages(<search criteria>)
+        PackageController --> user: TravelPackage[]
+    end
+end
+user -> PackageController: bookPackage(TravelPackage)
+@enduml
