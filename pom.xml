@@ -1,20 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>is.hi.travel_planer</groupId>
-    <artifactId>travel-planer</artifactId>
-    <version>0.1.0</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>19</version>
-        </dependency>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>is.hi.travel_planer</groupId>
+  <artifactId>travel-planer</artifactId>
+  <version>0.1.0</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>19</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <version>1.2.0</version>
+      <scope>test</scope>
+    </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -33,6 +45,27 @@
                 <configuration>
                     <mainClass>is.hi.travel_planer.App</mainClass>
                 </configuration>
+            </plugin>
+            <plugin>
+              <groupId>com.rudikershaw.gitbuildhook</groupId>
+              <artifactId>git-build-hook-maven-plugin</artifactId>
+              <version>3.4.1</version>
+              <configuration>
+                <gitConfig>
+                  <!-- The location of the directory you are using to store the Git hooks in your project. -->
+                  <core.hooksPath>.githooks/</core.hooksPath>
+                  <!-- Some other project specific git config that you want to set. -->
+                  <hooks.allownonascii>false</hooks.allownonascii>
+                </gitConfig>
+              </configuration>
+              <executions>
+                <execution>
+                  <goals>
+                    <!-- Sets git config specified under configuration > gitConfig. -->
+                    <goal>configure</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
         </plugins>
     </build>
