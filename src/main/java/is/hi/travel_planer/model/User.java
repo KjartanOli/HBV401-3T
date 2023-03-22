@@ -28,6 +28,8 @@ public class User {
 	public int getGroupSize() { return this.groupSize; }
 	public LocationDate getDeparture() { return this.departure; }
 	public LocationDate getReturn() { return this.ret; }
+	public String getLocation() { return this.departure.getLocation(); }
+	public String getDestination() { return this.ret.getLocation(); }
 
 	public is.hi.flight_booking.application.User toFlightUser() {
 		return new is.hi.flight_booking.application.User(this.ssn, this.name);
