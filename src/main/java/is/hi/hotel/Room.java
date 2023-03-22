@@ -17,8 +17,6 @@ public class Room {
 	public int getAccomedates() { return this.accomodates; }
 	public boolean getIsBooked() { return this.isBooked; }
 	public Dates getDate() { return this.date; }
-
-
 }
 
 
