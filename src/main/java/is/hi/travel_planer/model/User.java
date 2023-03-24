@@ -1,6 +1,6 @@
 package is.hi.travel_planer.model;
 
-import is.hi.travel_planer.model.LocationDate;
+import java.time.LocalDate;
 
 public class User {
 	private String name;
@@ -8,17 +8,21 @@ public class User {
 	private String ssn;
 	private String phone;
 	private int groupSize;
-	private LocationDate departure;
-	private LocationDate ret;
+	private LocalDate departureDate;
+	private LocalDate returnDate;
+	private String location;
+	private String destination;
 
-	public User(String name, String email, String ssn, String phone, int groupSize, LocationDate departure, LocationDate ret) {
+	public User(String name, String email, String ssn, String phone, int groupSize, String location, LocalDate departureDate, String destination, LocalDate returnDate) {
 		this.name = name;
 		this.email = email;
 		this.ssn = ssn;
 		this.phone = phone;
 		this.groupSize = groupSize;
-		this.departure = departure;
-		this.ret = ret;
+		this.departureDate = departureDate;
+		this.returnDate = returnDate;
+		this.location = location;
+		this.destination = destination;
 	}
 
 	public String getName() { return this.name; }
@@ -26,10 +30,13 @@ public class User {
 	public String getPhone() { return this.phone; }
 	public String getSSN() { return this.ssn; }
 	public int getGroupSize() { return this.groupSize; }
-	public LocationDate getDeparture() { return this.departure; }
-	public LocationDate getReturn() { return this.ret; }
-	public String getLocation() { return this.departure.getLocation(); }
-	public String getDestination() { return this.ret.getLocation(); }
+	public String getLocation() { return this.location; }
+	public String getDestination() { return this.destination; }
+	public LocalDate getDepartureDate() { return this.departureDate; }
+	public LocalDate getReturnDate() { return this.returnDate; }
+	public Duration getTripDuration() {
+		return new Duration(this.getDepartureDate(), this.getReturnDate());
+	}
 
 	public is.hi.flight_booking.application.User toFlightUser() {
 		return new is.hi.flight_booking.application.User(this.ssn, this.name);
