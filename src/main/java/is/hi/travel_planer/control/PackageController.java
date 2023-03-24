@@ -10,12 +10,13 @@ import is.hi.hotel.entities.Dates;
 import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 
-import is.hi.flight_booking.FlightRepository;
+import is.hi.flight_booking.controller.FlightInterface;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.daytour.DayTourController;
 
 public class PackageController {
 	private User user;
+	private FlightInterface flightController;
 	private IHotelController hotelController;
 	private DayTourController dayTourController;
 
@@ -23,11 +24,11 @@ public class PackageController {
 	private DayTourDetails[] tours;
 	private Hotel[] hotels;
 
-	public PackageController(User user, HotelController hotelController, DayTourController dayTourController) {
+	public PackageController(User user, FlightInterface flightController, IHotelController hotelController, DayTourController dayTourController) {
 		this.user = user;
 		this.hotelController = hotelController;
 		this.dayTourController = dayTourController;
-		// this.flights = FlightRepository.listAvailable(user.getDepartureDate().getDate(), user.getLocation(), user.getDestination());
+		this.flights = flightController.searchFlight(user.getLocation(), user.getDestination(), user.getDepartureDate());
 		this.hotels = this.hotelController.searchHotels(user.getDepartureDate(), user.getGroupSize(), 0, user.getDestination()).toArray(new Hotel[0]);
 		var t = dayTourController.searchTours(user.getDestination(), user.getDepartureDate(), user.getReturnDate());
 		this.tours = new DayTourDetails[t.length];

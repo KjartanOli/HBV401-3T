@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 
 import is.hi.travel_planer.mock.HotelControllerMock;
+import is.hi.travel_planer.mock.FlightControllerMock;
+
 import is.hi.travel_planer.model.User;
 import is.hi.travel_planer.control.PackageController;
 import is.hi.hotel.interfaces.IHotelController;
@@ -23,7 +25,8 @@ public class PackageControllerTest {
 			"Akureyri", LocalDate.of(2023, 3, 17));
 		var hc = new HotelControllerMock();
 		var dc = new DayTourController();
-		controller = new PackageController(user, hc, dc);
+		var fc = new FlightControllerMock();
+		controller = new PackageController(user, fc, hc, dc);
 	}
 
 	@After
