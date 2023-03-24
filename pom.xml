@@ -13,7 +13,7 @@
     <dependency>
       <groupId>is.hi.flight_booking</groupId>
       <artifactId>flight-booking</artifactId>
-      <version>1.0</version>
+      <version>0.1.0</version>
     </dependency>
     <dependency>
       <groupId>com.daytour</groupId>
