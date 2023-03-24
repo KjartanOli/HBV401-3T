@@ -1,9 +1,9 @@
+package is.hi.travel_planer.model;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-
-import is.hi.travel_planer.model.User;
 
 public class UserTest {
 	User user;
