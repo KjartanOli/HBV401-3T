@@ -29,3 +29,6 @@ hs_err_pid*
 
 # macOS data file trash
 **/.DS_Store
+
+# VScode config file trash
+.vscode
