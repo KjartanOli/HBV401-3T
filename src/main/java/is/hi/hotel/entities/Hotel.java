@@ -17,4 +17,21 @@ public class Hotel {
 	public String getLocation() { return this.location; }
 	public int getNumberOfRooms() { return this.numberOfRooms; }
 	public Room getRoom() { return this.room; }
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+
+		if (!(o instanceof Hotel)) {
+			return false;
+		}
+
+		// typecast o to Complex so that we can compare data members
+		Hotel f = (Hotel) o;
+
+		// Compare the data members and return accordingly
+		return hotelID == f.hotelID;
+	}
 }
