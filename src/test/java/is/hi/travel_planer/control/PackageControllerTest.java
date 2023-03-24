@@ -39,4 +39,9 @@ public class PackageControllerTest {
 		var a = controller.createPackages();
 		System.out.println(a.size());
 	}
+
+	@Test
+	public void test_Hotel(){
+
+	}
 }
