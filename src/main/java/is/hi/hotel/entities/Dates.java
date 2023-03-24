@@ -1,4 +1,4 @@
-package is.hi.hotel;
+package is.hi.hotel.entities;
 
 import java.time.LocalDate;
 
@@ -14,4 +14,3 @@ public class Dates {
     public LocalDate getDateIn() { return this.dateIn; }
 	public LocalDate getDateOut() { return this.dateOut; }
 }
-

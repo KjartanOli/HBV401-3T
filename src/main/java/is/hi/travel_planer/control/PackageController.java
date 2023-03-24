@@ -5,18 +5,18 @@ import java.util.ArrayList;
 
 import is.hi.travel_planer.model.TravelPackage;
 import is.hi.travel_planer.model.User;
-import is.hi.hotel.Hotel;
-import is.hi.hotel.Dates;
+import is.hi.hotel.entities.Hotel;
+import is.hi.hotel.entities.Dates;
 import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 
 import is.hi.flight_booking.FlightRepository;
-import is.hi.hotel.HotelController;
+import is.hi.hotel.interfaces.IHotelController;
 import is.hi.daytour.DayTourController;
 
 public class PackageController {
 	private User user;
-	private HotelController hotelController;
+	private IHotelController hotelController;
 	private DayTourController dayTourController;
 
 	private Flight[] flights;
@@ -28,7 +28,7 @@ public class PackageController {
 		this.hotelController = hotelController;
 		this.dayTourController = dayTourController;
 		// this.flights = FlightRepository.listAvailable(user.getDepartureDate().getDate(), user.getLocation(), user.getDestination());
-		this.hotels = this.hotelController.search(new Dates(user.getDepartureDate(), user.getReturnDate()), user.getGroupSize(), 0, user.getDestination()).toArray(new Hotel[0]);
+		this.hotels = this.hotelController.searchHotels(user.getDepartureDate(), user.getGroupSize(), 0, user.getDestination()).toArray(new Hotel[0]);
 		var t = dayTourController.searchTours(user.getDestination(), user.getDepartureDate(), user.getReturnDate());
 		this.tours = new DayTourDetails[t.length];
 		for (int i = 0; i < t.length; ++i) {

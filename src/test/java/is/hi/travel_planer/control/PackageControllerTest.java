@@ -3,13 +3,14 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
+import is.hi.travel_planer.mock.HotelControllerMock;
 import is.hi.travel_planer.model.User;
 import is.hi.travel_planer.control.PackageController;
-import is.hi.hotel.HotelController;
+import is.hi.hotel.interfaces.IHotelController;
 import is.hi.daytour.DayTourController;
 
-import is.hi.hotel.Hotel;
-import is.hi.hotel.Dates;
+import is.hi.hotel.entities.Hotel;
+import is.hi.hotel.entities.Dates;
 
 public class PackageControllerTest {
 	PackageController controller;
@@ -20,7 +21,7 @@ public class PackageControllerTest {
 			"John Doe", "john@example.org", "1234567890", "1234567", 2,
 			"Reykjavík", LocalDate.of(2023, 3, 12),
 			"Akureyri", LocalDate.of(2023, 3, 17));
-		var hc = new HotelController();
+		var hc = new HotelControllerMock();
 		var dc = new DayTourController();
 		controller = new PackageController(user, hc, dc);
 	}

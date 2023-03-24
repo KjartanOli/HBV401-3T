@@ -1,4 +1,4 @@
-package is.hi.hotel;
+package is.hi.hotel.entities;
 
 public class Room {
     private int roomID;
@@ -18,5 +18,3 @@ public class Room {
 	public boolean getIsBooked() { return this.isBooked; }
 	public Dates getDate() { return this.date; }
 }
-
-
