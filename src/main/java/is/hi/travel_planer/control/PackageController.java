@@ -10,13 +10,13 @@ import is.hi.hotel.entities.Dates;
 import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 
-import is.hi.flight_booking.controller.FlightInterface;
+import is.hi.flight_booking.controller.FlightControllerInterface;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.daytour.DayTourController;
 
 public class PackageController {
 	private User user;
-	private FlightInterface flightController;
+	private FlightControllerInterface flightController;
 	private IHotelController hotelController;
 	private DayTourController dayTourController;
 

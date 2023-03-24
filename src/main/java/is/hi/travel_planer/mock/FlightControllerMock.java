@@ -4,25 +4,31 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import is.hi.flight_booking.controller.FlightInterface;
+import is.hi.flight_booking.controller.FlightControllerInterface;
 import is.hi.flight_booking.application.Flight;
 import is.hi.flight_booking.application.Seat;
 
-public class FlightControllerMock implements FlightInterface {
-	public Flight[] searchFlight(String from, String destination, LocalDate date) {
-		var ids = new String[] {"1", "2", "3"};
-		var seats = new Seat[ids.length][5];
-		for (int i = 0; i < ids.length; ++i) {
-			for (int j = 0; j < 5; ++j) {
-				seats[i][j] = new Seat(Integer.toString(j), ids[i], false);
-			}
+public class FlightControllerMock implements FlightControllerInterface {
+	public List<Flight> searchFlights(String from, String destination, LocalDate date) {
+		String[] departures = {"Reykjavík", "Keflavík", "Húsavík", "Reykjavík", "Keflavík", "Keflavík", "Keflavík"};
+		String[] destinations = {"Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir"};
+		List<Flight> flights = new ArrayList<>();
+		for (int i = 0; i < departures.length; i++) {
+			String id = "F-" + (100 + i);
+			ArrayList<Seat> seats = new ArrayList<>();
+			seats.add(new Seat("A-1", id, false));
+			seats.add(new Seat("A-2", id, false));
+			seats.add(new Seat("A-3", id, false));
+			seats.add(new Seat("A-4", id, false));
+			seats.add(new Seat("B-1", id, false));
+			seats.add(new Seat("B-2", id, false));
+			seats.add(new Seat("B-3", id, false));
+			seats.add(new Seat("B-4", id, false));
+			flights.add(
+				new Flight(id, seats, departures[i], destinations[i], LocalDate.of(2023, 4, i + 1),
+					LocalDate.of(2023, 4, i + 1), 1000 * (i + 2)));
 		}
 
-		List<Flight> flights = new ArrayList<Flight>();
-		// for (int i = 0; i < ids.length; ++i) {
-		// 	flights.add(new Flight(id, seats[i], seats[i].length, 0, 500, ))
-		// }
-
-		return flights.toArray(new Flight[0]);
+		return flights;
 	}
 }
