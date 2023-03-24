@@ -32,7 +32,6 @@ public class HotelControllerMock implements IHotelController {
              new Dates(LocalDate.of(2023,3,24), LocalDate.of(2023,3,27))));
 
          List<Hotel> hotelList = new ArrayList<Hotel>();
-
          hotelList.add(H1);
          hotelList.add(H2);
          hotelList.add(H3);
@@ -40,6 +39,16 @@ public class HotelControllerMock implements IHotelController {
          hotelList.add(H5);
          hotelList.add(H6);
 
-         return hotelList;
+		 List<Hotel> hotelResults = new ArrayList<Hotel>();
+		 for (Hotel hotel : hotelList){
+			if (hotel.getLocation().equals(location) 
+					&& hotel.getRoom().getIsBooked() != true 
+					&& hotel.getRoom().getAccomedates() >= adults+children
+					&& hotel.getRoom().getDate().getDateIn().equals(date)){
+						hotelResults.add(hotel);
+					}
+		 }
+
+         return hotelResults;
 	}
 }

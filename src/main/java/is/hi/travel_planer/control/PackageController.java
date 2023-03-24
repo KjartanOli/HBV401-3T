@@ -82,6 +82,7 @@ public class PackageController {
 
 	public List<TravelPackage> createPackages() {
 		List<TravelPackage> packages = new ArrayList<TravelPackage>(this.flights.length * this.hotels.length * this.hotels.length);
+		
 		for (var flight : this.flights) {
 			for (var hotel : this.hotels) {
 				for (var tour : this.tours) {
