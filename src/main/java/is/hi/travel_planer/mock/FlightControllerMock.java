@@ -33,6 +33,20 @@ public class FlightControllerMock implements FlightControllerInterface {
 					LocalDate.of(2023, 4, i + 1), 1000 * (i + 2)));
 		}
 
+		String id = "F-108";
+		ArrayList<Seat> seats = new ArrayList<>();
+		seats.add(new Seat("A-1", id, false));
+		seats.add(new Seat("A-2", id, false));
+		seats.add(new Seat("A-3", id, false));
+		seats.add(new Seat("A-4", id, false));
+		seats.add(new Seat("B-1", id, false));
+		seats.add(new Seat("B-2", id, false));
+		seats.add(new Seat("B-3", id, false));
+		seats.add(new Seat("B-4", id, false));
+		flights.add(
+			new Flight(id, seats, "Keflavík", "Egilsstaðir", LocalDate.of(2023, 4, 2),
+				LocalDate.of(2023, 4, 2), 1000));
+
 		List<Flight> out = new ArrayList<Flight>();
 		for (var flight : flights) {
 			if (flight.getDepartureAddress().equals(from)

@@ -106,7 +106,7 @@ public class PackageController {
 			}
 		}
 
-		return packages;
+		return packages.size() > 3 ? packages.subList(0, 3) : packages;
 	}
 
 	public List<TravelPackage> createPackages() {
