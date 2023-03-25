@@ -56,14 +56,14 @@ public class PackageControllerTest {
 		List<TravelPackage> expected = new ArrayList<TravelPackage>();
 		var id = "F-101";
 		ArrayList<Seat> seats = new ArrayList<>();
-			seats.add(new Seat("A-1", id, false));
-			seats.add(new Seat("A-2", id, false));
-			seats.add(new Seat("A-3", id, false));
-			seats.add(new Seat("A-4", id, false));
-			seats.add(new Seat("B-1", id, false));
-			seats.add(new Seat("B-2", id, false));
-			seats.add(new Seat("B-3", id, false));
-			seats.add(new Seat("B-4", id, false));
+		seats.add(new Seat("A-1", id, false));
+		seats.add(new Seat("A-2", id, false));
+		seats.add(new Seat("A-3", id, false));
+		seats.add(new Seat("A-4", id, false));
+		seats.add(new Seat("B-1", id, false));
+		seats.add(new Seat("B-2", id, false));
+		seats.add(new Seat("B-3", id, false));
+		seats.add(new Seat("B-4", id, false));
 		var f = new Flight(id, seats, "Reykjavík", "Akureyri", LocalDate.of(2023, 4, 1),
 			LocalDate.of(2023, 4, 1), 2000);
 
