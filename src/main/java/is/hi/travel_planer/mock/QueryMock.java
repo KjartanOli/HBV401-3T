@@ -32,8 +32,18 @@ public class QueryMock implements QueryInterface {
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"3", "Austur", "Egilstaðir",
+				"3", "Austur", "Egilsstaðir",
 				"Test3", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"4", "Norð-Austur", "Akureyri",
+				"Test4", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"5", "Norð-Austur", "Akureyri",
+				"Test5", "0", "1", "200", "", "20",
 				"Test inc.", "", "", "10:00-20:00"
 			),
 		};
@@ -41,7 +51,7 @@ public class QueryMock implements QueryInterface {
 		List<DayTourDetails> out = new ArrayList<DayTourDetails>();
 		for (var t : a) {
 			if (t.getTown().equals(tour)) {
-			// 	out.add(t);
+				out.add(t);
 			}
 		}
 

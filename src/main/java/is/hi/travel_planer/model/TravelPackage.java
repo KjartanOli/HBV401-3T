@@ -41,6 +41,6 @@ public class TravelPackage {
 
 	@Override
 	public String toString() {
-		return String.format("Package {%n\tflight: %s%n\thotel: %s%n\ttour: %s%n}", this.flight, this.hotel, this.tour);
+		return String.format("Package {%n\tflight: %s %s -> %s%n\thotel: %s%n\ttour: %s%n}", this.flight.getFlightId(), this.flight.getDepartureAddress(), this.flight.getArrivalAddress(), this.hotel.getHotelID(), this.tour);
 	}
 }

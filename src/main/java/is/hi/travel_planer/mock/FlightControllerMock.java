@@ -15,7 +15,7 @@ public class FlightControllerMock implements FlightControllerInterface {
 		LocalDate date
 	) {
 		String[] departures = {"Reykjavík", "Keflavík", "Húsavík", "Reykjavík", "Keflavík", "Keflavík", "Keflavík"};
-		String[] destinations = {"Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir"};
+		String[] destinations = {"Akureyri", "Egilsstaðir", "Vestmannaeyjar", "Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir"};
 		List<Flight> flights = new ArrayList<>();
 		for (int i = 0; i < departures.length; i++) {
 			String id = "F-" + (100 + i);
@@ -33,6 +33,15 @@ public class FlightControllerMock implements FlightControllerInterface {
 					LocalDate.of(2023, 4, i + 1), 1000 * (i + 2)));
 		}
 
-		return flights;
+		List<Flight> out = new ArrayList<Flight>();
+		for (var flight : flights) {
+			if (flight.getDepartureAddress().equals(from)
+				&& flight.getArrivalAddress().equals(destination)
+				&& flight.getDepartureTime().equals(date)) {
+				out.add(flight);
+			}
+		}
+
+		return out;
 	}
 }

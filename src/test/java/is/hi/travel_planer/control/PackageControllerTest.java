@@ -31,20 +31,9 @@ public class PackageControllerTest {
 	PackageController controller;
 	User user;
 
-	@Before
-	public void setUp() {
-		user = new User(
-			"John Doe", "john@example.org", "1234567890", "1234567", 2,
-			"Reykjavík", LocalDate.of(2023, 3, 24),
-			"Akureyri", LocalDate.of(2023, 3, 28));
-		var hc = new HotelControllerMock();
-		var dc = new QueryMock();
-		var fc = new FlightControllerMock();
-		controller = new PackageController(user, fc, hc, dc);
-
-		//var hotel = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
-		//				new Dates(LocalDate.of(2023,3,12), LocalDate.of(2023,3,27))));
-	}
+	// @Before
+	// public void setUp() {
+	// }
 
 	@After
 	public void tearDown() {
@@ -52,9 +41,18 @@ public class PackageControllerTest {
 	}
 
 	@Test
-	public void testCreatePackages() {
+	public void testCreatePackagesMoreThanThree() {
+		user = new User(
+			"John Doe", "john@example.org", "1234567890", "1234567", 2,
+			"Reykjavík", LocalDate.of(2023, 4, 1),
+			"Akureyri", LocalDate.of(2023, 4, 4));
+		var hc = new HotelControllerMock();
+		var dc = new QueryMock();
+		var fc = new FlightControllerMock();
+		controller = new PackageController(user, fc, hc, dc);
+
 		List<TravelPackage> expected = new ArrayList<TravelPackage>();
-		var id = "F-101";
+		var id = "F-100";
 		ArrayList<Seat> seats = new ArrayList<>();
 		seats.add(new Seat("A-1", id, false));
 		seats.add(new Seat("A-2", id, false));
@@ -67,18 +65,72 @@ public class PackageControllerTest {
 		var f = new Flight(id, seats, "Reykjavík", "Akureyri", LocalDate.of(2023, 4, 1),
 			LocalDate.of(2023, 4, 1), 2000);
 
-		var h = new Hotel(2, "Akureyri", 1, new Room(101, 4, false,
-			new Dates(LocalDate.of(2023,3,13), LocalDate.of(2023,3,27))));
+		var h = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
+			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,8))));
 
-		var t = new DayTourDetails("3", "Austur", "Egilstaðir", "Test3", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00");
+		var tours = new DayTourDetails[] {
+			new DayTourDetails(
+				"1", "Norð-Austur", "Akureyri",
+				"Test", "0", "1", "100", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"2", "Norð-Austur", "Akureyri",
+				"Test2", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"4", "Norð-Austur", "Akureyri",
+				"Test4", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+		};
 
+		for (var t : tours) {
+			expected.add(new TravelPackage(f, h, t, user.getTripDuration()));
+		}
+
+		var result = controller.createPackages();
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testCreatePackagesLessThanThree() {
+		user = new User(
+			"John Doe", "john@example.org", "1234567890", "1234567", 2,
+			"Keflavík", LocalDate.of(2023, 4, 2),
+			"Egilsstaðir", LocalDate.of(2023, 4, 4));
+		var hc = new HotelControllerMock();
+		var dc = new QueryMock();
+		var fc = new FlightControllerMock();
+		controller = new PackageController(user, fc, hc, dc);
+
+		var id = "F-101";
+		ArrayList<Seat> seats = new ArrayList<>();
+		seats.add(new Seat("A-1", id, false));
+		seats.add(new Seat("A-2", id, false));
+		seats.add(new Seat("A-3", id, false));
+		seats.add(new Seat("A-4", id, false));
+		seats.add(new Seat("B-1", id, false));
+		seats.add(new Seat("B-2", id, false));
+		seats.add(new Seat("B-3", id, false));
+		seats.add(new Seat("B-4", id, false));
+		var f = new Flight(id, seats, "Keflavík", "Eigilsstaðir", LocalDate.of(2023, 4, 2),
+			LocalDate.of(2023, 4, 4), 2000);
+
+		var h = new Hotel(2, "Egilsstaðir", 1, new Room(101, 4, false,
+			new Dates(LocalDate.of(2023,4,2), LocalDate.of(2023,4,9))));
+
+		var t = new DayTourDetails(
+				"3", "Austur", "Egilsstaðir",
+				"Test3", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+		);
+
+		List<TravelPackage> expected = new ArrayList<TravelPackage>();
 		expected.add(new TravelPackage(f, h, t, user.getTripDuration()));
 
 		var result = controller.createPackages();
-		for (var p : result) {
-			System.out.println(p);
-			System.out.println(p.getFlight().equals(f));
-		}
 
 		assertEquals(expected, result);
 	}

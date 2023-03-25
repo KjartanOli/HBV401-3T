@@ -14,10 +14,10 @@ public class HotelControllerMock implements IHotelController {
 
 	public List<Hotel> searchHotels(LocalDate date, int adults, int children, String location) {
 		Hotel H1 = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
-			new Dates(LocalDate.of(2023,3,12), LocalDate.of(2023,3,27))));
+			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,8))));
 
 		Hotel H2 = new Hotel(2, "Egilsstaðir", 1, new Room(101, 4, false,
-			new Dates(LocalDate.of(2023,3,13), LocalDate.of(2023,3,27))));
+			new Dates(LocalDate.of(2023,4,2), LocalDate.of(2023,4,9))));
 
 		Hotel H3 = new Hotel(3, "Vík", 1, new Room(101, 4, false,
 			new Dates(LocalDate.of(2023,3,12), LocalDate.of(2023,3,27))));
