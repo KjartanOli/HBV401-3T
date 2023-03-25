@@ -70,7 +70,6 @@
               </configuration>
               <executions>
                 <execution>
-                  <?m2e execute onConfiguration?>
                   <goals>
                     <!-- Sets git config specified under configuration > gitConfig. -->
                     <goal>configure</goal>
