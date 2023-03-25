@@ -115,7 +115,7 @@ public class PackageControllerTest {
 		seats.add(new Seat("B-2", id, false));
 		seats.add(new Seat("B-3", id, false));
 		seats.add(new Seat("B-4", id, false));
-		var f = new Flight(id, seats, "Keflavík", "Eigilsstaðir", LocalDate.of(2023, 4, 2),
+		var f = new Flight(id, seats, "Keflavík", "Egilsstaðir", LocalDate.of(2023, 4, 2),
 			LocalDate.of(2023, 4, 4), 2000);
 
 		var h = new Hotel(2, "Egilsstaðir", 1, new Room(101, 4, false,
