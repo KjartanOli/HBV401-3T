@@ -18,4 +18,24 @@ public class TravelPackage {
 		this.tour = tour;
 		this.duration = duration;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+
+		if (!(o instanceof TravelPackage)) {
+			return false;
+		}
+
+		var p = (TravelPackage) o;
+
+		return this.flight.equals(p.flight) && this.hotel.equals(p.hotel) && this.tour.equals(p.tour);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Package {%n\tflight: %s%n\thotel: %s%n\ttour: %s%n}", this.flight, this.hotel, this.tour);
+	}
 }
