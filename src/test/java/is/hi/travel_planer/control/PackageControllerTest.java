@@ -138,7 +138,10 @@ public class PackageControllerTest {
 
 	@After
 	public void tearDown() {
+		user_test1 = null;
 		controller_test1 = null;
+
+		user_test2 = null;
 		controller_test2 = null;
 	}
 
