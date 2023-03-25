@@ -11,7 +11,7 @@ import is.hi.hotel.entities.Dates;
 import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 
-import is.hi.flight_booking.controller.FlightControllerInterface;
+import is.hi.flight_booking.interfaces.FlightControllerInterface;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.daytour.processing.QueryInterface;
 

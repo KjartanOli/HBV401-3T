@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import is.hi.flight_booking.controller.FlightControllerInterface;
+import is.hi.flight_booking.interfaces.FlightControllerInterface;
 import is.hi.flight_booking.application.Flight;
 import is.hi.flight_booking.application.Seat;
 
