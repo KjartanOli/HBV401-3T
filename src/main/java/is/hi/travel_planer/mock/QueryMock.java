@@ -13,11 +13,29 @@ public class QueryMock implements QueryInterface {
 		//TODO
 	}
 
-	public DayTourDetails[] searchTourDetails(String tour, LocalDate dateStart, LocalDate dateEnd, char order, String filter) {
+	public DayTourDetails[] searchTourDetails(
+		String tour,
+		LocalDate dateStart,
+		LocalDate dateEnd,
+		char order,
+		String filter
+	) {
 		var a = new DayTourDetails[] {
-			new DayTourDetails("1", "Norð-Austur", "Akureyri", "Test", "0", "1", "100", "", "20", "Test inc.", "", "", "10:00-20:00"),
-			new DayTourDetails("2", "Norð-Austur", "Akureyri", "Test2", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00"),
-			new DayTourDetails("3", "Austur", "Egilstaðir", "Test3", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00"),
+			new DayTourDetails(
+				"1", "Norð-Austur", "Akureyri",
+				"Test", "0", "1", "100", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"2", "Norð-Austur", "Akureyri",
+				"Test2", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"3", "Austur", "Egilstaðir",
+				"Test3", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
 		};
 
 		List<DayTourDetails> out = new ArrayList<DayTourDetails>();

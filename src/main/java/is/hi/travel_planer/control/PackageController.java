@@ -26,18 +26,40 @@ public class PackageController {
 	private Hotel[] hotels;
 
 	private List<Flight> getFlights() {
-		return this.flightController.searchFlights(user.getLocation(), user.getDestination(), user.getDepartureDate());
+		return this.flightController.searchFlights(
+			user.getLocation(),
+			user.getDestination(),
+			user.getDepartureDate()
+		);
 	}
 
 	private List<Hotel> getHotels() {
-		return this.hotelController.searchHotels(user.getDepartureDate(), user.getGroupSize(), 0, user.getDestination());
+		return this.hotelController.searchHotels(
+			user.getDepartureDate(),
+			user.getGroupSize(),
+			0,
+			user.getDestination()
+		);
 	}
 
 	private List<DayTourDetails> getTours() {
-		return Arrays.asList(QueryInterface.searchTourDetails(user.getDestination(), user.getDepartureDate(), user.getReturnDate(), ' ' , null));
+		return Arrays.asList(
+			QueryInterface.searchTourDetails(
+				user.getDestination(),
+				user.getDepartureDate(),
+				user.getReturnDate(),
+				' ',
+				null
+			)
+		);
 	}
 
-	public PackageController(User user, FlightControllerInterface flightController, IHotelController hotelController, QueryInterface QueryInterface) {
+	public PackageController(
+		User user,
+		FlightControllerInterface flightController,
+		IHotelController hotelController,
+		QueryInterface QueryInterface
+	) {
 		this.user = user;
 		this.flightController = flightController;
 		this.hotelController = hotelController;
