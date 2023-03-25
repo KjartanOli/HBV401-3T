@@ -22,6 +22,7 @@ public class TravelPackage {
 	public Flight getFlight() { return this.flight; }
 	public Hotel getHotel() { return this.hotel; }
 	public DayTourDetails getTour() { return this.tour; }
+	public Duration getDuration() {return this.duration; }
 
 	@Override
 	public boolean equals(Object o) {

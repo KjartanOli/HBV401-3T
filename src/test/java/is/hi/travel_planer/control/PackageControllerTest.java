@@ -1,3 +1,5 @@
+package is.hi.travel_planer.control;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -6,6 +8,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 import is.hi.travel_planer.mock.HotelControllerMock;
+import is.hi.travel_planer.mock.QueryMock;
 import is.hi.travel_planer.mock.FlightControllerMock;
 
 import is.hi.travel_planer.model.User;
@@ -13,7 +16,7 @@ import is.hi.travel_planer.model.TravelPackage;
 import is.hi.travel_planer.control.PackageController;
 
 import is.hi.hotel.interfaces.IHotelController;
-import is.hi.daytour.DayTourController;
+import is.hi.daytour.processing.QueryInterface;
 
 import com.daytour.processing.DayTourDetails;
 
@@ -35,12 +38,12 @@ public class PackageControllerTest {
 			"Reykjavík", LocalDate.of(2023, 3, 24),
 			"Akureyri", LocalDate.of(2023, 3, 28));
 		var hc = new HotelControllerMock();
-		var dc = new DayTourController();
+		var dc = new QueryMock();
 		var fc = new FlightControllerMock();
 		controller = new PackageController(user, fc, hc, dc);
 
-		var hotel = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
-						new Dates(LocalDate.of(2023,3,12), LocalDate.of(2023,3,27))));
+		//var hotel = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
+		//				new Dates(LocalDate.of(2023,3,12), LocalDate.of(2023,3,27))));
 	}
 
 	@After
@@ -67,7 +70,7 @@ public class PackageControllerTest {
 		var h = new Hotel(2, "Akureyri", 1, new Room(101, 4, false,
 			new Dates(LocalDate.of(2023,3,13), LocalDate.of(2023,3,27))));
 
-		var t = new DayTourDetails("3", "Austur", "Eigilstaðir", "Test3", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00");
+		var t = new DayTourDetails("3", "Austur", "Egilstaðir", "Test3", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00");
 
 		expected.add(new TravelPackage(f, h, t, user.getTripDuration()));
 
@@ -78,10 +81,5 @@ public class PackageControllerTest {
 		}
 
 		assertEquals(expected, result);
-	}
-
-	@Test
-	public void test_Hotel(){
-
 	}
 }

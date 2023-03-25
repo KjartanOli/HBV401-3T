@@ -13,13 +13,13 @@ import com.daytour.processing.DayTourDetails;
 
 import is.hi.flight_booking.controller.FlightControllerInterface;
 import is.hi.hotel.interfaces.IHotelController;
-import is.hi.daytour.DayTourController;
+import is.hi.daytour.processing.QueryInterface;
 
 public class PackageController {
 	private User user;
 	private FlightControllerInterface flightController;
 	private IHotelController hotelController;
-	private DayTourController dayTourController;
+	private QueryInterface QueryInterface;
 
 	private Flight[] flights;
 	private DayTourDetails[] tours;
@@ -34,14 +34,14 @@ public class PackageController {
 	}
 
 	private List<DayTourDetails> getTours() {
-		return Arrays.asList(dayTourController.searchTours(user.getDestination(), user.getDepartureDate(), user.getReturnDate()));
+		return Arrays.asList(QueryInterface.searchTourDetails(user.getDestination(), user.getDepartureDate(), user.getReturnDate(), ' ' , null));
 	}
 
-	public PackageController(User user, FlightControllerInterface flightController, IHotelController hotelController, DayTourController dayTourController) {
+	public PackageController(User user, FlightControllerInterface flightController, IHotelController hotelController, QueryInterface QueryInterface) {
 		this.user = user;
 		this.flightController = flightController;
 		this.hotelController = hotelController;
-		this.dayTourController = dayTourController;
+		this.QueryInterface = QueryInterface;
 	}
 
 	public List<TravelPackage> createPackages(Flight flight) {
