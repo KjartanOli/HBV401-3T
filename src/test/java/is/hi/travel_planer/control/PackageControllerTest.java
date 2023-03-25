@@ -134,4 +134,60 @@ public class PackageControllerTest {
 
 		assertEquals(expected, result);
 	}
+
+	@Test
+	public void testCreatePackagesSpecificHotel() {
+		user = new User(
+			"John Doe", "john@example.org", "1234567890", "1234567", 2,
+			"Reykjavík", LocalDate.of(2023, 4, 1),
+			"Akureyri", LocalDate.of(2023, 4, 4));
+		var hc = new HotelControllerMock();
+		var dc = new QueryMock();
+		var fc = new FlightControllerMock();
+		controller = new PackageController(user, fc, hc, dc);
+
+		var id = "F-100";
+		ArrayList<Seat> seats = new ArrayList<>();
+		seats.add(new Seat("A-1", id, false));
+		seats.add(new Seat("A-2", id, false));
+		seats.add(new Seat("A-3", id, false));
+		seats.add(new Seat("A-4", id, false));
+		seats.add(new Seat("B-1", id, false));
+		seats.add(new Seat("B-2", id, false));
+		seats.add(new Seat("B-3", id, false));
+		seats.add(new Seat("B-4", id, false));
+		var f = new Flight(id, seats, "Reykjavík", "Akureyri", LocalDate.of(2023, 4, 1),
+			LocalDate.of(2023, 4, 4), 2000);
+
+		var h = new Hotel(7, "Akureyri", 1, new Room(101, 2, false,
+			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,27))));
+
+		List<TravelPackage> expected = new ArrayList<TravelPackage>();
+
+		var tours = new DayTourDetails[] {
+			new DayTourDetails(
+				"1", "Norð-Austur", "Akureyri",
+				"Test", "0", "1", "100", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"2", "Norð-Austur", "Akureyri",
+				"Test2", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+			new DayTourDetails(
+				"4", "Norð-Austur", "Akureyri",
+				"Test4", "0", "1", "200", "", "20",
+				"Test inc.", "", "", "10:00-20:00"
+			),
+		};
+
+		for (var t : tours) {
+			expected.add(new TravelPackage(f, h, t, user.getTripDuration()));
+		}
+
+		var result = controller.createPackages(h);
+
+		assertEquals(expected, result);
+	}
 }

@@ -31,6 +31,9 @@ public class HotelControllerMock implements IHotelController {
 		Hotel H6 = new Hotel(6, "Siglufjörður", 1, new Room(101, 2, false,
 			new Dates(LocalDate.of(2023,3,24), LocalDate.of(2023,3,27))));
 
+		Hotel H7 = new Hotel(7, "Akureyri", 1, new Room(101, 2, false,
+			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,27))));
+
 		List<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(H1);
 		hotelList.add(H2);
