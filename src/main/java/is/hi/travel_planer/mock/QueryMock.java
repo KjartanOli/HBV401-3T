@@ -1,6 +1,5 @@
 package is.hi.travel_planer.mock;
 
-import java.util.Arrays;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,21 +10,21 @@ import is.hi.daytour.processing.QueryInterface;
 
 public class QueryMock implements QueryInterface {
 	public void addBooking(Booking booking) {
-		// TODO
+		//TODO
 	}
 
 	public DayTourDetails[] searchTourDetails(String tour, LocalDate dateStart, LocalDate dateEnd, char order, String filter) {
 		var a = new DayTourDetails[] {
 			new DayTourDetails("1", "Norð-Austur", "Akureyri", "Test", "0", "1", "100", "", "20", "Test inc.", "", "", "10:00-20:00"),
 			new DayTourDetails("2", "Norð-Austur", "Akureyri", "Test2", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00"),
-			new DayTourDetails("3", "Austur", "Eigilstaðir", "Test3", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00"),
+			new DayTourDetails("3", "Austur", "Egilstaðir", "Test3", "0", "1", "200", "", "20", "Test inc.", "", "", "10:00-20:00"),
 		};
 
-		List<DayTourDetails> out = new ArrayList();
+		List<DayTourDetails> out = new ArrayList<DayTourDetails>();
 		for (var t : a) {
-			if (t.getTown().equals(location)) {
+			if (t.getTown().equals(tour)) {
 			// 	out.add(t);
-			// }
+			}
 		}
 
 		return out.toArray(new DayTourDetails[0]);
