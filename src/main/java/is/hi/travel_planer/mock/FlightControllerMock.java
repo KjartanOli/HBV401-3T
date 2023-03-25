@@ -9,7 +9,11 @@ import is.hi.flight_booking.application.Flight;
 import is.hi.flight_booking.application.Seat;
 
 public class FlightControllerMock implements FlightControllerInterface {
-	public List<Flight> searchFlights(String from, String destination, LocalDate date) {
+	public List<Flight> searchFlights(
+		String from,
+		String destination,
+		LocalDate date
+	) {
 		String[] departures = {"Reykjavík", "Keflavík", "Húsavík", "Reykjavík", "Keflavík", "Keflavík", "Keflavík"};
 		String[] destinations = {"Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir", "Akureyri", "Vestmannaeyjar", "Egilsstaðir"};
 		List<Flight> flights = new ArrayList<>();
