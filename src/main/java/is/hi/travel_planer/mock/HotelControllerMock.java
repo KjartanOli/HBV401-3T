@@ -10,8 +10,6 @@ import is.hi.hotel.entities.Hotel;
 import is.hi.hotel.entities.Room;
 
 public class HotelControllerMock implements IHotelController {
-	public List<Hotel> getHotels() { return new ArrayList<Hotel>(); }
-
 	public List<Hotel> searchHotels(LocalDate date, int adults, int children, String location) {
 		Hotel H1 = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
 			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,8))));
