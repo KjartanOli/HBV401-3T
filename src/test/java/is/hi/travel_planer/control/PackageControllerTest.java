@@ -149,11 +149,14 @@ public class PackageControllerTest {
 	public void tearDown() {
 		user_test1 = null;
 		controller_test1 = null;
+		expected_test1 = null;
 
 		user_test2 = null;
 		controller_test2 = null;
+		expected_test2 = null;
 
 		controller_test4 = null;
+		expected_test4 = null;
 	}
 
 	@Test
