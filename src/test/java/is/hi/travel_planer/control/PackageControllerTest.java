@@ -207,19 +207,34 @@ public class PackageControllerTest {
 		controller_test4 = null;
 	}
 
-	@Test //test 1
+	/*
+	Test 1
+	Testing if createPackage() returns the correct list
+	of packages when more than three exist
+	*/
+	@Test
 	public void testCreatePackagesMoreThanThree() {
 		var result = controller_test1.createPackages();
 		assertEquals(expected_test1, result);
 	}
 
+	/*
+	Test 2
+	Testing if createPackage() returns the correct list
+	of packages when fewer than three exist
+	*/
 	@Test //test 2
 	public void testCreatePackagesLessThanThree() {
 		var result = controller_test2.createPackages();
 		assertEquals(expected_test2, result);
 	}
 
-	@Test //test 3
+	/*
+	Test 3
+	Testing if createPackage(Hotel hotel) returns the correct
+	list of packages when called with a specific hotel
+	*/
+	@Test
 	public void testCreatePackagesSpecificHotel() {
 		var h = new Hotel(7, "Akureyri", 1, new Room(101, 2, false,
 			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,27))));
@@ -227,7 +242,12 @@ public class PackageControllerTest {
 		assertEquals(expected_test3, result);
 	}
 
-	@Test //test 4
+	/*
+	Test 4
+	Testing if createPackage(DayTourDetails daytour) returns the correct
+	list of packages when called with a specific DayTour
+	*/
+	@Test
 	public void testCreataPackagesSpecificDayTour() {
 		var t = new DayTourDetails(
 				"3", "Austur", "Egilsstaðir",
