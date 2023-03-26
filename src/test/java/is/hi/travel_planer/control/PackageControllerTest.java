@@ -152,6 +152,8 @@ public class PackageControllerTest {
 
 		user_test2 = null;
 		controller_test2 = null;
+
+		controller_test4 = null;
 	}
 
 	@Test
