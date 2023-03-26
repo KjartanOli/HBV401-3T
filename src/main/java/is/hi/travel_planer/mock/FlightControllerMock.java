@@ -8,6 +8,15 @@ import is.hi.flight_booking.interfaces.FlightControllerInterface;
 import is.hi.flight_booking.application.Flight;
 import is.hi.flight_booking.application.Seat;
 
+/**
+ * Mocks the Flight group's FlightController.
+ * The FlightController class is the Flight groups concrete
+ * implementation of the FlightControllerInterface, which provides
+ * methods for searching for flights.  This mock provides an
+ * implementation of the FlightControllerInterface which does not
+ * communicate with any databases, and returns stable data for testing
+ * purposes.
+*/
 public class FlightControllerMock implements FlightControllerInterface {
 	public List<Flight> searchFlights(
 		String from,

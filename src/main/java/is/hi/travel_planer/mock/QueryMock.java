@@ -8,6 +8,14 @@ import com.daytour.processing.DayTourDetails;
 import com.daytour.processing.Booking;
 import is.hi.daytour.processing.QueryInterface;
 
+/**
+ * Mocks the Day Tour group's Query/QueryController.
+ * The Query class, is the Day Tour group's concrete implementation of
+ * the QueryInterface which is responsible for searching for tours,
+ * and registering bookings.  This mock provides an implementation of
+ * the QueryInterface which does not communicate with any databases,
+ * and returns stable data for testing purposes.
+*/
 public class QueryMock implements QueryInterface {
 	public void addBooking(Booking booking) {
 		//TODO

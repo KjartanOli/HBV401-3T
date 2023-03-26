@@ -9,6 +9,13 @@ import is.hi.hotel.entities.Dates;
 import is.hi.hotel.entities.Hotel;
 import is.hi.hotel.entities.Room;
 
+/**
+ * Mocks the Hotel group's HotelController.
+ * The HotelController class is the Hotel groups concrete implementation of the
+ * IHotelController interface, which provides methods for searching for hotels.
+ * This mock provides an implementation of IHotelController which does not
+ * communicate with any databases, and returns stable data for testing purposes.
+*/
 public class HotelControllerMock implements IHotelController {
 	public List<Hotel> searchHotels(LocalDate date, int adults, int children, String location) {
 		Hotel H1 = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
