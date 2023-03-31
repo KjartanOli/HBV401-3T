@@ -35,9 +35,9 @@
                   <Text layoutX="190.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flug" />
                   <Text layoutX="622.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hótel" />
                   <Text layoutX="1056.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagsferð" />
-                  <ListView fx:id="flights" layoutX="80.0" layoutY="50.0" maxHeight="500.0" />
-                  <ListView fx:id="hotels" layoutX="515.0" layoutY="50.0" />
-                  <ListView fx:id="tours" layoutX="961.0" layoutY="55.0" />
+                  <ListView fx:id="flights" layoutX="80.0" layoutY="50.0" maxHeight="340.0" />
+                  <ListView fx:id="hotels" layoutX="515.0" layoutY="50.0" maxHeight="340.0" />
+                  <ListView fx:id="tours" layoutX="961.0" layoutY="55.0" maxHeight="340.0" />
                </children>
             </AnchorPane>
          </children>
