@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.TourCellController">
+   <children>
+      <Label fx:id="company" layoutX="150.0" layoutY="14.0" text="COMPANY" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <HBox layoutX="14.0" layoutY="14.0" maxWidth="100.0" prefHeight="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <Label fx:id="title" text="TITLE">
+               <padding>
+                  <Insets right="5.0" />
+               </padding></Label>
+            <Label fx:id="rating" text="0.0" />
+            <Label text="★" />
+         </children>
+      </HBox>
+      <HBox layoutX="90.0" layoutY="70.0" prefHeight="15.0" spacing="3.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+         <children>
+            <Label text="Verð:" />
+            <Label fx:id="price" text="PRICE" />
+            <Label text="kr" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
