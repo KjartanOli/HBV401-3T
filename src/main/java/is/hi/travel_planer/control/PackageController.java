@@ -25,7 +25,7 @@ public class PackageController {
 	private DayTourDetails[] tours;
 	private Hotel[] hotels;
 
-	private List<Flight> getFlights() {
+	public List<Flight> getFlights() {
 		return this.flightController.searchFlights(
 			user.getLocation(),
 			user.getDestination(),
@@ -33,7 +33,7 @@ public class PackageController {
 		);
 	}
 
-	private List<Hotel> getHotels() {
+	public List<Hotel> getHotels() {
 		return this.hotelController.searchHotels(
 			user.getDepartureDate(),
 			user.getGroupSize(),
@@ -42,7 +42,7 @@ public class PackageController {
 		);
 	}
 
-	private List<DayTourDetails> getTours() {
+	public List<DayTourDetails> getTours() {
 		return Arrays.asList(
 			QueryInterface.searchTourDetails(
 				user.getDestination(),
