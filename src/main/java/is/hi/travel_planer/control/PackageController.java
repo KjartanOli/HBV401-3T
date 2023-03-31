@@ -25,6 +25,18 @@ public class PackageController {
 	private DayTourDetails[] tours;
 	private Hotel[] hotels;
 
+	public PackageController(
+		User user,
+		FlightControllerInterface flightController,
+		IHotelController hotelController,
+		QueryInterface QueryInterface
+	) {
+		this.user = user;
+		this.flightController = flightController;
+		this.hotelController = hotelController;
+		this.QueryInterface = QueryInterface;
+	}
+
 	public List<Flight> getFlights() {
 		return this.flightController.searchFlights(
 			user.getLocation(),
@@ -52,18 +64,6 @@ public class PackageController {
 				null
 			)
 		);
-	}
-
-	public PackageController(
-		User user,
-		FlightControllerInterface flightController,
-		IHotelController hotelController,
-		QueryInterface QueryInterface
-	) {
-		this.user = user;
-		this.flightController = flightController;
-		this.hotelController = hotelController;
-		this.QueryInterface = QueryInterface;
 	}
 
 	public List<TravelPackage> createPackages(Flight flight) {
