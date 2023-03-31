@@ -51,6 +51,8 @@ public class PackageSelectionController {
 			new QueryMock()
 		);
 
+		flights.setCellFactory(lv -> new FlightCell());
+
 		for (var flight : packageController.getFlights()) {
 			flights.getItems().add(flight);
 		}
