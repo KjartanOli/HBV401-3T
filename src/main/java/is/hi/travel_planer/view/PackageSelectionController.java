@@ -1,11 +1,11 @@
 package is.hi.travel_planer.view;
 
-import java.time.LocalDate;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
-import javafx.util.Callback;;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.util.Callback;
 
 import is.hi.travel_planer.control.PackageController;
 
@@ -34,24 +34,34 @@ public class PackageSelectionController {
 	@FXML
 	private ListView<DayTourDetails> tours;
 
-	private PackageController packageController;
+	@FXML
+	private ChoiceBox destination;
 
 	@FXML
-	private void initialize() {
-		var user = new User(
-			"John Doe", "john@example.org", "1234567890", "1234567", 2,
-			"Reykjavík", LocalDate.of(2023, 4, 1),
-			"Akureyri", LocalDate.of(2023, 4, 4)
-		);
+	private DatePicker departureDate;
 
+	@FXML
+	private DatePicker returnDate;
+
+	private PackageController packageController;
+
+	public PackageSelectionController(User user) {
 		packageController = new PackageController(
 			user,
 			new FlightControllerMock(),
 			new HotelControllerMock(),
 			new QueryMock()
 		);
+	}
+
+	@FXML
+	private void initialize() {
+		returnDate.setValue(packageController.getUser().getReturnDate());
+		departureDate.setValue(packageController.getUser().getDepartureDate());
 
 		flights.setCellFactory(lv -> new FlightCell());
+
+		tours.setCellFactory(lv -> new TourCell());
 
 		for (var flight : packageController.getFlights()) {
 			flights.getItems().add(flight);

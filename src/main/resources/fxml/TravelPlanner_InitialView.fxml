@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.UserController">
    <children>
       <Text layoutX="296.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meta Travel Planner" textAlignment="CENTER" wrappingWidth="609.9609375">
          <font>
@@ -18,21 +18,21 @@
          </font>
       </Text>
       <Label layoutX="448.0" layoutY="214.0" text="Fulltnafn" />
-      <TextField layoutX="532.0" layoutY="209.0" />
+      <TextField fx:id="name" layoutX="532.0" layoutY="209.0" />
       <Label layoutX="448.0" layoutY="247.0" text="Netfang" />
-      <TextField layoutX="532.0" layoutY="277.0" />
+      <TextField fx:id="ssn" layoutX="532.0" layoutY="277.0" />
       <Label layoutX="448.0" layoutY="283.0" text="Kennitala" />
-      <TextField layoutX="532.0" layoutY="242.0" />
+      <TextField fx:id="email" layoutX="532.0" layoutY="242.0" />
       <Label layoutX="448.0" layoutY="315.0" text="Áhugamál" />
       <ChoiceBox layoutX="532.0" layoutY="310.0" prefWidth="150.0" />
       <Label layoutX="448.0" layoutY="345.0" text="Fjöldi" />
       <ChoiceBox layoutX="532.0" layoutY="341.0" prefHeight="25.0" prefWidth="55.0" />
       <Label layoutX="448.0" layoutY="376.0" text="Áfangastaður" />
-      <ChoiceBox layoutX="532.0" layoutY="372.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="destination" layoutX="532.0" layoutY="372.0" prefWidth="150.0" />
       <Label layoutX="448.0" layoutY="427.0" text="Brottför" />
-      <DatePicker layoutX="532.0" layoutY="423.0" prefHeight="25.0" prefWidth="124.0" />
+      <DatePicker fx:id="departureDate" layoutX="532.0" layoutY="423.0" prefHeight="25.0" prefWidth="124.0" />
       <Label layoutX="448.0" layoutY="460.0" text="Heimkoma" />
-      <DatePicker layoutX="532.0" layoutY="457.0" prefHeight="25.0" prefWidth="124.0" />
+      <DatePicker fx:id="returnDate" layoutX="532.0" layoutY="457.0" prefHeight="25.0" prefWidth="124.0" />
       <Button layoutX="1184.0" layoutY="835.0" mnemonicParsing="false" text="Áfram" />
       <Button layoutX="1114.0" layoutY="835.0" mnemonicParsing="false" text="Hreinsa" />
       <Line endX="100.0" layoutX="345.0" layoutY="131.0" startX="100.0" startY="474.5" />
@@ -40,5 +40,6 @@
       <Label layoutX="448.0" layoutY="503.0" text="Verðtakmörk" />
       <ChoiceBox layoutX="532.0" layoutY="499.0" prefWidth="150.0" />
       <ChoiceBox layoutX="532.0" layoutY="531.0" prefWidth="150.0" />
+      <Button fx:id="submit" layoutX="720.0" layoutY="594.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
    </children>
 </Pane>
