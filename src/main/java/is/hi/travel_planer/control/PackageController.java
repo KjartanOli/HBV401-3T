@@ -37,6 +37,10 @@ public class PackageController {
 		this.QueryInterface = QueryInterface;
 	}
 
+	public User getUser() {
+		return this.user;
+	}
+
 	public List<Flight> getFlights() {
 		return this.flightController.searchFlights(
 			user.getLocation(),
