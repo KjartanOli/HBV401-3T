@@ -14,8 +14,6 @@
                <padding>
                   <Insets right="5.0" />
                </padding></Label>
-            <Label fx:id="rating" text="0.0" />
-            <Label text="★" />
          </children>
       </HBox>
       <HBox layoutX="90.0" layoutY="70.0" prefHeight="15.0" spacing="3.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
@@ -23,6 +21,12 @@
             <Label text="Verð:" />
             <Label fx:id="price" text="PRICE" />
             <Label text="kr" />
+         </children>
+      </HBox>
+      <HBox layoutX="14.0" layoutY="71.0" prefHeight="15.0" prefWidth="35.0">
+         <children>
+            <Label fx:id="rating" text="0.0" />
+            <Label text="★" />
          </children>
       </HBox>
    </children>
