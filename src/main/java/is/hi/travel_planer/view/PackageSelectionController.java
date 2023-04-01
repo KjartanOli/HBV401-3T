@@ -5,6 +5,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 import is.hi.travel_planer.control.PackageController;
@@ -39,9 +40,11 @@ public class PackageSelectionController {
 
 	@FXML
 	private DatePicker departureDate;
-
 	@FXML
 	private DatePicker returnDate;
+
+	@FXML
+	private HBox recommendations;
 
 	private PackageController packageController;
 
@@ -59,8 +62,11 @@ public class PackageSelectionController {
 		returnDate.setValue(packageController.getUser().getReturnDate());
 		departureDate.setValue(packageController.getUser().getDepartureDate());
 
-		flights.setCellFactory(lv -> new FlightCell());
+		for (var pkg : packageController.createPackages()) {
+			recommendations.getChildren().add(new PackageView(pkg));
+		}
 
+		flights.setCellFactory(lv -> new FlightCell());
 		tours.setCellFactory(lv -> new TourCell());
 
 		for (var flight : packageController.getFlights()) {
