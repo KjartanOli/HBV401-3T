@@ -10,10 +10,10 @@ public class User {
 	private int groupSize;
 	private LocalDate departureDate;
 	private LocalDate returnDate;
-	private String location;
+	private String origin;
 	private String destination;
 
-	public User(String name, String email, String ssn, String phone, int groupSize, String location, LocalDate departureDate, String destination, LocalDate returnDate) {
+	public User(String name, String email, String ssn, String phone, int groupSize, String origin, LocalDate departureDate, String destination, LocalDate returnDate) {
 		this.name = name;
 		this.email = email;
 		this.ssn = ssn;
@@ -21,7 +21,7 @@ public class User {
 		this.groupSize = groupSize;
 		this.departureDate = departureDate;
 		this.returnDate = returnDate;
-		this.location = location;
+		this.origin = origin;
 		this.destination = destination;
 	}
 
@@ -30,7 +30,7 @@ public class User {
 	public String getPhone() { return this.phone; }
 	public String getSSN() { return this.ssn; }
 	public int getGroupSize() { return this.groupSize; }
-	public String getLocation() { return this.location; }
+	public String getOrigin() { return this.origin; }
 	public String getDestination() { return this.destination; }
 	public LocalDate getDepartureDate() { return this.departureDate; }
 	public LocalDate getReturnDate() { return this.returnDate; }

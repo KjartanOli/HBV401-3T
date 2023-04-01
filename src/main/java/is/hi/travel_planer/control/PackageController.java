@@ -43,7 +43,7 @@ public class PackageController {
 
 	public List<Flight> getFlights() {
 		return this.flightController.searchFlights(
-			user.getLocation(),
+			user.getOrigin(),
 			user.getDestination(),
 			user.getDepartureDate()
 		);
