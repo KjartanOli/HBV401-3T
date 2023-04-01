@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<fx:root alignment="CENTER_LEFT" maxHeight="-Infinity"
+         maxWidth="-Infinity" minHeight="-Infinity"
+         minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0"
+         type="HBox" xmlns="http://javafx.com/javafx/19"
+         xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label text="🏨">
+      <padding>
+        <Insets left="5.0" />
+      </padding>
+    </Label>
+    <Label fx:id="name"/>
+  </children>
+</fx:root>
