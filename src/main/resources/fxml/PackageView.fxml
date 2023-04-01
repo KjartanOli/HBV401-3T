@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import is.hi.travel_planer.view.FlightView?>
+<?import is.hi.travel_planer.view.HotelView?>
+<?import is.hi.travel_planer.view.TourView?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity"
+         minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0"
+         prefWidth="200.0" type="VBox"
+         xmlns="http://javafx.com/javafx/19"
+         xmlns:fx="http://javafx.com/fxml/1" >
+  <children>
+    <FlightView fx:id="flight"/>
+    <HotelView fx:id="hotel"/>
+    <TourView fx:id="tour"/>
+  </children>
+</fx:root>
