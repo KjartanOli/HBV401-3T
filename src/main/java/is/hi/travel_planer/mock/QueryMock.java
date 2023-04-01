@@ -30,28 +30,28 @@ public class QueryMock implements QueryInterface {
 	) {
 		var a = new DayTourDetails[] {
 			new DayTourDetails(
-				"1", "Norð-Austur", "Akureyri",
-				"Test", "0", "1", "100", "", "20",
+				1, "Norð-Austur", "Akureyri",
+				"Test", 0, 1, 100, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"2", "Norð-Austur", "Akureyri",
-				"Test2", "0", "1", "200", "", "20",
+				2, "Norð-Austur", "Akureyri",
+				"Test2", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"3", "Austur", "Egilsstaðir",
-				"Test3", "0", "1", "200", "", "20",
+				3, "Austur", "Egilsstaðir",
+				"Test3", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"4", "Norð-Austur", "Akureyri",
-				"Test4", "0", "1", "200", "", "20",
+				4, "Norð-Austur", "Akureyri",
+				"Test4", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"5", "Norð-Austur", "Akureyri",
-				"Test5", "0", "1", "200", "", "20",
+				5, "Norð-Austur", "Akureyri",
+				"Test5", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 		};
