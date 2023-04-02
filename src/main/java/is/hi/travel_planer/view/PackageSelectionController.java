@@ -36,10 +36,17 @@ public class PackageSelectionController {
 	private ListView<DayTourDetails> tours;
 
 	@FXML
-	private ChoiceBox destination;
+	private ChoiceBox<String> destination;
+
+	@FXML
+	private ChoiceBox<String> interest;
+
+	@FXML
+	private ChoiceBox<Integer> people;
 
 	@FXML
 	private DatePicker departureDate;
+	
 	@FXML
 	private DatePicker returnDate;
 
@@ -61,6 +68,11 @@ public class PackageSelectionController {
 	private void initialize() {
 		returnDate.setValue(packageController.getUser().getReturnDate());
 		departureDate.setValue(packageController.getUser().getDepartureDate());
+
+		interest.getItems().addAll(UserController.getInterestList());
+		destination.getItems().addAll(UserController.getPlacesList());
+
+		people.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
 
 		for (var pkg : packageController.createPackages()) {
 			recommendations.getChildren().add(new PackageView(pkg));

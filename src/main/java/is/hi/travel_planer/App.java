@@ -19,7 +19,7 @@ public class App extends Application {
 	public void start(Stage stage) throws IOException {
 		var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_InitialView.fxml"));
 
-		var scene = new Scene(loader.load(), 800, 800);
+		var scene = new Scene(loader.load(), 1280, 900);
 		stage.setScene(scene);
 		stage.show();
 	}

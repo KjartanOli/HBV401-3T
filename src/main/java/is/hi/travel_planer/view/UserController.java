@@ -35,6 +35,8 @@ public class UserController {
 	@FXML
 	private TextField phone;
 	@FXML
+	private ChoiceBox<String> interest;
+	@FXML
 	private ChoiceBox<Integer> people;
 	@FXML
 	private ChoiceBox<String> departure;
@@ -44,31 +46,45 @@ public class UserController {
 	private DatePicker departureDate;
 	@FXML
 	private DatePicker returnDate;
-
-	List<String> places = Arrays.asList(
+	@FXML
+	private ChoiceBox<Integer> priceLow;
+	@FXML
+	private ChoiceBox<Integer> priceHigh;
+	
+	private static List<String> placesList = Arrays.asList(
 		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður"
 	); // man ekki alla staðina, bætum þeim við
-	List<String> interestList = Arrays.asList(
+	private static List<String> interestList = Arrays.asList(
 		"Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"
 	);
 
 	@FXML
 	private void initialize() {
 		people.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
-		departure.getItems().addAll(places);
-		destination.getItems().addAll(places);
+		departure.getItems().addAll(placesList);
+		destination.getItems().addAll(placesList);
+		interest.getItems().addAll(interestList);
+		priceLow.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
+		priceHigh.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
 		System.err.println("test");
 	}
 	@FXML
 	private void submit(ActionEvent event) throws IOException {
 		if(name.getText().isEmpty() ||  ssn.getText().isEmpty() ||
-			email.getText().isEmpty() || phone.getText().isEmpty() ||  people.getValue() == null ||
+			email.getText().isEmpty() || phone.getText().isEmpty() ||  
+			people.getValue() == null || interest.getValue() == null ||
 			departure.getValue() == null || destination.getValue() == null ||
 			departureDate.getValue() == null || returnDate.getValue() == null){
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Villa!");
+				alert.setTitle("Óútfylltir reitir");
 				alert.setHeaderText("Vinsamlegast fylla út alla reiti");
 				alert.showAndWait();
+		}
+		else if (priceLow.getValue().intValue() > priceHigh.getValue().intValue()){
+			Alert priceAlert = new Alert(Alert.AlertType.ERROR);
+				priceAlert.setTitle("Verð villa");
+				priceAlert.setHeaderText("Vinsamlegast veldu lægri mörk verðs sem er lægri en hærri mörkin");
+				priceAlert.showAndWait();
 		}
 		else{
 			var user = new User(
@@ -88,9 +104,17 @@ public class UserController {
 
 				var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_PackageView.fxml"));
 				loader.setControllerFactory(c -> new PackageSelectionController(user));
-				var scene = new Scene(loader.load(), 800, 800);
+				var scene = new Scene(loader.load(), 1280, 900);
 				stage.setScene(scene);
 				stage.show();
 		}
+	}
+
+	public static List<String> getPlacesList(){
+		return placesList;
+	}
+
+	public static List<String> getInterestList(){
+		return interestList;
 	}
 }

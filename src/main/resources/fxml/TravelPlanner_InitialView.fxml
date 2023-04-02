@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.UserController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1280.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.UserController">
    <children>
       <Text layoutX="296.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meta Travel Planner" textAlignment="CENTER" wrappingWidth="609.9609375">
          <font>
