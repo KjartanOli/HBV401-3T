@@ -80,7 +80,7 @@ public class PackageController {
 			}
 		}
 
-		return packages.size() > 3 ? packages.subList(0, 3) : packages;
+		return choosePackages(packages);
 	}
 
 	public List<TravelPackage> createPackages(Hotel hotel) {
@@ -93,7 +93,7 @@ public class PackageController {
 			}
 		}
 
-		return packages.size() > 3 ? packages.subList(0, 3) : packages;
+		return choosePackages(packages);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class PackageController {
 			}
 		}
 
-		return packages.size() > 3 ? packages.subList(0, 3) : packages;
+		return choosePackages(packages);
 	}
 
 	public List<TravelPackage> createPackages() {
@@ -124,6 +124,10 @@ public class PackageController {
 			}
 		}
 
+		return choosePackages(packages);
+	}
+
+	private List<TravelPackage> choosePackages(List<TravelPackage> packages) {
 		return packages.size() > 3 ? packages.subList(0, 3) : packages;
 	}
 }
