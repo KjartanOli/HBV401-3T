@@ -70,18 +70,18 @@ public class PackageControllerTest {
 
 		var tours_test1 = new DayTourDetails[] {
 			new DayTourDetails(
-				"1", "Norð-Austur", "Akureyri",
-				"Test", "0", "1", "100", "", "20",
+				1, "Norð-Austur", "Akureyri",
+				"Test", 0, 1, 100, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"2", "Norð-Austur", "Akureyri",
-				"Test2", "0", "1", "200", "", "20",
+				2, "Norð-Austur", "Akureyri",
+				"Test2", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"4", "Norð-Austur", "Akureyri",
-				"Test4", "0", "1", "200", "", "20",
+				4, "Norð-Austur", "Akureyri",
+				"Test4", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 		};
@@ -130,8 +130,8 @@ public class PackageControllerTest {
 			new Dates(LocalDate.of(2023,4,2), LocalDate.of(2023,4,9))));
 
 		var t_test2 = new DayTourDetails(
-				"3", "Austur", "Egilsstaðir",
-				"Test3", "0", "1", "200", "", "20",
+				3, "Austur", "Egilsstaðir",
+				"Test3", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 		);
 
@@ -166,18 +166,18 @@ public class PackageControllerTest {
 
 		var tours_test3 = new DayTourDetails[] {
 			new DayTourDetails(
-				"1", "Norð-Austur", "Akureyri",
-				"Test", "0", "1", "100", "", "20",
+				1, "Norð-Austur", "Akureyri",
+				"Test", 0, 1, 100, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"2", "Norð-Austur", "Akureyri",
-				"Test2", "0", "1", "200", "", "20",
+				2, "Norð-Austur", "Akureyri",
+				"Test2", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 			new DayTourDetails(
-				"4", "Norð-Austur", "Akureyri",
-				"Test4", "0", "1", "200", "", "20",
+				4, "Norð-Austur", "Akureyri",
+				"Test4", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 			),
 		};
@@ -250,8 +250,8 @@ public class PackageControllerTest {
 	@Test
 	public void testCreataPackagesSpecificDayTour() {
 		var t = new DayTourDetails(
-				"3", "Austur", "Egilsstaðir",
-				"Test3", "0", "1", "200", "", "20",
+				3, "Austur", "Egilsstaðir",
+				"Test3", 0, 1, 200, "", 20,
 				"Test inc.", "", "", "10:00-20:00"
 		);
 
