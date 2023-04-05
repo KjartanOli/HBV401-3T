@@ -1,37 +1,75 @@
 package is.hi.hotel.entities;
 
+import java.util.List;
+
 public class Hotel {
-	private int hotelID;
-	private String location;
-	private int numberOfRooms;
-	private Room room;
+    private int hotelId;
+    private String name;
+    private String location;
+    private List<Room> rooms;
 
-	public Hotel(int hotelID, String location, int numberOfRooms, Room room){
-		this.hotelID = hotelID;
-		this.location = location;
-		this.numberOfRooms = numberOfRooms;
-		this.room = room;
-	}
+    public Hotel(int hotelId,String name, String location, List<Room> rooms) {
+        this.hotelId = hotelId;
+        this.name = name;
+        this.location = location;
+        this.rooms = rooms;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Hotel)) {
+            return false;
+        }
+        Hotel hotel = (Hotel) o;
 
-	public int getHotelID() { return this.hotelID; }
-	public String getLocation() { return this.location; }
-	public int getNumberOfRooms() { return this.numberOfRooms; }
-	public Room getRoom() { return this.room; }
+        if (this.hotelId != hotel.hotelId) {
+            return false;
+        }
+        if (!this.name.equals(hotel.name)) {
+            return false;
+        }
+        if (!this.location.equals(hotel.location)) {
+            return false;
+        }
+        if (this.rooms.size() != hotel.getRooms().size()) {
+            return false;
+        }
+        for (int i = 0; i < this.rooms.size(); i++) {
+            if (!this.rooms.get(i).equals(hotel.getRooms().get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
+    public int getHotelId() {
+        return hotelId;
+    }
 
-		if (!(o instanceof Hotel)) {
-			return false;
-		}
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
 
-		// typecast o to Complex so that we can compare data members
-		Hotel f = (Hotel) o;
+    public String getLocation() {
+        return location;
+    }
 
-		// Compare the data members and return accordingly
-		return hotelID == f.hotelID;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
