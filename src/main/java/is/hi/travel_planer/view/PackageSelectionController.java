@@ -59,7 +59,9 @@ public class PackageSelectionController {
 		packageController = new PackageController(
 			user,
 			new FlightControllerMock(),
+			new is.hi.flight_booking.controller.BookingController(),
 			new HotelControllerMock(),
+			new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository()),
 			new QueryMock()
 		);
 	}

@@ -1,11 +1,12 @@
 package is.hi.hotel.implementations.repositories;
 
 import is.hi.hotel.entities.Booking;
+import is.hi.hotel.interfaces.IBookingRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingRepository {
+public class BookingRepository implements IBookingRepository {
     private final List<Booking> bookings;
 
     public BookingRepository() {
