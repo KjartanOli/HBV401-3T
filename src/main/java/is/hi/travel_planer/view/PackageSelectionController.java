@@ -1,5 +1,6 @@
 package is.hi.travel_planer.view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
@@ -28,28 +29,16 @@ import is.hi.travel_planer.mock.FlightControllerMock;
 public class PackageSelectionController {
 	@FXML
 	private ListView<Flight> flights;
-
 	@FXML
 	private ListView<Hotel> hotels;
-
 	@FXML
 	private ListView<DayTourDetails> tours;
-
 	@FXML
-	private ChoiceBox<String> destination;
-
+	private ChoiceBox<String> destination, interest;
 	@FXML
-	private ChoiceBox<String> interest;
-
+	private ChoiceBox<Integer> groupSize;
 	@FXML
-	private ChoiceBox<Integer> people;
-
-	@FXML
-	private DatePicker departureDate;
-	
-	@FXML
-	private DatePicker returnDate;
-
+	private DatePicker departureDate, returnDate;
 	@FXML
 	private HBox recommendations;
 
@@ -72,7 +61,7 @@ public class PackageSelectionController {
 		interest.getItems().addAll(UserController.getInterestList());
 		destination.getItems().addAll(UserController.getPlacesList());
 
-		people.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
+		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
 
 		for (var pkg : packageController.createPackages()) {
 			recommendations.getChildren().add(new PackageView(pkg));
@@ -93,4 +82,29 @@ public class PackageSelectionController {
 			tours.getItems().add(tour);
 		}
 	}
+
+	@FXML
+    private void handleDestinationSelection(ActionEvent event) {
+        packageController.getUser().setDestination(destination.getValue());
+    }
+
+    @FXML
+    private void handleInterestSelection(ActionEvent event) {
+        packageController.getUser().setInterest(interest.getValue());
+    }
+
+    @FXML
+    private void handleGroupSizeSelection(ActionEvent event) {
+        packageController.getUser().setGroupSize(groupSize.getValue().intValue());
+    }
+
+    @FXML
+    private void handleDepartureDateSelection(ActionEvent event) {
+        packageController.getUser().setDepartureDate(departureDate.getValue());
+    }
+
+    @FXML
+    private void handleReturnDateSelection(ActionEvent event) {
+        packageController.getUser().setReturnDate(returnDate.getValue());
+    }
 }
