@@ -5,14 +5,15 @@ import java.time.LocalDate;
 import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 import is.hi.hotel.entities.Hotel;
+import is.hi.hotel.entities.BookingDate;
 
 public class TravelPackage {
 	private final Flight flight;
 	private final Hotel hotel;
 	private final DayTourDetails tour;
-	private final Duration duration;
+	private final BookingDate duration;
 
-	public TravelPackage(Flight flight, Hotel hotel, DayTourDetails tour, Duration duration) {
+	public TravelPackage(Flight flight, Hotel hotel, DayTourDetails tour, BookingDate duration) {
 		this.flight = flight;
 		this.hotel = hotel;
 		this.tour = tour;
@@ -22,7 +23,7 @@ public class TravelPackage {
 	public Flight getFlight() { return this.flight; }
 	public Hotel getHotel() { return this.hotel; }
 	public DayTourDetails getTour() { return this.tour; }
-	public Duration getDuration() {return this.duration; }
+	public BookingDate getDuration() {return this.duration; }
 
 	@Override
 	public boolean equals(Object o) {
@@ -41,6 +42,6 @@ public class TravelPackage {
 
 	@Override
 	public String toString() {
-		return String.format("Package {%n\tflight: %s %s -> %s%n\thotel: %s%n\ttour: %s%n}", this.flight.getFlightId(), this.flight.getDepartureAddress(), this.flight.getArrivalAddress(), this.hotel.getHotelID(), this.tour);
+		return String.format("Package {%n\tflight: %s %s -> %s%n\thotel: %s%n\ttour: %s%n}", this.flight.getFlightId(), this.flight.getDepartureAddress(), this.flight.getArrivalAddress(), this.hotel.getHotelId(), this.tour);
 	}
 }

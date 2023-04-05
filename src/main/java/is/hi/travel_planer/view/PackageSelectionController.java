@@ -13,7 +13,7 @@ import is.hi.travel_planer.control.PackageController;
 import is.hi.travel_planer.model.TravelPackage;
 import is.hi.travel_planer.model.User;
 import is.hi.hotel.entities.Hotel;
-import is.hi.hotel.entities.Dates;
+import is.hi.hotel.entities.BookingDate;
 import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 

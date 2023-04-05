@@ -3,6 +3,7 @@ package is.hi.travel_planer.control;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ import is.hi.flight_booking.application.Seat;
 
 import is.hi.hotel.entities.Hotel;
 import is.hi.hotel.entities.Room;
-import is.hi.hotel.entities.Dates;
+import is.hi.hotel.entities.BookingDate;
 
 public class PackageControllerTest {
 	PackageController controller_test1;
@@ -65,8 +66,7 @@ public class PackageControllerTest {
 		var f_test1 = new Flight(id_test1, seats_test1, "Reykjavík", "Akureyri", LocalDate.of(2023, 4, 1),
 			LocalDate.of(2023, 4, 1), 2000);
 
-		var h_test1 = new Hotel(1, "Akureyri", 1, new Room(101, 4, false,
-			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,8))));
+		var h_test1 = new Hotel(1, "H1", "Akureyri", Arrays.asList(new Room(1, 1, null, 500)));
 
 		var tours_test1 = new DayTourDetails[] {
 			new DayTourDetails(
@@ -126,8 +126,7 @@ public class PackageControllerTest {
 		var f2_test2 = new Flight(id2_test2, seats2_test2, "Keflavík", "Egilsstaðir", LocalDate.of(2023, 4, 2),
 			LocalDate.of(2023, 4, 2), 1000);
 
-		var h_test2 = new Hotel(2, "Egilsstaðir", 1, new Room(101, 4, false,
-			new Dates(LocalDate.of(2023,4,2), LocalDate.of(2023,4,9))));
+		var h_test2 = new Hotel(2, "H2", "Egilsstaðir", Arrays.asList(new Room(1, 1, null, 500)));
 
 		var t_test2 = new DayTourDetails(
 				3, "Austur", "Egilsstaðir",
@@ -159,8 +158,7 @@ public class PackageControllerTest {
 		var f_test3 = new Flight(id_test3, seats_test3, "Reykjavík", "Akureyri", LocalDate.of(2023, 4, 1),
 			LocalDate.of(2023, 4, 4), 2000);
 
-		var h_test3 = new Hotel(7, "Akureyri", 1, new Room(101, 2, false,
-			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,27))));
+		var h_test3 = new Hotel(7, "H7", "Akureyri", Arrays.asList(new Room(1, 1, null, 500)));
 
 		expected_test3 = new ArrayList<TravelPackage>();
 
@@ -236,8 +234,7 @@ public class PackageControllerTest {
 	*/
 	@Test
 	public void testCreatePackagesSpecificHotel() {
-		var h = new Hotel(7, "Akureyri", 1, new Room(101, 2, false,
-			new Dates(LocalDate.of(2023,4,1), LocalDate.of(2023,4,27))));
+		var h = new Hotel(7, "H7", "Akureyri", Arrays.asList(new Room(1, 1, null, 500)));
 		var result = controller_test3.createPackages(h);
 		assertEquals(expected_test3, result);
 	}

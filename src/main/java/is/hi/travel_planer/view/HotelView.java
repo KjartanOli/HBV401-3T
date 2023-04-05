@@ -29,6 +29,6 @@ public class HotelView extends HBox {
 	}
 
 	public void setHotel(Hotel hotel) {
-		name.setText(Integer.toString(hotel.getHotelID()));
+		name.setText(Integer.toString(hotel.getHotelId()));
 	}
 }

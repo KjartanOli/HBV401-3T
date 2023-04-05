@@ -2,6 +2,8 @@ package is.hi.travel_planer.model;
 
 import java.time.LocalDate;
 
+import is.hi.hotel.entities.BookingDate;
+
 public class User {
 	private String name;
 	private String email;
@@ -34,11 +36,17 @@ public class User {
 	public String getDestination() { return this.destination; }
 	public LocalDate getDepartureDate() { return this.departureDate; }
 	public LocalDate getReturnDate() { return this.returnDate; }
-	public Duration getTripDuration() {
-		return new Duration(this.getDepartureDate(), this.getReturnDate());
+	public BookingDate getTripDuration() {
+		return new BookingDate(this.getDepartureDate(), this.getReturnDate());
 	}
 
 	public is.hi.flight_booking.application.User toFlightUser() {
 		return new is.hi.flight_booking.application.User(this.ssn, this.name);
+	}
+
+	public is.hi.hotel.entities.User toHotelUser() {
+		// I have no idea what the id scheme is, so all users will be
+		// user 0.
+		return new is.hi.hotel.entities.User(0, this.name, this.email);
 	}
 }
