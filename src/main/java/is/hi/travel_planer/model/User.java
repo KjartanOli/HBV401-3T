@@ -14,8 +14,11 @@ public class User {
 	private LocalDate returnDate;
 	private String origin;
 	private String destination;
+	private String interest;
+	private int maxPrice;
 
-	public User(String name, String email, String ssn, String phone, int groupSize, String origin, LocalDate departureDate, String destination, LocalDate returnDate) {
+	public User(String name, String email, String ssn, String phone, int groupSize, String origin, 
+				LocalDate departureDate, String destination, LocalDate returnDate, String interest, int maxPrice) {
 		this.name = name;
 		this.email = email;
 		this.ssn = ssn;
@@ -25,6 +28,8 @@ public class User {
 		this.returnDate = returnDate;
 		this.origin = origin;
 		this.destination = destination;
+		this.interest = interest;
+		this.maxPrice = maxPrice;
 	}
 
 	public String getName() { return this.name; }
@@ -39,6 +44,16 @@ public class User {
 	public BookingDate getTripDuration() {
 		return new BookingDate(this.getDepartureDate(), this.getReturnDate());
 	}
+	public String getInterest() {return this.interest; }
+	public int getMaxPrice() {return this.maxPrice; }
+
+
+	public void setGroupSize(int groupSize){ this.groupSize = groupSize; }
+	public void setInterest(String interest){ this.interest = interest; }
+	public void setDestination(String destination){ this.destination = destination; }
+	public void setDepartureDate(LocalDate departureDate){ this.departureDate = departureDate; }
+	public void setReturnDate(LocalDate returnDate){ this.returnDate = returnDate; }
+	public void setMaxPrice(int maxPrice){ this.maxPrice = maxPrice; }
 
 	public is.hi.flight_booking.application.User toFlightUser() {
 		return new is.hi.flight_booking.application.User(this.ssn, this.name);

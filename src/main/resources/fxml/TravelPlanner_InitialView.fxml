@@ -28,9 +28,9 @@
       <Label layoutX="448.0" layoutY="345.0" text="Áhugamál" />
       <ChoiceBox fx:id="interest" layoutX="552.0" layoutY="340.0" prefWidth="150.0" />
       <Label layoutX="448.0" layoutY="375.0" text="Fjöldi" />
-      <ChoiceBox fx:id="people" layoutX="552.0" layoutY="371.0" prefHeight="25.0" prefWidth="55.0" />
+      <ChoiceBox fx:id="groupSize" layoutX="552.0" layoutY="371.0" prefHeight="25.0" prefWidth="55.0" />
       <Label layoutX="448.0" layoutY="416.0" text="Brottfararstaður" />
-      <ChoiceBox fx:id="departure" layoutX="552.0" layoutY="412.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="origin" layoutX="552.0" layoutY="412.0" prefWidth="150.0" />
       <Label layoutX="448.0" layoutY="446.0" text="Áfangastaður" />
       <ChoiceBox fx:id="destination" layoutX="552.0" layoutY="442.0" prefWidth="150.0" />
       <Label layoutX="448.0" layoutY="491.0" text="Brottför" />
@@ -38,8 +38,7 @@
       <Label layoutX="448.0" layoutY="524.0" text="Heimkoma" />
       <DatePicker fx:id="returnDate" layoutX="552.0" layoutY="521.0" prefHeight="25.0" prefWidth="124.0" />
       <Label layoutX="448.0" layoutY="567.0" text="Verðtakmörk" />
-      <ChoiceBox fx:id="priceLow" layoutX="552.0" layoutY="563.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="priceHigh" layoutX="552.0" layoutY="595.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="maxPriceSelect" layoutX="552.0" layoutY="563.0" prefWidth="150.0" />
       <Button fx:id="submit" layoutX="740.0" layoutY="624.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
       <Line endX="100.0" layoutX="345.0" layoutY="131.0" startX="100.0" startY="474.5" />
       <Line endX="100.0" layoutX="447.0" layoutY="191.0" startX="100.0" startY="474.5" />

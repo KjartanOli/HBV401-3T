@@ -20,6 +20,7 @@ import is.hi.travel_planer.model.User;
 import is.hi.flight_booking.application.Flight;
 import is.hi.flight_booking.application.Seat;
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -27,30 +28,16 @@ public class UserController {
 	@FXML
 	private Button submit;
 	@FXML
-	private TextField name;
+	private TextField name, ssn, email, phone;
 	@FXML
-	private TextField ssn;
+	private ChoiceBox<String> interest, origin, destination;
 	@FXML
-	private TextField email;
+	private ChoiceBox<Integer> groupSize, maxPriceSelect;
 	@FXML
-	private TextField phone;
-	@FXML
-	private ChoiceBox<String> interest;
-	@FXML
-	private ChoiceBox<Integer> people;
-	@FXML
-	private ChoiceBox<String> departure;
-	@FXML
-	private ChoiceBox<String> destination;
-	@FXML
-	private DatePicker departureDate;
-	@FXML
-	private DatePicker returnDate;
-	@FXML
-	private ChoiceBox<Integer> priceLow;
-	@FXML
-	private ChoiceBox<Integer> priceHigh;
-	
+	private DatePicker departureDate, returnDate;
+
+	private Optional<Integer> maxPrice = Optional.empty();
+
 	private static List<String> placesList = Arrays.asList(
 		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður"
 	); // man ekki alla staðina, bætum þeim við
@@ -60,43 +47,52 @@ public class UserController {
 
 	@FXML
 	private void initialize() {
-		people.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
-		departure.getItems().addAll(placesList);
+		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
+		origin.getItems().addAll(placesList);
 		destination.getItems().addAll(placesList);
 		interest.getItems().addAll(interestList);
-		priceLow.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
-		priceHigh.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
+		maxPriceSelect.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
 		System.err.println("test");
 	}
 	@FXML
 	private void submit(ActionEvent event) throws IOException {
 		if(name.getText().isEmpty() ||  ssn.getText().isEmpty() ||
-			email.getText().isEmpty() || phone.getText().isEmpty() ||  
-			people.getValue() == null || interest.getValue() == null ||
-			departure.getValue() == null || destination.getValue() == null ||
+			email.getText().isEmpty() || phone.getText().isEmpty() ||
+			groupSize.getValue() == null || interest.getValue() == null ||
+			origin.getValue() == null || destination.getValue() == null ||
 			departureDate.getValue() == null || returnDate.getValue() == null){
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Óútfylltir reitir");
-				alert.setHeaderText("Vinsamlegast fylla út alla reiti");
+				alert.setHeaderText("Vinsamlegast fylla út alla reiti (Verð er valkvætt)");
 				alert.showAndWait();
 		}
-		else if (priceLow.getValue().intValue() > priceHigh.getValue().intValue()){
-			Alert priceAlert = new Alert(Alert.AlertType.ERROR);
-				priceAlert.setTitle("Verð villa");
-				priceAlert.setHeaderText("Vinsamlegast veldu lægri mörk verðs sem er lægri en hærri mörkin");
-				priceAlert.showAndWait();
+		if(origin.getValue().equals(destination.getValue())){
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Brottför og áfangastaður sá sami");
+				alert.setHeaderText("Ekki er hægt að fljúga frá " + origin.getValue() + " til " + destination.getValue());
+				alert.showAndWait();
 		}
 		else{
+			int mp;
+			if (maxPrice.isPresent()){
+				mp = maxPrice.get().intValue();
+			}
+			else {
+				mp = Integer.MAX_VALUE;
+			}
+			
 			var user = new User(
 					name.getText(),
 					email.getText(),
 					ssn.getText(),
 					phone.getText(),
-					people.getValue().intValue(),
-					departure.getValue(),
+					groupSize.getValue().intValue(),
+					origin.getValue(),
 					departureDate.getValue(),
 					destination.getValue(),
-					departureDate.getValue()
+					returnDate.getValue(),
+					interest.getValue(),
+					mp
 				);
 
 				System.err.println(name.getText());
@@ -117,4 +113,15 @@ public class UserController {
 	public static List<String> getInterestList(){
 		return interestList;
 	}
+
+	@FXML
+	private void handleMaxPriceSelection() {
+		Integer selectedPrice = maxPriceSelect.getValue();
+		if (selectedPrice != null) {
+			maxPrice = Optional.of(selectedPrice);
+		} else {
+			maxPrice = Optional.empty();
+		}
+	}
+
 }
