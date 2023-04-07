@@ -22,19 +22,19 @@ import is.hi.hotel.exceptions.NotFoundException;
 
 public class HotelControllerMock implements IHotelController {
 	public List<Hotel> searchHotels(BookingDate dates, int adults, int children, String location) {
-		Hotel H1 = new Hotel(1, "H1", "Akureyri", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H1 = new Hotel(1, "H1", "Akureyri", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
-		Hotel H2 = new Hotel(2, "H2", "Egilsstaðir", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H2 = new Hotel(2, "H2", "Egilsstaðir", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
-		Hotel H3 = new Hotel(3, "H3", "Vík", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H3 = new Hotel(3, "H3", "Vík", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
-		Hotel H4 = new Hotel(4, "H4", "Akureyri", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H4 = new Hotel(4, "H4", "Akureyri", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
-		Hotel H5 = new Hotel(5, "H5", "Ísafjörður", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H5 = new Hotel(5, "H5", "Ísafjörður", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
-		Hotel H6 = new Hotel(6, "H6", "Siglufjörður", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H6 = new Hotel(6, "H6", "Siglufjörður", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
-		Hotel H7 = new Hotel(7, "H7", "Akureyri", Arrays.asList(new Room(1, 1, null, 500)));
+		Hotel H7 = new Hotel(7, "H7", "Akureyri", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 
 		List<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(H1);
