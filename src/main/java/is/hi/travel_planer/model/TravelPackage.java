@@ -11,19 +11,21 @@ public class TravelPackage {
 	private final Flight flight;
 	private final Hotel hotel;
 	private final DayTourDetails tour;
-	private final BookingDate duration;
+	private final int groupSize;
 
-	public TravelPackage(Flight flight, Hotel hotel, DayTourDetails tour, BookingDate duration) {
+	public TravelPackage(Flight flight, Hotel hotel, DayTourDetails tour, int groupSize) {
 		this.flight = flight;
 		this.hotel = hotel;
 		this.tour = tour;
-		this.duration = duration;
+		this.groupSize = groupSize;
 	}
 
 	public Flight getFlight() { return this.flight; }
 	public Hotel getHotel() { return this.hotel; }
 	public DayTourDetails getTour() { return this.tour; }
-	public BookingDate getDuration() {return this.duration; }
+	public int getPrice() {
+		return groupSize * (flight.getPrice() + hotel.getRooms().get(0).get_price() + tour.getPrice());
+	}
 
 	@Override
 	public boolean equals(Object o) {

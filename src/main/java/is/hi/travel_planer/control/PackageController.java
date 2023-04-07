@@ -88,7 +88,7 @@ public class PackageController {
 
 		for (var hotel : this.getHotels()) {
 			for (var tour : this.getTours()) {
-				var t = new TravelPackage(flight, hotel, tour, user.getTripDuration());
+				var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
 				packages.add(t);
 			}
 		}
@@ -101,7 +101,7 @@ public class PackageController {
 
 		for (var flight : this.getFlights()) {
 			for (var tour : this.getTours()) {
-				var t = new TravelPackage(flight, hotel, tour, user.getTripDuration());
+				var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
 				packages.add(t);
 			}
 		}
@@ -118,7 +118,7 @@ public class PackageController {
 
 		for (var flight : this.getFlights()) {
 			for (var hotel : this.getHotels()) {
-				var t = new TravelPackage(flight, hotel, tour, user.getTripDuration());
+				var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
 				packages.add(t);
 			}
 		}
@@ -131,7 +131,7 @@ public class PackageController {
 		for (var flight : this.getFlights()) {
 			for (var hotel : this.getHotels()) {
 				for (var tour : this.getTours()) {
-					var t = new TravelPackage(flight, hotel, tour, user.getTripDuration());
+					var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
 					packages.add(t);
 				}
 			}

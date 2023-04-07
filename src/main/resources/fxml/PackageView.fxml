@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 
 <?import is.hi.travel_planer.view.FlightView?>
 <?import is.hi.travel_planer.view.HotelView?>
@@ -8,12 +10,18 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity"
          minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0"
-         prefWidth="200.0" type="VBox"
+         prefWidth="250.0" type="VBox"
          xmlns="http://javafx.com/javafx/19"
          xmlns:fx="http://javafx.com/fxml/1" >
   <children>
     <FlightView fx:id="flight"/>
     <HotelView fx:id="hotel"/>
     <TourView fx:id="tour"/>
+    <HBox alignment="CENTER">
+      <children>
+        <Label fx:id="price"/>
+        <Label text="kr"/>
+      </children>
+    </HBox>
   </children>
 </fx:root>

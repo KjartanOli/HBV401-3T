@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
 
 import is.hi.travel_planer.model.TravelPackage;
 
@@ -16,6 +17,8 @@ public class PackageView extends VBox {
 	private HotelView hotel;
 	@FXML
 	private TourView tour;
+	@FXML
+	private Label price;
 
 	public PackageView(TravelPackage pkg) {
 		var loader = new FXMLLoader(getClass().getResource("/fxml/PackageView.fxml"));
@@ -30,5 +33,6 @@ public class PackageView extends VBox {
 		this.flight.setFlight(pkg.getFlight());
 		this.hotel.setHotel(pkg.getHotel());
 		this.tour.setTour(pkg.getTour());
+		this.price.setText(Integer.toString(pkg.getPrice()));
 	}
 }

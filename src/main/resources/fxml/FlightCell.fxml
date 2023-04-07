@@ -10,7 +10,7 @@
          <children>
             <Label text="Verð:" />
             <Label fx:id="price" text="PRICE" />
-            <Label text="kr" />
+            <Label text="kr/mann" />
          </children>
       </HBox>
       <Label fx:id="id" layoutX="14.0" layoutY="14.0" text="ID" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />

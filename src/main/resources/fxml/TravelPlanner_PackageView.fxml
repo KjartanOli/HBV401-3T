@@ -13,14 +13,14 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1280.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.PackageSelectionController">
    <children>
       <Label layoutX="158.0" layoutY="18.0" text="Áhugamál" />
-      <ChoiceBox fx:id="interest" onAction="#handleInterestSelection" layoutX="223.0" layoutY="14.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="interest" layoutX="223.0" layoutY="14.0" onAction="#handleInterestSelection" prefWidth="150.0" />
       <Label layoutX="389.0" layoutY="18.0" text="Fjöldi" />
-      <ChoiceBox fx:id="groupSize" onAction="#handleGroupSizeSelection" layoutX="426.0" layoutY="14.0" prefHeight="25.0" prefWidth="55.0" />
+      <ChoiceBox fx:id="groupSize" layoutX="426.0" layoutY="14.0" onAction="#handleGroupSizeSelection" prefHeight="25.0" prefWidth="55.0" />
       <Label layoutX="495.0" layoutY="18.0" text="Áfangastaður" />
-      <ChoiceBox fx:id="destination" onAction="#handleDestinationSelection" layoutX="575.0" layoutY="14.0" prefWidth="150.0" />
-      <DatePicker fx:id="departureDate" onAction="#handleDepartureDateSelection" layoutX="785.0" layoutY="14.0" prefHeight="25.0" prefWidth="124.0" />
-      <DatePicker fx:id="returnDate" onAction="#handleReturnDateSelection" layoutX="920.0" layoutY="14.0" prefHeight="25.0" prefWidth="124.0" />
-      <HBox fx:id="recommendations" layoutY="56.0" prefHeight="200.0" prefWidth="1280.0" style="-fx-border-color: blue;" />
+      <ChoiceBox fx:id="destination" layoutX="575.0" layoutY="14.0" onAction="#handleDestinationSelection" prefWidth="150.0" />
+      <DatePicker fx:id="departureDate" layoutX="785.0" layoutY="14.0" onAction="#handleDepartureDateSelection" prefHeight="25.0" prefWidth="124.0" />
+      <DatePicker fx:id="returnDate" layoutX="920.0" layoutY="14.0" onAction="#handleReturnDateSelection" prefHeight="25.0" prefWidth="124.0" />
+      <HBox fx:id="recommendations" alignment="CENTER" layoutY="56.0" prefHeight="200.0" prefWidth="1280.0" spacing="50.0" style="-fx-border-color: blue;" />
       <HBox layoutY="256.0" prefHeight="404.0" prefWidth="1280.0" style="-fx-border-color: blue;">
          <children>
             <AnchorPane prefHeight="384.0" prefWidth="1278.0">
