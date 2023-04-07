@@ -57,20 +57,20 @@ public class UserController {
 	@FXML
 	private void submit(ActionEvent event) throws IOException {
 		if(name.getText().isEmpty() ||  ssn.getText().isEmpty() ||
-			email.getText().isEmpty() || phone.getText().isEmpty() ||
-			groupSize.getValue() == null || interest.getValue() == null ||
-			origin.getValue() == null || destination.getValue() == null ||
-			departureDate.getValue() == null || returnDate.getValue() == null){
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Óútfylltir reitir");
-				alert.setHeaderText("Vinsamlegast fylla út alla reiti (Verð er valkvætt)");
-				alert.showAndWait();
+		   email.getText().isEmpty() || phone.getText().isEmpty() ||
+		   groupSize.getValue() == null || interest.getValue() == null ||
+		   origin.getValue() == null || destination.getValue() == null ||
+		   departureDate.getValue() == null || returnDate.getValue() == null){
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Óútfylltir reitir");
+			alert.setHeaderText("Vinsamlegast fylla út alla reiti (Verð er valkvætt)");
+			alert.showAndWait();
 		}
 		if(origin.getValue().equals(destination.getValue())){
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Brottför og áfangastaður sá sami");
-				alert.setHeaderText("Ekki er hægt að fljúga frá " + origin.getValue() + " til " + destination.getValue());
-				alert.showAndWait();
+			alert.setTitle("Brottför og áfangastaður sá sami");
+			alert.setHeaderText("Ekki er hægt að fljúga frá " + origin.getValue() + " til " + destination.getValue());
+			alert.showAndWait();
 		}
 		else{
 			int mp;
@@ -80,29 +80,29 @@ public class UserController {
 			else {
 				mp = Integer.MAX_VALUE;
 			}
-			
+
 			var user = new User(
-					name.getText(),
-					email.getText(),
-					ssn.getText(),
-					phone.getText(),
-					groupSize.getValue().intValue(),
-					origin.getValue(),
-					departureDate.getValue(),
-					destination.getValue(),
-					returnDate.getValue(),
-					interest.getValue(),
-					mp
-				);
+				name.getText(),
+				email.getText(),
+				ssn.getText(),
+				phone.getText(),
+				groupSize.getValue().intValue(),
+				origin.getValue(),
+				departureDate.getValue(),
+				destination.getValue(),
+				returnDate.getValue(),
+				interest.getValue(),
+				mp
+			);
 
-				System.err.println(name.getText());
-				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			System.err.println(name.getText());
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-				var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_PackageView.fxml"));
-				loader.setControllerFactory(c -> new PackageSelectionController(user));
-				var scene = new Scene(loader.load(), 1280, 900);
-				stage.setScene(scene);
-				stage.show();
+			var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_PackageView.fxml"));
+			loader.setControllerFactory(c -> new PackageSelectionController(user));
+			var scene = new Scene(loader.load(), 1280, 900);
+			stage.setScene(scene);
+			stage.show();
 		}
 	}
 
