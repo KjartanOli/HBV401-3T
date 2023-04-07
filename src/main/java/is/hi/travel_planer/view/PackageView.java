@@ -35,4 +35,8 @@ public class PackageView extends VBox {
 		this.tour.setTour(pkg.getTour());
 		this.price.setText(Integer.toString(pkg.getPrice()));
 	}
+
+	public TravelPackage getPackage() {
+		return this.pkg;
+	}
 }

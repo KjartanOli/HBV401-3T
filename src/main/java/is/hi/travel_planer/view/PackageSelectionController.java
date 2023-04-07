@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 import is.hi.travel_planer.control.PackageController;
 
@@ -45,7 +47,7 @@ public class PackageSelectionController {
 	@FXML
 	private DatePicker departureDate, returnDate;
 	@FXML
-	private HBox recommendations;
+	private HBox recommendations, selectedPackage;
 
 	private TravelPackage pkg;
 	private PackageController packageController;
@@ -84,6 +86,7 @@ public class PackageSelectionController {
 			public void changed(ObservableValue<? extends Flight> observable, Flight oldValue, Flight newValue) {
 				pkg = new TravelPackage(newValue, getSelectedHotel(), getSelectedTour(), packageController.getUser().getGroupSize());
 				generateRecomendations();
+				updateSelectedPackageView();
 			}
 		});
 
@@ -93,6 +96,7 @@ public class PackageSelectionController {
 			public void changed(ObservableValue<? extends Hotel> observable, Hotel oldValue, Hotel newValue) {
 				pkg = new TravelPackage(getSelectedFlight(), newValue, getSelectedTour(), packageController.getUser().getGroupSize());
 				generateRecomendations();
+				updateSelectedPackageView();
 			}
 		});
 
@@ -102,6 +106,7 @@ public class PackageSelectionController {
 			public void changed(ObservableValue<? extends DayTourDetails> observable, DayTourDetails oldValue, DayTourDetails newValue) {
 				pkg = new TravelPackage(getSelectedFlight(), getSelectedHotel(), newValue, packageController.getUser().getGroupSize());
 				generateRecomendations();
+				updateSelectedPackageView();
 			}
 		});
 
@@ -150,8 +155,14 @@ public class PackageSelectionController {
 		}
 
 		List<PackageView> t = new ArrayList<PackageView>();
-		for (var pkg : packages) {
-			t.add(new PackageView(pkg));
+		for (var p : packages) {
+			var view = new PackageView(p);
+			view.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+					pkg = view.getPackage();
+					updateSelectedPackageView();
+					event.consume();
+				});
+			t.add(view);
 		}
 		recommendations.getChildren().setAll(t);
 	}
@@ -196,5 +207,12 @@ public class PackageSelectionController {
 
 	private DayTourDetails getSelectedTour() {
 		return tours.getSelectionModel().getSelectedItem();
+	}
+
+	private void updateSelectedPackageView() {
+		if (pkg.getFlight() == null || pkg.getHotel() == null || pkg.getTour() == null)
+			selectedPackage.getChildren().setAll();
+		else
+			selectedPackage.getChildren().setAll(new PackageView(pkg));
 	}
 }
