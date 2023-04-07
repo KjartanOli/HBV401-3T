@@ -91,27 +91,27 @@ public class PackageSelectionController {
 	}
 
 	@FXML
-    private void handleDestinationSelection(ActionEvent event) {
-        packageController.getUser().setDestination(destination.getValue());
-    }
+	private void handleDestinationSelection(ActionEvent event) {
+		packageController.getUser().setDestination(destination.getValue());
+	}
 
-    @FXML
-    private void handleInterestSelection(ActionEvent event) {
-        packageController.getUser().setInterest(interest.getValue());
-    }
+	@FXML
+	private void handleInterestSelection(ActionEvent event) {
+		packageController.getUser().setInterest(interest.getValue());
+	}
 
-    @FXML
-    private void handleGroupSizeSelection(ActionEvent event) {
-        packageController.getUser().setGroupSize(groupSize.getValue().intValue());
-    }
+	@FXML
+	private void handleGroupSizeSelection(ActionEvent event) {
+		packageController.getUser().setGroupSize(groupSize.getValue().intValue());
+	}
 
-    @FXML
-    private void handleDepartureDateSelection(ActionEvent event) {
-        packageController.getUser().setDepartureDate(departureDate.getValue());
-    }
+	@FXML
+	private void handleDepartureDateSelection(ActionEvent event) {
+		packageController.getUser().setDepartureDate(departureDate.getValue());
+	}
 
-    @FXML
-    private void handleReturnDateSelection(ActionEvent event) {
-        packageController.getUser().setReturnDate(returnDate.getValue());
-    }
+	@FXML
+	private void handleReturnDateSelection(ActionEvent event) {
+		packageController.getUser().setReturnDate(returnDate.getValue());
+	}
 }
