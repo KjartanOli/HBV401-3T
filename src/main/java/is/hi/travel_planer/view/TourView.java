@@ -29,6 +29,6 @@ public class TourView extends HBox {
 	}
 
 	public void setTour(DayTourDetails tour) {
-		name.setText(Long.toString(tour.getID()));
+		name.setText(tour.getName());
 	}
 }
