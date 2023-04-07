@@ -7,6 +7,7 @@ import java.time.LocalTime;
 
 import is.hi.travel_planer.model.TravelPackage;
 import is.hi.travel_planer.model.User;
+import is.hi.travel_planer.model.TourTime;
 import is.hi.hotel.entities.Hotel;
 import is.hi.hotel.entities.Room;
 import is.hi.hotel.exceptions.BadInputException;
@@ -183,10 +184,10 @@ public class PackageController {
 		return packages.size() > 3 ? packages.subList(0, 3) : packages;
 	}
 
-	public void bookPackage(TravelPackage pkg, List<Seat> seats, List<Room> rooms, DayTourTimes time, LocalTime slot) {
+	public void bookPackage(TravelPackage pkg, List<Seat> seats, List<Room> rooms, TourTime time) {
 		bookFlight(user, pkg.getFlight(), seats);
 		bookHotel(user, rooms);
-		bookTour(user, pkg.getTour(), time, slot);
+		bookTour(user, pkg.getTour(), time);
 	}
 
 	private void bookFlight(User user, Flight flight, List<Seat> seats) {
@@ -206,13 +207,13 @@ public class PackageController {
 		}
 	}
 
-	private void bookTour(User user, DayTourDetails tour, DayTourTimes time, LocalTime slot) {
+	private void bookTour(User user, DayTourDetails tour, TourTime time) {
 		var booking = new Booking(
 			tour.getID(),
 			user.getName(),
 			user.getEmail(),
 			time.getDate(),
-			slot,
+			time.getTime(),
 			user.getGroupSize(),
 			false,
 			"",

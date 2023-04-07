@@ -209,8 +209,8 @@ public class PackageSelectionController {
 	private void handleNext(ActionEvent event) throws IOException {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-		var loader = new FXMLLoader(getClass().getResource("/fxml/DetailSelector.fxml"));
-		loader.setControllerFactory(c -> new DetailSelector(pkg, packageController.getUser()));
+		var loader = new FXMLLoader(getClass().getResource("/fxml/DetailSelection.fxml"));
+		loader.setControllerFactory(c -> new DetailSelectionController(pkg, packageController.getUser()));
 		var scene = new Scene(loader.load(), 1280, 900);
 		stage.setScene(scene);
 		stage.show();
