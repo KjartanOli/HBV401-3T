@@ -3,6 +3,7 @@ package is.hi.travel_planer.view;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javafx.util.StringConverter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -32,7 +33,9 @@ public class UserController {
 	@FXML
 	private ChoiceBox<String> interest, origin, destination;
 	@FXML
-	private ChoiceBox<Integer> groupSize, maxPriceSelect;
+	private ChoiceBox<Integer> groupSize;
+	@FXML
+	private ChoiceBox<Optional<Integer>> maxPriceSelect;
 	@FXML
 	private DatePicker departureDate, returnDate;
 
@@ -48,11 +51,47 @@ public class UserController {
 	@FXML
 	private void initialize() {
 		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
+		groupSize.setValue(1);
 		origin.getItems().addAll(placesList);
 		destination.getItems().addAll(placesList);
 		interest.getItems().addAll(interestList);
-		maxPriceSelect.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
-		System.err.println("test");
+		maxPriceSelect.getItems().addAll(
+			Optional.empty(),
+			Optional.of(10000),
+			Optional.of(20000),
+			Optional.of(30000),
+			Optional.of(40000),
+			Optional.of(50000),
+			Optional.of(60000),
+			Optional.of(70000),
+			Optional.of(80000),
+			Optional.of(90000),
+			Optional.of(100000),
+			Optional.of(110000),
+			Optional.of(120000),
+			Optional.of(130000),
+			Optional.of(140000),
+			Optional.of(150000)
+		);
+		maxPriceSelect.setConverter(new StringConverter<Optional<Integer>>() {
+			@Override
+			public String toString(Optional<Integer> o) {
+				if (o == null || o.isEmpty()) {
+					return "";
+				}
+				else {
+					return Integer.toString(o.get());
+				}
+			}
+
+			@Override
+			public Optional<Integer> fromString(String s) {
+				if (s == null || "".equals(s))
+					return Optional.empty();
+				else
+					return Optional.of(Integer.parseInt(s));
+			}
+		});
 	}
 	@FXML
 	private void submit(ActionEvent event) throws IOException {
@@ -116,12 +155,7 @@ public class UserController {
 
 	@FXML
 	private void handleMaxPriceSelection() {
-		Integer selectedPrice = maxPriceSelect.getValue();
-		if (selectedPrice != null) {
-			maxPrice = Optional.of(selectedPrice);
-		} else {
-			maxPrice = Optional.empty();
-		}
+		maxPrice = maxPriceSelect.getValue();
 	}
 
 }
