@@ -42,7 +42,7 @@ public class UserController {
 		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður"
 	); // man ekki alla staðina, bætum þeim við
 	private static List<String> interestList = Arrays.asList(
-		"Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"
+		"Ekkert áhugamál","Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"
 	);
 
 	@FXML
@@ -51,19 +51,22 @@ public class UserController {
 		origin.getItems().addAll(placesList);
 		destination.getItems().addAll(placesList);
 		interest.getItems().addAll(interestList);
+		interest.setValue("Ekkert áhugamál");
 		maxPriceSelect.getItems().addAll(10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,110000,120000,130000,140000,150000);
+		departureDate.setValue(LocalDate.now());
+
 		System.err.println("test");
 	}
 	@FXML
 	private void submit(ActionEvent event) throws IOException {
 		if(name.getText().isEmpty() ||  ssn.getText().isEmpty() ||
 			email.getText().isEmpty() || phone.getText().isEmpty() ||
-			groupSize.getValue() == null || interest.getValue() == null ||
+			groupSize.getValue() == null ||
 			origin.getValue() == null || destination.getValue() == null ||
 			departureDate.getValue() == null || returnDate.getValue() == null){
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Óútfylltir reitir");
-				alert.setHeaderText("Vinsamlegast fylla út alla reiti (Verð er valkvætt)");
+				alert.setHeaderText("Vinsamlegast fylla út alla nauðsynilega reiti");
 				alert.showAndWait();
 		}
 		if(origin.getValue().equals(destination.getValue())){
