@@ -2,13 +2,19 @@ package is.hi.travel_planer.view;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import javafx.beans.value.ChangeListener;
@@ -48,6 +54,8 @@ public class PackageSelectionController {
 	private DatePicker departureDate, returnDate;
 	@FXML
 	private HBox recommendations, selectedPackage;
+	@FXML
+	private Button next;
 
 	private TravelPackage pkg;
 	private PackageController packageController;
@@ -197,6 +205,17 @@ public class PackageSelectionController {
 		generateRecomendations();
 	}
 
+	@FXML
+	private void handleNext(ActionEvent event) throws IOException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		var loader = new FXMLLoader(getClass().getResource("/fxml/DetailSelector.fxml"));
+		loader.setControllerFactory(c -> new DetailSelector(pkg, packageController.getUser()));
+		var scene = new Scene(loader.load(), 1280, 900);
+		stage.setScene(scene);
+		stage.show();
+	}
+
 	private Flight getSelectedFlight() {
 		return flights.getSelectionModel().getSelectedItem();
 	}
@@ -210,9 +229,13 @@ public class PackageSelectionController {
 	}
 
 	private void updateSelectedPackageView() {
-		if (pkg.getFlight() == null || pkg.getHotel() == null || pkg.getTour() == null)
+		if (pkg.getFlight() == null || pkg.getHotel() == null || pkg.getTour() == null) {
 			selectedPackage.getChildren().setAll();
-		else
+			next.setDisable(true);
+		}
+		else {
 			selectedPackage.getChildren().setAll(new PackageView(pkg));
+			next.setDisable(false);
+		}
 	}
 }
