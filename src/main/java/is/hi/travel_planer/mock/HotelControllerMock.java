@@ -22,7 +22,10 @@ import is.hi.hotel.exceptions.NotFoundException;
 
 public class HotelControllerMock implements IHotelController {
 	public List<Hotel> searchHotels(BookingDate dates, int adults, int children, String location) {
-		Hotel H1 = new Hotel(1, "H1", "Akureyri", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
+		Hotel H1 = new Hotel(1, "H1", "Akureyri", Arrays.asList(
+			new Room(1, 1, new ArrayList<LocalDate>(), 500),
+			new Room(2, 1, new ArrayList<LocalDate>(), 500)
+		));
 
 		Hotel H2 = new Hotel(2, "H2", "Egilsstaðir", Arrays.asList(new Room(1, 1, new ArrayList<LocalDate>(), 500)));
 

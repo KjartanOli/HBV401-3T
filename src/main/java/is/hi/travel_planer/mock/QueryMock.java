@@ -1,9 +1,11 @@
 package is.hi.travel_planer.mock;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.daytour.processing.DayTourDetails;
 import com.daytour.processing.Booking;
 import is.hi.daytour.processing.QueryInterface;
@@ -55,6 +57,27 @@ public class QueryMock implements QueryInterface {
 				"Test inc.", "", "", "10:00-20:00"
 			),
 		};
+
+		List<LocalDate> dates = Arrays.asList(
+			LocalDate.of(2023, 4, 1),
+			LocalDate.of(2023, 4, 2),
+			LocalDate.of(2023, 4, 3)
+		);
+
+		List<LocalTime> times = Arrays.asList(
+			LocalTime.of(10, 0),
+			LocalTime.of(11, 0),
+			LocalTime.of(12, 0),
+			LocalTime.of(13, 0)
+		);
+
+		for (var e : a) {
+			for (var d : dates) {
+				for (var t : times) {
+					e.addTime(d, t, new Integer(5));
+				}
+			}
+		}
 
 		List<DayTourDetails> out = new ArrayList<DayTourDetails>();
 		for (var t : a) {
