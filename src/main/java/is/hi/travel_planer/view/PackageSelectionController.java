@@ -61,9 +61,13 @@ public class PackageSelectionController {
 		departureDate.setValue(packageController.getUser().getDepartureDate());
 
 		interest.getItems().addAll(UserController.getInterestList());
+		interest.setValue(packageController.getUser().getInterest());
+
 		destination.getItems().addAll(UserController.getPlacesList());
+		destination.setValue(packageController.getUser().getDestination());
 
 		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
+		groupSize.setValue(packageController.getUser().getGroupSize());
 
 		for (var pkg : packageController.createPackages()) {
 			recommendations.getChildren().add(new PackageView(pkg));

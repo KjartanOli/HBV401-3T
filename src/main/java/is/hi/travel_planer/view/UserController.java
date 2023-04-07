@@ -45,7 +45,7 @@ public class UserController {
 		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður"
 	); // man ekki alla staðina, bætum þeim við
 	private static List<String> interestList = Arrays.asList(
-		"Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"
+		"Ekkert áhugamál","Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"
 	);
 
 	@FXML
@@ -77,7 +77,7 @@ public class UserController {
 			@Override
 			public String toString(Optional<Integer> o) {
 				if (o == null || o.isEmpty()) {
-					return "";
+					return "Ekkert hámark";
 				}
 				else {
 					return Integer.toString(o.get());
@@ -86,24 +86,27 @@ public class UserController {
 
 			@Override
 			public Optional<Integer> fromString(String s) {
-				if (s == null || "".equals(s))
+				if (s == null || "Ekkert hámark".equals(s))
 					return Optional.empty();
 				else
 					return Optional.of(Integer.parseInt(s));
 			}
 		});
+		interest.setValue("Ekkert áhugamál");
+		departureDate.setValue(LocalDate.now());
+
 	}
 	@FXML
 	private void submit(ActionEvent event) throws IOException {
 		if(name.getText().isEmpty() ||  ssn.getText().isEmpty() ||
-		   email.getText().isEmpty() || phone.getText().isEmpty() ||
-		   groupSize.getValue() == null || interest.getValue() == null ||
-		   origin.getValue() == null || destination.getValue() == null ||
-		   departureDate.getValue() == null || returnDate.getValue() == null){
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Óútfylltir reitir");
-			alert.setHeaderText("Vinsamlegast fylla út alla reiti (Verð er valkvætt)");
-			alert.showAndWait();
+			email.getText().isEmpty() || phone.getText().isEmpty() ||
+			groupSize.getValue() == null ||
+			origin.getValue() == null || destination.getValue() == null ||
+			departureDate.getValue() == null || returnDate.getValue() == null){
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Óútfylltir reitir");
+				alert.setHeaderText("Vinsamlegast fylla út alla nauðsynilega reiti");
+				alert.showAndWait();
 		}
 		if(origin.getValue().equals(destination.getValue())){
 			Alert alert = new Alert(Alert.AlertType.ERROR);
