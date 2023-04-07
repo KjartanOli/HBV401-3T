@@ -1,5 +1,8 @@
 package is.hi.travel_planer.view;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -8,6 +11,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import is.hi.travel_planer.control.PackageController;
 
@@ -42,9 +47,11 @@ public class PackageSelectionController {
 	@FXML
 	private HBox recommendations;
 
+	private TravelPackage pkg;
 	private PackageController packageController;
 
 	public PackageSelectionController(User user) {
+		pkg = null;
 		packageController = new PackageController(
 			user,
 			new FlightControllerMock(),
@@ -69,13 +76,34 @@ public class PackageSelectionController {
 		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
 		groupSize.setValue(packageController.getUser().getGroupSize());
 
-		for (var pkg : packageController.createPackages()) {
-			recommendations.getChildren().add(new PackageView(pkg));
-		}
+		generateRecomendations();
 
 		flights.setCellFactory(lv -> new FlightCell());
+		flights.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Flight>() {
+			@Override
+			public void changed(ObservableValue<? extends Flight> observable, Flight oldValue, Flight newValue) {
+				pkg = new TravelPackage(newValue, getSelectedHotel(), getSelectedTour(), packageController.getUser().getGroupSize());
+				generateRecomendations();
+			}
+		});
+
 		hotels.setCellFactory(lv -> new HotelCell());
+		hotels.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Hotel>() {
+			@Override
+			public void changed(ObservableValue<? extends Hotel> observable, Hotel oldValue, Hotel newValue) {
+				pkg = new TravelPackage(getSelectedFlight(), newValue, getSelectedTour(), packageController.getUser().getGroupSize());
+				generateRecomendations();
+			}
+		});
+
 		tours.setCellFactory(lv -> new TourCell());
+		tours.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DayTourDetails>() {
+			@Override
+			public void changed(ObservableValue<? extends DayTourDetails> observable, DayTourDetails oldValue, DayTourDetails newValue) {
+				pkg = new TravelPackage(getSelectedFlight(), getSelectedHotel(), newValue, packageController.getUser().getGroupSize());
+				generateRecomendations();
+			}
+		});
 
 		for (var flight : packageController.getFlights()) {
 			flights.getItems().add(flight);
@@ -90,28 +118,83 @@ public class PackageSelectionController {
 		}
 	}
 
+	private void generateRecomendations() {
+		var flight = getSelectedFlight();
+		var hotel = getSelectedHotel();
+		var tour = getSelectedTour();
+
+		List<TravelPackage> packages = new ArrayList<TravelPackage>();
+		if (flight == null && hotel == null && tour == null) {
+			packages = packageController.createPackages();
+		}
+		if (flight != null && hotel == null && tour == null) {
+			packages = packageController.createPackages(flight);
+		}
+		if (flight == null && hotel != null && tour == null) {
+			packages = packageController.createPackages(hotel);
+		}
+		if (flight == null && hotel == null && tour != null) {
+			packages = packageController.createPackages(tour);
+		}
+		if (flight != null && hotel != null && tour == null) {
+			packages = packageController.createPackages(flight, hotel);
+		}
+		if (flight != null && hotel == null && tour != null) {
+			packages = packageController.createPackages(flight, tour);
+		}
+		if (flight == null && hotel != null && tour != null) {
+			packages = packageController.createPackages(hotel, tour);
+		}
+		if (flight != null && hotel != null && tour != null) {
+			packages = packageController.createPackages(flight, hotel, tour);
+		}
+
+		List<PackageView> t = new ArrayList<PackageView>();
+		for (var pkg : packages) {
+			t.add(new PackageView(pkg));
+		}
+		recommendations.getChildren().setAll(t);
+	}
+
 	@FXML
 	private void handleDestinationSelection(ActionEvent event) {
 		packageController.getUser().setDestination(destination.getValue());
+		generateRecomendations();
 	}
 
 	@FXML
 	private void handleInterestSelection(ActionEvent event) {
 		packageController.getUser().setInterest(interest.getValue());
+		generateRecomendations();
 	}
 
 	@FXML
 	private void handleGroupSizeSelection(ActionEvent event) {
 		packageController.getUser().setGroupSize(groupSize.getValue().intValue());
+		generateRecomendations();
 	}
 
 	@FXML
 	private void handleDepartureDateSelection(ActionEvent event) {
 		packageController.getUser().setDepartureDate(departureDate.getValue());
+		generateRecomendations();
 	}
 
 	@FXML
 	private void handleReturnDateSelection(ActionEvent event) {
 		packageController.getUser().setReturnDate(returnDate.getValue());
+		generateRecomendations();
+	}
+
+	private Flight getSelectedFlight() {
+		return flights.getSelectionModel().getSelectedItem();
+	}
+
+	private Hotel getSelectedHotel() {
+		return hotels.getSelectionModel().getSelectedItem();
+	}
+
+	private DayTourDetails getSelectedTour() {
+		return tours.getSelectionModel().getSelectedItem();
 	}
 }

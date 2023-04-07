@@ -78,7 +78,7 @@ public class PackageController {
 				user.getDepartureDate(),
 				user.getReturnDate(),
 				' ',
-				null
+				user.getInterest()
 			)
 		);
 	}
@@ -122,6 +122,45 @@ public class PackageController {
 				packages.add(t);
 			}
 		}
+
+		return choosePackages(packages);
+	}
+
+	public List<TravelPackage> createPackages(Flight flight, Hotel hotel) {
+		List<TravelPackage> packages = new ArrayList<TravelPackage>();
+		for (var tour : this.getTours()) {
+			var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
+			packages.add(t);
+		}
+
+		return choosePackages(packages);
+	}
+
+	public List<TravelPackage> createPackages(Flight flight, DayTourDetails tour) {
+		List<TravelPackage> packages = new ArrayList<TravelPackage>();
+		for (var hotel : this.getHotels()) {
+			var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
+			packages.add(t);
+		}
+
+		return choosePackages(packages);
+	}
+
+	public List<TravelPackage> createPackages(Hotel hotel, DayTourDetails tour) {
+		List<TravelPackage> packages = new ArrayList<TravelPackage>();
+		for (var flight : this.getFlights()) {
+			var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
+			packages.add(t);
+		}
+
+		return choosePackages(packages);
+	}
+
+
+	public List<TravelPackage> createPackages(Flight flight, Hotel hotel, DayTourDetails tour) {
+		List<TravelPackage> packages = new ArrayList<TravelPackage>();
+		var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
+		packages.add(t);
 
 		return choosePackages(packages);
 	}
