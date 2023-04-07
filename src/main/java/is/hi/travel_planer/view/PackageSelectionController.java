@@ -70,6 +70,7 @@ public class PackageSelectionController {
 		}
 
 		flights.setCellFactory(lv -> new FlightCell());
+		hotels.setCellFactory(lv -> new HotelCell());
 		tours.setCellFactory(lv -> new TourCell());
 
 		for (var flight : packageController.getFlights()) {
