@@ -101,6 +101,6 @@ public class DetailSelectionController {
 
 	@FXML
 	private void handleNext() {
-		System.err.println("test");
+		packageController.bookPackage(pkg, seatSelector.getSelected(), selectedRooms, selectedTime());
 	}
 }
