@@ -23,12 +23,12 @@ public class HotelCell extends ListCell<Hotel> {
 	}
 
 	@Override
-	protected void updateItem(Hotel flight, boolean empty) {
-		super.updateItem(flight, empty);
-		if (empty || flight == null) {
+	protected void updateItem(Hotel hotel, boolean empty) {
+		super.updateItem(hotel, empty);
+		if (empty || hotel == null) {
 			setGraphic(null);
 		} else {
-			controller.setHotel(flight);
+			controller.setHotel(hotel);
 			setGraphic(root);
 		}
 	}
