@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 
 import is.hi.flight_booking.application.Flight;
 import is.hi.flight_booking.application.Seat;
@@ -64,10 +65,12 @@ public class SeatSelector extends GridPane {
 								break;
 							this.state = State.SELECTED;
 							selector.select(this.seat);
+							this.fireEvent(new ActionEvent());
 							break;
 						case SELECTED:
 							this.state = State.FREE;
 							((SeatSelector) this.getParent()).deselect(this.seat);
+							this.fireEvent(new ActionEvent());
 							break;
 					}
 					this.setBackground();
