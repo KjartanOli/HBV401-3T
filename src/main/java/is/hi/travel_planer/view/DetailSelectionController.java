@@ -34,6 +34,9 @@ public class DetailSelectionController {
 		seatSelector.setFlight(pkg.getFlight());
 		roomSelector.getItems().setAll(pkg.getHotel().getRooms());
 		roomSelector.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		roomSelector.setCellFactory(lv -> new RoomCell());
 		tourTimeSelector.getItems().setAll(TourTime.from(pkg.getTour(), user.getTripDuration()));
+		tourTimeSelector.setCellFactory(lv -> new TourTimeCell());
+	}
 	}
 }
