@@ -32,6 +32,7 @@ import is.hi.flight_booking.application.Flight;
 import com.daytour.processing.DayTourDetails;
 
 import is.hi.flight_booking.interfaces.FlightControllerInterface;
+import is.hi.flight_booking.controller.FlightController;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.daytour.processing.QueryInterface;
 
@@ -61,11 +62,12 @@ public class PackageSelectionController {
 	private PackageController packageController;
 
 	public PackageSelectionController(User user) {
+		String flightDB = "flights.db";
 		pkg = null;
 		packageController = new PackageController(
 			user,
-			new FlightControllerMock(),
-			new is.hi.flight_booking.controller.BookingController(),
+			new FlightController(flightDB),
+			new is.hi.flight_booking.controller.BookingController(flightDB),
 			new HotelControllerMock(),
 			new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository()),
 			new QueryMock()

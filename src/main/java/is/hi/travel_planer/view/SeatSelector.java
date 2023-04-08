@@ -127,14 +127,12 @@ public class SeatSelector extends GridPane {
 	}
 
 	public void setFlight(Flight flight) {
-		SortedMap<String, List<Seat>> columns = new TreeMap<String, List<Seat>>();
+		SortedMap<Character, List<Seat>> columns = new TreeMap<Character, List<Seat>>();
 
 		for (var seat : flight.getSeats()) {
 			String id = seat.getId();
 
-			String[] tmp = id.split("-");
-
-			var column = tmp[0];
+			var column = id.charAt(0);
 
 			if (!columns.containsKey(column))
 				columns.put(column, new ArrayList<Seat>());
@@ -145,7 +143,7 @@ public class SeatSelector extends GridPane {
 		for (var seats : columns.values()) {
 			for (var seat : seats) {
 				var view = new SeatView(seat);
-				int row = Integer.parseInt(seat.getId().split("-")[1]);
+				int row = Integer.parseInt(seat.getId().substring(1, seat.getId().length()));
 				this.add(view, column, row);
 			}
 			++column;
