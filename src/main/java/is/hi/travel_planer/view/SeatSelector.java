@@ -161,7 +161,7 @@ public class SeatSelector extends GridPane {
 		this.selected.remove(seat);
 	}
 
-	public Set<Seat> getSelected() {
-		return this.selected;
+	public List<Seat> getSelected() {
+		return new ArrayList(this.selected);
 	}
 }
