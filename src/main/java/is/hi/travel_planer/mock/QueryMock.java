@@ -59,9 +59,9 @@ public class QueryMock implements QueryInterface {
 		};
 
 		List<LocalDate> dates = Arrays.asList(
-			LocalDate.of(2023, 4, 1),
-			LocalDate.of(2023, 4, 2),
-			LocalDate.of(2023, 4, 3)
+			LocalDate.of(2023, 2, 5),
+			LocalDate.of(2023, 2, 5),
+			LocalDate.of(2023, 2, 6)
 		);
 
 		List<LocalTime> times = Arrays.asList(

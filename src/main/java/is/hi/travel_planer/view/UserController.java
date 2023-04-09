@@ -42,7 +42,7 @@ public class UserController {
 	private Optional<Integer> maxPrice = Optional.empty();
 
 	private static List<String> placesList = Arrays.asList(
-		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður"
+		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður", "Vestmannaeyjar"
 	); // man ekki alla staðina, bætum þeim við
 	private static List<String> interestList = Arrays.asList(
 		"Ekkert áhugamál","Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"

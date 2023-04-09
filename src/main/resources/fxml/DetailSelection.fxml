@@ -1,30 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <?import is.hi.travel_planer.view.SeatSelector?>
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.DetailSelectionController">
+<VBox prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.DetailSelectionController">
   <children>
-    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <HBox prefHeight="67.0" prefWidth="1280.0" spacing="250.0">
+         <padding>
+            <Insets bottom="10.0" left="150.0" top="20.0" />
+         </padding>
+         <children>
+            <Label text="Sæti um borð">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label text="Herbergi á hótelinu">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label text="Tími dagsferðar">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+    <HBox prefHeight="560.0" prefWidth="1260.0">
       <children>
-        <SeatSelector fx:id="seatSelector"></SeatSelector>
-        <ListView fx:id="roomSelector" prefHeight="200.0" prefWidth="200.0" />
-        <ListView fx:id="tourTimeSelector" prefHeight="200.0" prefWidth="200.0" />
+      <!-- ath. breyta tilbaka í SeatSelector -->
+        <SeatSelector fx:id="seatSelector" prefHeight="400.0" prefWidth="400.0">
+               <HBox.margin>
+                  <Insets left="20.0" right="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="50.0" top="10.0" />
+               </padding></SeatSelector>
+        <ListView fx:id="roomSelector" prefHeight="400.0" prefWidth="400.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin></ListView>
+        <ListView fx:id="tourTimeSelector" prefHeight="400.0" prefWidth="400.0">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></ListView>
       </children>
+         <VBox.margin>
+            <Insets bottom="50.0" left="10.0" right="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
     </HBox>
     <AnchorPane maxHeight="50.0" prefHeight="30.0" prefWidth="200.0">
       <children>
         <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" text="Til Baka" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="7.0" />
-        <Button fx:id="next" onAction="#handleNext" layoutX="542.0" layoutY="14.0" mnemonicParsing="false" text="Áfram" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="7.0" />
+        <Button fx:id="next" layoutX="542.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNext" text="Áfram" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="7.0" />
       </children>
+         <VBox.margin>
+            <Insets top="175.0" />
+         </VBox.margin>
     </AnchorPane>
   </children>
 </VBox>
