@@ -3,7 +3,9 @@ package is.hi.travel_planer.view;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
@@ -92,6 +94,15 @@ public class PaymentConfirmationController {
     @FXML
 	private void handleConfirm() {
 		packageController.bookPackage(pkg, this.seats, this.rooms, this.tourTime);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Greiðsla móttekin");
+			alert.setHeaderText(null);
+            alert.setContentText("Bókun lokið. Staðfesting hefur verið send með tölvupósti.");
+			alert.setOnHidden(event -> {
+                System.exit(0);
+            });
+            alert.showAndWait();
     }
 
 }
