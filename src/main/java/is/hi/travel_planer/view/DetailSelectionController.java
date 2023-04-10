@@ -1,12 +1,17 @@
 package is.hi.travel_planer.view;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.beans.value.ChangeListener;
@@ -100,7 +105,17 @@ public class DetailSelectionController {
 	}
 
 	@FXML
-	private void handleNext() {
-		packageController.bookPackage(pkg, seatSelector.getSelected(), selectedRooms(), selectedTime());
+	private void handleNext(ActionEvent event) throws IOException {
+		//packageController.bookPackage(pkg, seatSelector.getSelected(), selectedRooms(), selectedTime());
+
+		// changed to send to payment/confirmation page
+
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		var loader = new FXMLLoader(getClass().getResource("/fxml/PaymentConfirmationView.fxml"));
+		loader.setControllerFactory(c -> new PaymentConfirmationController(pkg, packageController.getUser(), packageController, seatSelector.getSelected(), selectedRooms(), selectedTime()));
+		var scene = new Scene(loader.load(), 1280, 900);
+		stage.setScene(scene);
+		stage.show();
 	}
 }
