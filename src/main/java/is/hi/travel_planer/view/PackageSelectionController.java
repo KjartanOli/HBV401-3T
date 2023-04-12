@@ -21,6 +21,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.collections.FXCollections;
 
 import is.hi.travel_planer.control.PackageController;
 
@@ -120,17 +121,7 @@ public class PackageSelectionController {
 			}
 		});
 
-		for (var flight : packageController.getFlights()) {
-			flights.getItems().add(flight);
-		}
-
-		for (var hotel : packageController.getHotels()) {
-			hotels.getItems().add(hotel);
-		}
-
-		for (var tour : packageController.getTours()) {
-			tours.getItems().add(tour);
-		}
+		setOptions();
 	}
 
 	private void generateRecomendations() {
@@ -181,6 +172,7 @@ public class PackageSelectionController {
 	private void handleDestinationSelection(ActionEvent event) {
 		packageController.getUser().setDestination(destination.getValue());
 		generateRecomendations();
+		setOptions();
 	}
 
 	@FXML
@@ -245,5 +237,23 @@ public class PackageSelectionController {
 			selectedPackage.getChildren().setAll(new PackageView(pkg));
 			next.setDisable(false);
 		}
+	}
+
+	private void setOptions() {
+		setFlights();
+		setHotels();
+		setTours();
+	}
+
+	private void setFlights() {
+		flights.setItems(FXCollections.observableArrayList(packageController.getFlights()));
+	}
+
+	private void setHotels() {
+		hotels.setItems(FXCollections.observableArrayList(packageController.getHotels()));
+	}
+
+	private void setTours() {
+		tours.setItems(FXCollections.observableArrayList(packageController.getTours()));
 	}
 }
