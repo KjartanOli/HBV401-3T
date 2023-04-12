@@ -1,8 +1,14 @@
 package is.hi.travel_planer.view;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -100,5 +106,15 @@ public class PaymentConfirmationController {
 				System.exit(0);
 			});
 		alert.showAndWait();
+	}
+
+	@FXML
+	private void handleBack(ActionEvent event) throws IOException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		var loader = new FXMLLoader(getClass().getResource("/fxml/DetailSelection.fxml"));
+		loader.setControllerFactory(c -> new DetailSelectionController(pkg, packageController));
+		var scene = new Scene(loader.load(), 1280, 900);
+		stage.setScene(scene);
 	}
 }

@@ -17,7 +17,7 @@
             <Label layoutX="441.0" layoutY="433.0" text="Nafn á korti" />
             <Label layoutX="441.0" layoutY="470.0" text="Kortanúmer" />
             <Label layoutX="455.0" layoutY="507.0" text="Gildistími" />
-            <Button layoutX="731.0" layoutY="580.0" mnemonicParsing="false" text="Til baka" />
+            <Button layoutX="731.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleBack" text="Til baka" />
             <Button fx:id="finish" layoutX="810.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleConfirm" text="Staðfesta" />
             <HBox fx:id="selectedPackage" alignment="CENTER" layoutY="138.0" prefHeight="173.0" prefWidth="1280.0" style="-fx-border-color: black;">
                <children>
