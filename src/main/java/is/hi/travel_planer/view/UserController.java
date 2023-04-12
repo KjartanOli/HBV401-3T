@@ -144,7 +144,6 @@ public class UserController {
 			loader.setControllerFactory(c -> new PackageSelectionController(user));
 			var scene = new Scene(loader.load(), 1280, 900);
 			stage.setScene(scene);
-			stage.show();
 		}
 	}
 
