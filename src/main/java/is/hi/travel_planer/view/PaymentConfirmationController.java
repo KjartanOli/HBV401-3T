@@ -1,8 +1,14 @@
 package is.hi.travel_planer.view;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -26,41 +32,41 @@ import is.hi.flight_booking.application.Seat;
 
 
 public class PaymentConfirmationController {
-    @FXML
-    private TextField ccname, ccnr;
-    @FXML
-    private ChoiceBox<String> month;
-    @FXML
-    private ChoiceBox<Integer> year;
-    @FXML
+	@FXML
+	private TextField ccname, ccnr;
+	@FXML
+	private ChoiceBox<String> month;
+	@FXML
+	private ChoiceBox<Integer> year;
+	@FXML
 	private HBox selectedPackage;
     @FXML
     private Button finish;
 
-    private TravelPackage pkg;
-    private User user;
-    private PackageController packageController;
-    private List<Seat> seats;
-    private List<Room> rooms;
-    private TourTime tourTime;
+	private TravelPackage pkg;
+	private User user;
+	private PackageController packageController;
+	private List<Seat> seats;
+	private List<Room> rooms;
+	private TourTime tourTime;
 
-    public PaymentConfirmationController(TravelPackage pkg, User user, PackageController packageController, List<Seat> seats, List<Room> rooms, TourTime tourTime) {
-        this.pkg = pkg;
-        this.user = user;
-        this.packageController = packageController;
-        this.seats = seats;
-        this.rooms = rooms;
-        this.tourTime = tourTime;
-    }
+	public PaymentConfirmationController(TravelPackage pkg, User user, PackageController packageController, List<Seat> seats, List<Room> rooms, TourTime tourTime) {
+		this.pkg = pkg;
+		this.user = user;
+		this.packageController = packageController;
+		this.seats = seats;
+		this.rooms = rooms;
+		this.tourTime = tourTime;
+	}
 
-    @FXML
+	@FXML
 	private void initialize() {
-        month.getItems().addAll("janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember");
-        year.getItems().addAll(2022,2023,2024,2025,2026,2027,2028,2029,2030);
+		month.getItems().addAll("janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember");
+		year.getItems().addAll(2022,2023,2024,2025,2026,2027,2028,2029,2030);
 
-        selectedPackage.getChildren().setAll(new PackageView(pkg));
+		selectedPackage.getChildren().setAll(new PackageView(pkg));
 
-        finish.setDisable(true);
+		finish.setDisable(true);
 
         ccname.textProperty().addListener((observable, oldValue, newValue) -> {
             enableConfirm(ccname, ccnr, month, year, finish);
@@ -88,18 +94,27 @@ public class PaymentConfirmationController {
         }
     }
 
-    @FXML
+	@FXML
 	private void handleConfirm() {
 		packageController.bookPackage(pkg, this.seats, this.rooms, this.tourTime);
 
-        // bæta við þannig að það séu tveir takkar, einn til að loka, og einn til að fara aftur á aðal
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Greiðsla móttekin");
-			alert.setHeaderText(null);
-            alert.setContentText("Bókun lokið. Staðfesting hefur verið send með tölvupósti.");
-			alert.setOnHidden(event -> {
-                System.exit(0);
-            });
-            alert.showAndWait();
-    }
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Greiðsla móttekin");
+		alert.setHeaderText(null);
+		alert.setContentText("Bókun lokið. Staðfesting hefur verið send með tölvupósti.");
+		alert.setOnHidden(event -> {
+				System.exit(0);
+			});
+		alert.showAndWait();
+	}
+
+	@FXML
+	private void handleBack(ActionEvent event) throws IOException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		var loader = new FXMLLoader(getClass().getResource("/fxml/DetailSelection.fxml"));
+		loader.setControllerFactory(c -> new DetailSelectionController(pkg, packageController));
+		var scene = new Scene(loader.load(), 1280, 900);
+		stage.setScene(scene);
+	}
 }

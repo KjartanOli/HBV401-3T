@@ -40,9 +40,9 @@ public class DetailSelectionController {
 	private User user;
 	private PackageController packageController;
 
-	public DetailSelectionController(TravelPackage pkg, User user, PackageController packageController) {
+	public DetailSelectionController(TravelPackage pkg, PackageController packageController) {
 		this.pkg = pkg;
-		this.user = user;
+		this.user = packageController.getUser();
 		this.packageController = packageController;
 	}
 
@@ -106,16 +106,20 @@ public class DetailSelectionController {
 
 	@FXML
 	private void handleNext(ActionEvent event) throws IOException {
-		//packageController.bookPackage(pkg, seatSelector.getSelected(), selectedRooms(), selectedTime());
-
-		// changed to send to payment/confirmation page
-
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 		var loader = new FXMLLoader(getClass().getResource("/fxml/PaymentConfirmationView.fxml"));
 		loader.setControllerFactory(c -> new PaymentConfirmationController(pkg, packageController.getUser(), packageController, seatSelector.getSelected(), selectedRooms(), selectedTime()));
 		var scene = new Scene(loader.load(), 1280, 900);
 		stage.setScene(scene);
-		stage.show();
+	}
+
+	@FXML
+	private void handleBack(ActionEvent event) throws IOException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_PackageView.fxml"));
+		loader.setControllerFactory(c -> new PackageSelectionController(packageController.getUser()));
+		var scene = new Scene(loader.load(), 1280, 900);
+		stage.setScene(scene);
 	}
 }
