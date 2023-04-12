@@ -37,7 +37,6 @@ public class PaymentConfirmationController {
     @FXML
     private Button finish;
 
-
     private TravelPackage pkg;
     private User user;
     private PackageController packageController;
@@ -81,8 +80,6 @@ public class PaymentConfirmationController {
     
     }
 
-   
-    
     private void enableConfirm(TextField ccname, TextField ccnr, ChoiceBox<String> month, ChoiceBox<Integer> year, Button finish) {
         if (!ccname.getText().isEmpty() && !ccnr.getText().isEmpty() && month.getValue() != null && year.getValue() != null) {
             finish.setDisable(false);
@@ -95,6 +92,7 @@ public class PaymentConfirmationController {
 	private void handleConfirm() {
 		packageController.bookPackage(pkg, this.seats, this.rooms, this.tourTime);
 
+        // bæta við þannig að það séu tveir takkar, einn til að loka, og einn til að fara aftur á aðal
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Greiðsla móttekin");
 			alert.setHeaderText(null);
@@ -104,5 +102,4 @@ public class PaymentConfirmationController {
             });
             alert.showAndWait();
     }
-
 }

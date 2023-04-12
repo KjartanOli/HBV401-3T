@@ -2,21 +2,26 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
 
 <fx:root alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" type="HBox" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Label text="🏨">
-      <padding>
-        <Insets left="5.0" />
-      </padding>
-         <HBox.margin>
-            <Insets right="10.0" />
-         </HBox.margin>
-    </Label>
-    <Label fx:id="name">
+      <AnchorPane prefHeight="30.0" prefWidth="25.0">
+         <children>
+            <SVGPath content="M15 4h7.91a.09.09 0 0 1 .09.09V25a1 1 0 0 0 2 0V4.09A2.1 2.1 0 0 0 22.91 2H15a1 1 0 0 0 0 2z" layoutX="-2.0" />
+            <SVGPath content="M11 6a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2h-2a1 1 0 0 0-1 1zM20 5h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM14 8h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM20 8h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM14 11h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM20 11h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM14 14h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM20 14h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM14 17h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM20 17h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2z" layoutX="-2.0" />
+            <SVGPath content="M27 28h-7v-4.15A2.86 2.86 0 0 0 17.15 21h-2.3A2.86 2.86 0 0 0 12 23.85V28H9V4.09A.09.09 0 0 1 9.09 4H11a1 1 0 0 0 0-2H9.09A2.1 2.1 0 0 0 7 4.09V28H5a1 1 0 0 0 0 2h22a1 1 0 0 0 0-2zm-13-4.15a.85.85 0 0 1 .85-.85h2.3a.85.85 0 0 1 .85.85V28h-4z" layoutX="-2.0" />
+         </children>
+      </AnchorPane>
+    <Label fx:id="name" text="Test">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font>
          <padding>
-            <Insets left="10.0" />
+            <Insets left="5.0" />
          </padding></Label>
   </children>
 </fx:root>
