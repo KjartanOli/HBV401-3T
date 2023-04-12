@@ -211,7 +211,15 @@ public class PackageSelectionController {
 		loader.setControllerFactory(c -> new DetailSelectionController(pkg, packageController.getUser(), packageController));
 		var scene = new Scene(loader.load(), 1280, 900);
 		stage.setScene(scene);
-		stage.show();
+	}
+
+	@FXML
+	private void handleBack(ActionEvent event) throws IOException {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_InitialView.fxml"));
+
+		var scene = new Scene(loader.load(), 1280, 900);
+		stage.setScene(scene);
 	}
 
 	private Flight getSelectedFlight() {

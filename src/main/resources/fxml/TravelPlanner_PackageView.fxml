@@ -63,7 +63,7 @@
                <children>
          </children>
             </HBox>
-            <Button layoutX="10.0" layoutY="850.0" mnemonicParsing="false" text="Til baka" />
+            <Button layoutX="10.0" layoutY="850.0" mnemonicParsing="false" onAction="#handleBack" text="Til baka" />
             <Button fx:id="next" layoutX="1218.0" layoutY="850.0" mnemonicParsing="false" onAction="#handleNext" text="Áfram" />
          </children>
       </Pane>
