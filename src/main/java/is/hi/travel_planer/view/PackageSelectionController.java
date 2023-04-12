@@ -193,6 +193,10 @@ public class PackageSelectionController {
 	private void handleGroupSizeSelection(ActionEvent event) {
 		packageController.getUser().setGroupSize(groupSize.getValue().intValue());
 		generateRecomendations();
+		if (pkg != null)
+			pkg = new TravelPackage(pkg.getFlight(), pkg.getHotel(), pkg.getTour(), packageController.getUser().getGroupSize());
+
+		updateSelectedPackageView();
 	}
 
 	@FXML
@@ -231,6 +235,8 @@ public class PackageSelectionController {
 	}
 
 	private void updateSelectedPackageView() {
+		if (pkg == null)
+			return;
 		if (pkg.getFlight() == null || pkg.getHotel() == null || pkg.getTour() == null) {
 			selectedPackage.getChildren().setAll();
 			next.setDisable(true);
