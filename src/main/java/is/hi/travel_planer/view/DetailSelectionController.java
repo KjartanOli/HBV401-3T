@@ -40,9 +40,9 @@ public class DetailSelectionController {
 	private User user;
 	private PackageController packageController;
 
-	public DetailSelectionController(TravelPackage pkg, User user, PackageController packageController) {
+	public DetailSelectionController(TravelPackage pkg, PackageController packageController) {
 		this.pkg = pkg;
-		this.user = user;
+		this.user = packageController.getUser();
 		this.packageController = packageController;
 	}
 

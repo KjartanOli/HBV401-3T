@@ -208,7 +208,7 @@ public class PackageSelectionController {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 		var loader = new FXMLLoader(getClass().getResource("/fxml/DetailSelection.fxml"));
-		loader.setControllerFactory(c -> new DetailSelectionController(pkg, packageController.getUser(), packageController));
+		loader.setControllerFactory(c -> new DetailSelectionController(pkg, packageController));
 		var scene = new Scene(loader.load(), 1280, 900);
 		stage.setScene(scene);
 	}
