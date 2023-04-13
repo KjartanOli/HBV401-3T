@@ -14,7 +14,7 @@
    <children>
       <Text layoutX="296.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meta Travel Planner" textAlignment="CENTER" wrappingWidth="609.9609375">
          <font>
-            <Font name="Avenir Book" size="36.0" />
+            <Font name="Avenir Next Bold" size="36.0" />
          </font>
       </Text>
       <Label layoutX="448.0" layoutY="198.0" text="Fullt nafn*">
@@ -27,24 +27,45 @@
             <Font name="Avenir Book" size="13.0" />
          </font></Label>
       <TextField fx:id="ssn" layoutX="552.0" layoutY="228.0" />
-      <Label layoutX="448.0" layoutY="234.0" text="Kennitala*" />
+      <Label layoutX="448.0" layoutY="234.0" text="Kennitala*">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <TextField fx:id="email" layoutX="552.0" layoutY="260.0" />
-      <Label layoutX="448.0" layoutY="299.0" text="Sími*" />
+      <Label layoutX="448.0" layoutY="299.0" text="Sími*">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <TextField fx:id="phone" layoutX="552.0" layoutY="293.0" />
-      <Label layoutX="448.0" layoutY="345.0" text="Áhugamál" />
+      <Label layoutX="448.0" layoutY="345.0" text="Áhugamál">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <ChoiceBox fx:id="interest" layoutX="552.0" layoutY="340.0" prefWidth="150.0" style="-fx-background-color: white;" />
-      <Label layoutX="448.0" layoutY="377.0" text="Fjöldi*" />
+      <Label layoutX="448.0" layoutY="377.0" text="Fjöldi*">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <ChoiceBox fx:id="groupSize" layoutX="552.0" layoutY="373.0" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: white;" />
       <Label layoutX="448.0" layoutY="416.0" text="Brottfararstaður*">
          <font>
             <Font name="Avenir Book" size="13.0" />
          </font></Label>
       <ChoiceBox fx:id="origin" layoutX="552.0" layoutY="412.0" prefWidth="150.0" style="-fx-background-color: white;" />
-      <Label layoutX="448.0" layoutY="449.0" text="Áfangastaður*" />
+      <Label layoutX="448.0" layoutY="449.0" text="Áfangastaður*">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <ChoiceBox fx:id="destination" layoutX="552.0" layoutY="445.0" prefWidth="150.0" style="-fx-background-color: white;" />
-      <Label layoutX="448.0" layoutY="491.0" text="Brottför*" />
+      <Label layoutX="448.0" layoutY="491.0" text="Brottför*">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <DatePicker fx:id="departureDate" layoutX="552.0" layoutY="487.0" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: white;" />
-      <Label layoutX="448.0" layoutY="524.0" text="Heimkoma*" />
+      <Label layoutX="448.0" layoutY="524.0" text="Heimkoma*">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
       <DatePicker fx:id="returnDate" layoutX="552.0" layoutY="521.0" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: white;" />
       <Label layoutX="448.0" layoutY="567.0" text="Verðtakmörk" />
       <ChoiceBox fx:id="maxPriceSelect" layoutX="552.0" layoutY="563.0" prefWidth="150.0" style="-fx-background-color: white;" />
@@ -54,6 +75,9 @@
          </font></Button>
       <Line endX="100.0" layoutX="345.0" layoutY="131.0" startX="100.0" startY="474.5" />
       <Line endX="100.0" layoutX="447.0" layoutY="191.0" startX="100.0" startY="474.5" />
-      <Label layoutX="448.0" layoutY="677.0" text="*Nauðsynilegt að fylla út" />
+      <Label layoutX="448.0" layoutY="677.0" text="*Nauðsynilegt að fylla út">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
    </children>
 </Pane>

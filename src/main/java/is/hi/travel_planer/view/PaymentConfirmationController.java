@@ -12,16 +12,23 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Pos;
 
 import is.hi.travel_planer.model.TravelPackage;
 import is.hi.travel_planer.model.User;
@@ -41,7 +48,7 @@ public class PaymentConfirmationController {
 	@FXML
 	private HBox selectedPackage;
     @FXML
-    private Button finish;
+    private Button finish, back;
 
 	private TravelPackage pkg;
 	private User user;
@@ -49,6 +56,7 @@ public class PaymentConfirmationController {
 	private List<Seat> seats;
 	private List<Room> rooms;
 	private TourTime tourTime;
+	private DialogPane dialogPane;
 
 	public PaymentConfirmationController(TravelPackage pkg, User user, PackageController packageController, List<Seat> seats, List<Room> rooms, TourTime tourTime) {
 		this.pkg = pkg;
@@ -98,15 +106,47 @@ public class PaymentConfirmationController {
 	private void handleConfirm() {
 		packageController.bookPackage(pkg, this.seats, this.rooms, this.tourTime);
 
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle("Greiðsla móttekin");
-		alert.setHeaderText(null);
-		alert.setContentText("Bókun lokið. Staðfesting hefur verið send með tölvupósti.");
-		alert.setOnHidden(event -> {
-				System.exit(0);
-			});
-		alert.showAndWait();
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Greiðsla móttekin");
+
+		VBox dialogVbox = new VBox(20);
+		dialogVbox.setAlignment(Pos.CENTER);
+
+		Label messageLabel = new Label("Bókun lokið. Staðfesting hefur verið send með tölvupósti.");
+		Button closeButton = new Button("Loka");
+		Button backButton = new Button("Bóka aðra ferð");
+
+		HBox buttonBox = new HBox(20);
+		buttonBox.setAlignment(Pos.CENTER);
+		buttonBox.getChildren().addAll(closeButton, backButton);
+
+		dialogVbox.getChildren().addAll(messageLabel, buttonBox);
+
+		closeButton.setOnAction(event -> {
+			dialogStage.close();
+			Platform.exit();
+		});
+
+		backButton.setOnAction(event -> {
+			dialogStage.close();
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_InitialView.fxml"));
+			try {
+				Scene scene = new Scene(loader.load(), 1280, 900);
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+
+		Scene dialogScene = new Scene(dialogVbox, 400, 150);
+		dialogStage.setScene(dialogScene);
+		dialogStage.showAndWait();
 	}
+
+
 
 	@FXML
 	private void handleBack(ActionEvent event) throws IOException {

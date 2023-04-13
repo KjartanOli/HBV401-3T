@@ -12,28 +12,25 @@
 
 <?import is.hi.travel_planer.view.SeatSelector?>
 
-<VBox prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.DetailSelectionController">
+<VBox prefHeight="900.0" prefWidth="1280.0" style="-fx-background-color: e26462;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.DetailSelectionController">
   <children>
       <HBox prefHeight="67.0" prefWidth="1280.0" spacing="250.0">
          <padding>
-            <Insets bottom="10.0" left="150.0" top="20.0" />
+            <Insets bottom="10.0" left="50.0" top="20.0" />
          </padding>
          <children>
             <Label text="Sæti um borð">
                <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font></Label>
             <Label text="Herbergi á hótelinu">
                <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font></Label>
             <Label text="Tími dagsferðar">
                <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+                  <Font name="Avenir Next Bold" size="24.0" />
+               </font></Label>
          </children>
       </HBox>
     <HBox prefHeight="560.0" prefWidth="1260.0">
@@ -44,7 +41,7 @@
                   <Insets left="20.0" right="10.0" />
                </HBox.margin>
                <padding>
-                  <Insets bottom="10.0" left="50.0" top="10.0" />
+                  <Insets bottom="10.0" left="120.0" top="10.0" />
                </padding></SeatSelector>
         <ListView fx:id="roomSelector" prefHeight="400.0" prefWidth="400.0">
                <padding>
@@ -70,8 +67,14 @@
     </HBox>
     <AnchorPane maxHeight="50.0" prefHeight="30.0" prefWidth="200.0">
       <children>
-        <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleBack" text="Til Baka" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="7.0" />
-        <Button fx:id="next" layoutX="542.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNext" text="Áfram" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="7.0" />
+        <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleBack" text="Til Baka" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="7.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></Button>
+        <Button fx:id="next" layoutX="542.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNext" text="Áfram" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="7.0">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></Button>
       </children>
          <VBox.margin>
             <Insets top="175.0" />

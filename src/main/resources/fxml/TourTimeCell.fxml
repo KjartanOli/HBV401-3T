@@ -2,11 +2,18 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.hi.travel_planer.view.TourTimeCellController">
    <children>
-      <Label fx:id="date" layoutX="14.0" layoutY="17.0" text="Label" AnchorPane.leftAnchor="8.0" />
-      <Label fx:id="time" layoutX="50.0" layoutY="17.0" text="Label" AnchorPane.rightAnchor="8.0" />
+      <Label fx:id="date" layoutX="14.0" layoutY="17.0" text="Label" AnchorPane.leftAnchor="8.0">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
+      <Label fx:id="time" layoutX="50.0" layoutY="17.0" text="Label" AnchorPane.rightAnchor="8.0">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Label>
    </children>
 </AnchorPane>

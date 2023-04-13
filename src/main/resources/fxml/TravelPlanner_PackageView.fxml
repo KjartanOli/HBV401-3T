@@ -21,15 +21,21 @@
                   <Font name="Avenir Book" size="13.0" />
                </font></Label>
             <ChoiceBox fx:id="interest" layoutX="223.0" layoutY="5.0" onAction="#handleInterestSelection" prefWidth="150.0" style="-fx-background-color: white;" />
-            <Label layoutX="389.0" layoutY="9.0" text="Fjöldi" />
+            <Label layoutX="389.0" layoutY="9.0" text="Fjöldi">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></Label>
             <ChoiceBox fx:id="groupSize" layoutX="426.0" layoutY="5.0" onAction="#handleGroupSizeSelection" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: white;" />
-            <Label layoutX="495.0" layoutY="9.0" text="Áfangastaður" />
+            <Label layoutX="495.0" layoutY="9.0" text="Áfangastaður">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></Label>
             <ChoiceBox fx:id="destination" layoutX="575.0" layoutY="5.0" onAction="#handleDestinationSelection" prefWidth="150.0" style="-fx-background-color: white;" />
             <DatePicker fx:id="departureDate" layoutX="785.0" layoutY="5.0" onAction="#handleDepartureDateSelection" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: white;" />
             <DatePicker fx:id="returnDate" layoutX="920.0" layoutY="5.0" onAction="#handleReturnDateSelection" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: white;" />
             <Label layoutX="557.0" layoutY="38.0" text="Meta Travel mælir með:">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Avenir Next Bold" size="18.0" />
                </font>
             </Label>
             <HBox fx:id="recommendations" alignment="CENTER" layoutX="10.0" layoutY="61.0" prefHeight="170.0" prefWidth="1260.0" spacing="50.0" style="-fx-border-color: black;" />
@@ -43,7 +49,7 @@
                            </font></Text>
                         <Text layoutX="622.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hótel">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="Avenir Book" size="13.0" />
                            </font></Text>
                         <Text layoutX="1056.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagsferð">
                            <font>
@@ -58,23 +64,24 @@
             </HBox>
             <Label layoutX="580.0" layoutY="655.0" text="Þinn ferðapakki:">
                <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+                  <Font name="Avenir Next Bold" size="18.0" />
+               </font></Label>
             <HBox fx:id="selectedPackage" alignment="CENTER" layoutX="10.0" layoutY="678.0" prefHeight="173.0" prefWidth="1260.0" style="-fx-border-color: black;">
                <children>
          </children>
             </HBox>
-            <Button layoutX="10.0" layoutY="861.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Til baka" />
-            <Button fx:id="next" layoutX="1218.0" layoutY="861.0" mnemonicParsing="false" onAction="#handleNext" style="-fx-background-color: white;" text="Áfram">
+            <Button layoutX="10.0" layoutY="861.0" mnemonicParsing="false" onAction="#handleBack" style="-fx-background-color: white;" text="Til baka">
+            <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font></Button>
+            <Button fx:id="next" layoutX="1217.0" layoutY="861.0" mnemonicParsing="false" onAction="#handleNext" style="-fx-background-color: white;" text="Áfram">
                <font>
                   <Font name="Avenir Book" size="13.0" />
                </font></Button>
             <Label alignment="CENTER" layoutX="493.0" layoutY="863.0" text="Heildarverð innihalda 10% þjónustugjald">
                <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+                  <Font name="Avenir Book" size="18.0" />
+               </font></Label>
          </children>
       </Pane>
    </content>

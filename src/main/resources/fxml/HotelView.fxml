@@ -21,7 +21,7 @@
             <Font name="Avenir Book" size="13.0" />
          </font>
          <padding>
-            <Insets left="5.0" />
+            <Insets left="4.35" />
          </padding></Label>
   </children>
 </fx:root>
