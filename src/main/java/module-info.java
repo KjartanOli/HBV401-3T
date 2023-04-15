@@ -1,4 +1,6 @@
 module is.hi.travel_planer {
+	requires java.sql;
+
 	requires transitive javafx.graphics;
 	requires javafx.controls;
 	requires javafx.fxml;

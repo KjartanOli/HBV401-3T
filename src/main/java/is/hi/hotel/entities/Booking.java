@@ -1,4 +1,5 @@
 package is.hi.hotel.entities;
+import java.util.Date;
 
 public class Booking {
     private int bookingId;

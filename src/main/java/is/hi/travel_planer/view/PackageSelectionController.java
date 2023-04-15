@@ -35,6 +35,7 @@ import com.daytour.processing.DayTourDetails;
 import is.hi.flight_booking.interfaces.FlightControllerInterface;
 import is.hi.flight_booking.controller.FlightController;
 import is.hi.hotel.interfaces.IHotelController;
+import is.hi.hotel.implementations.controllers.HotelController;
 import is.hi.daytour.processing.QueryInterface;
 
 import is.hi.travel_planer.mock.HotelControllerMock;
@@ -63,16 +64,22 @@ public class PackageSelectionController {
 	private PackageController packageController;
 
 	public PackageSelectionController(User user) {
-		String flightDB = "flights.db";
-		pkg = null;
-		packageController = new PackageController(
-			user,
-			new FlightController(flightDB),
-			new is.hi.flight_booking.controller.BookingController(flightDB),
-			new HotelControllerMock(),
-			new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository()),
-			new QueryMock()
-		);
+		try {
+			String flightDB = "flights.db";
+			var hotelDB = new is.hi.hotel.implementations.db.DatabaseConnection("jdbc:sqlite:hotel.db");
+			pkg = null;
+			packageController = new PackageController(
+				user,
+				new FlightController(flightDB),
+				new is.hi.flight_booking.controller.BookingController(flightDB),
+				new HotelController(new is.hi.hotel.implementations.repositories.HotelRepository(hotelDB)),
+				new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository(hotelDB)),
+				new QueryMock()
+			);
+		}
+		catch (java.sql.SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 
 	@FXML

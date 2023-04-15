@@ -1,14 +1,14 @@
 package is.hi.hotel.implementations.controllers;
-import is.hi.hotel.entities.Booking;
+
 import is.hi.hotel.entities.BookingDate;
+import is.hi.hotel.entities.Hotel;
 import is.hi.hotel.entities.Room;
 import is.hi.hotel.exceptions.BadInputException;
 import is.hi.hotel.exceptions.NotFoundException;
 import is.hi.hotel.interfaces.IHotelController;
-import is.hi.hotel.entities.Hotel;
 import is.hi.hotel.interfaces.IHotelRepository;
-import java.lang.invoke.VarHandle;
-import java.time.LocalDate;
+import java.sql.SQLException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class HotelController implements IHotelController {
 
     private final IHotelRepository _hotelRepository;
 
-    public HotelController(IHotelRepository hotelRepository){
+    public HotelController(IHotelRepository hotelRepository) {
         _hotelRepository = hotelRepository;
     }
 
@@ -50,10 +50,14 @@ public class HotelController implements IHotelController {
         return _hotelRepository.getAllHotels();
     }
 
-    public int createHotel(Hotel hotel) throws BadInputException {
+   public int createHotel(Hotel hotel) throws BadInputException {
         //Validate hotel
         validateCreateHotelRequest(hotel);
-        return _hotelRepository.createHotel(hotel);
+        try {
+            return _hotelRepository.createHotel(hotel);
+        } catch (Exception e) {
+            throw new BadInputException(e.getMessage());
+        }
     }
 
     public int createHotel(String name, String location, List<Room> rooms) throws BadInputException {
@@ -64,11 +68,11 @@ public class HotelController implements IHotelController {
         return _hotelRepository.createHotel(hotel);
     }
 
-    public Hotel getHotelById(int hotelId) throws NotFoundException {
+    public Hotel getHotelById(int hotelId) throws NotFoundException, SQLException {
         return _hotelRepository.getHotelById(hotelId);
     }
 
-    private List<Hotel> filterHotelsByLocation (List <Hotel> hotels, String location) {
+    private List<Hotel> filterHotelsByLocation(List<Hotel> hotels, String location) {
         var filteredHotels = new ArrayList<Hotel>();
         for (Hotel hotel : hotels) { // Lists are iterable, nicer code to use item iteration syntax
             if (location.toLowerCase().equals(hotel.getLocation().toLowerCase())) {
@@ -78,11 +82,12 @@ public class HotelController implements IHotelController {
         return filteredHotels;
     }
 
-    private List<Hotel> filterHotelsByDates(List<Hotel> hotels, BookingDate bookingDate){
+    private List<Hotel> filterHotelsByDates(List<Hotel> hotels, BookingDate bookingDate) {
         var filterDateRange = bookingDate.getDateRange(); //Get all dates in range of checkIn and checkout
         var filteredHotels = new ArrayList<Hotel>();
         for (Hotel hotel : hotels) {
-            roomLoop: for (Room room : hotel.getRooms()) { // give loop name for outer loop break
+            roomLoop:
+            for (Room room : hotel.getRooms()) { // give loop name for outer loop break
                 var roomBookedDates = room.getBookedDates();
                 for (LocalDate date : filterDateRange) {
                     // if a date from filterDateRange is not found in availableDates, break
@@ -98,10 +103,10 @@ public class HotelController implements IHotelController {
         return filteredHotels;
     }
 
-    private List<Hotel> filterHotelByCapacity (List <Hotel> hotels, int adults, int children){
+    private List<Hotel> filterHotelByCapacity(List<Hotel> hotels, int adults, int children) {
         var filteredHotels = new ArrayList<Hotel>();
         for (Hotel hotel : hotels) {
-            for (Room room : hotel.getRooms()){
+            for (Room room : hotel.getRooms()) {
                 if (room.getCapacity() >= (children + adults)) {
                     filteredHotels.add(hotel);
                 }
@@ -112,7 +117,7 @@ public class HotelController implements IHotelController {
 
     private int getNewHotelId() {
         var max = 0;
-        for (Hotel hotel: _hotelRepository.getAllHotels()){
+        for (Hotel hotel : _hotelRepository.getAllHotels()) {
             var id = hotel.getHotelId();
             if (id >= max) {
                 max = id;
@@ -124,20 +129,20 @@ public class HotelController implements IHotelController {
     private void validateCreateHotelRequest(Hotel hotel) throws BadInputException {
         var hotels = _hotelRepository.getAllHotels();
         // Check if id already exists
-        for(Hotel _hotel: hotels) {
-            if (_hotel.getHotelId() == (hotel.getHotelId())){
+        for (Hotel _hotel : hotels) {
+            if (_hotel.getHotelId() == (hotel.getHotelId())) {
                 throw new BadInputException("Hotel with Id already exists");
             }
         }
         // capacity > 0
-        for(Room room: hotel.getRooms()){
-            if(room.getCapacity() <= 0){
+        for (Room room : hotel.getRooms()) {
+            if (room.getCapacity() <= 0) {
                 throw new BadInputException("Hotel includes room with 0 or less capacity");
             }
         }
         // Check if name already exists
-        for(Hotel _hotel: hotels) {
-            if (_hotel.getName().equals(hotel.getName())){
+        for (Hotel _hotel : hotels) {
+            if (_hotel.getName().equals(hotel.getName())) {
                 throw new BadInputException("Hotel with name already exists");
             }
         }
