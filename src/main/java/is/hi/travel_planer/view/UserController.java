@@ -114,6 +114,12 @@ public class UserController {
 			alert.setHeaderText("Ekki er hægt að fljúga frá " + origin.getValue() + " til " + destination.getValue());
 			alert.showAndWait();
 		}
+		if(returnDate.getValue().compareTo(departureDate.getValue()) < 0){
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Brottför eftir komudag");
+			alert.setHeaderText("Ekki er hægt að velja heimkomudagsetningu sem er á undan brottfarardagsetningu");
+			alert.showAndWait();
+		}
 		else{
 			int mp;
 			if (maxPrice.isPresent()){

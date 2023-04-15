@@ -7,10 +7,11 @@
 <?import is.hi.travel_planer.view.FlightView?>
 <?import is.hi.travel_planer.view.HotelView?>
 <?import is.hi.travel_planer.view.TourView?>
+<?import javafx.scene.text.Font?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity"
          minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0"
-         prefWidth="250.0" type="VBox"
+         prefWidth="250.0" type="VBox" style="-fx-border-color: black;"
          xmlns="http://javafx.com/javafx/19"
          xmlns:fx="http://javafx.com/fxml/1" >
   <children>
@@ -19,8 +20,14 @@
     <TourView fx:id="tour"/>
     <HBox alignment="CENTER">
       <children>
-        <Label fx:id="price"/>
-        <Label text="kr"/>
+        <Label fx:id="price">
+          <font>
+              <Font name="Avenir Book" size="13.0" />
+          </font></Label>
+        <Label text="kr">
+          <font>
+              <Font name="Avenir Book" size="13.0" />
+          </font></Label>
       </children>
     </HBox>
   </children>
