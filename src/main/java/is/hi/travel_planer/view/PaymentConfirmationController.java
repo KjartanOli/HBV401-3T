@@ -49,6 +49,10 @@ public class PaymentConfirmationController {
 	private HBox selectedPackage;
     @FXML
     private Button finish, back;
+	@FXML
+	private Label fxTourLabel;
+	@FXML
+	private VBox fxSeatLabel, fxRoomLabel;
 
 	private TravelPackage pkg;
 	private User user;
@@ -73,6 +77,17 @@ public class PaymentConfirmationController {
 		year.getItems().addAll(2022,2023,2024,2025,2026,2027,2028,2029,2030);
 
 		selectedPackage.getChildren().setAll(new PackageView(pkg));
+
+		for (Seat s : this.seats) {
+			Label label = new Label(s.getId());
+			fxSeatLabel.getChildren().add(label);
+		}
+
+		for (Room r : this.rooms) {
+			Label label = new Label(Integer.toString(r.getRoomId()));
+			fxRoomLabel.getChildren().add(label);
+		}
+		fxTourLabel.setText(this.tourTime.toString());
 
 		finish.setDisable(true);
 
