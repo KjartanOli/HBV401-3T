@@ -36,11 +36,8 @@ import is.hi.flight_booking.interfaces.FlightControllerInterface;
 import is.hi.flight_booking.controller.FlightController;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.hotel.implementations.controllers.HotelController;
-import is.hi.daytour.processing.QueryInterface;
-
-import is.hi.travel_planer.mock.HotelControllerMock;
-import is.hi.travel_planer.mock.QueryMock;
-import is.hi.travel_planer.mock.FlightControllerMock;
+import com.daytour.processing.QueryInterface;
+import com.daytour.processing.Query;
 
 public class PackageSelectionController {
 	@FXML
@@ -74,7 +71,7 @@ public class PackageSelectionController {
 				new is.hi.flight_booking.controller.BookingController(flightDB),
 				new HotelController(new is.hi.hotel.implementations.repositories.HotelRepository(hotelDB)),
 				new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository(hotelDB)),
-				new QueryMock()
+				new Query()
 			);
 		}
 		catch (java.sql.SQLException e) {

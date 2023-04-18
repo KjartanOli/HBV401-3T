@@ -21,7 +21,7 @@ import is.hi.flight_booking.interfaces.FlightControllerInterface;
 import is.hi.flight_booking.interfaces.BookingControllerInterface;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.hotel.interfaces.IBookingController;
-import is.hi.daytour.processing.QueryInterface;
+import com.daytour.processing.QueryInterface;
 
 public class PackageController {
 	private User user;
@@ -73,6 +73,7 @@ public class PackageController {
 	}
 
 	public List<DayTourDetails> getTours() {
+		System.out.printf("%s, %s %s '%s'%n", user.getDestination(),user.getDepartureDate(),user.getReturnDate(),user.getInterest());
 		return Arrays.asList(
 			tourController.searchTourDetails(
 				user.getDestination(),
