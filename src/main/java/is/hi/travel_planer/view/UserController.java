@@ -139,7 +139,7 @@ public class UserController {
 				departureDate.getValue(),
 				destination.getValue(),
 				returnDate.getValue(),
-				interest.getValue(),
+				interest.getValue().equals(interestList.get(0)) ? "" : interest.getValue(),
 				mp
 			);
 
