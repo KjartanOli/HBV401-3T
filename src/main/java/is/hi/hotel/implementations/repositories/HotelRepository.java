@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HotelRepository implements IHotelRepository {
@@ -63,21 +62,20 @@ public class HotelRepository implements IHotelRepository {
     }
 
     public Hotel getHotelById(int hotelId) throws NotFoundException {
-        try {
-            var query = "SELECT * FROM Hotel WHERE hotelId = " + hotelId;
-            var rs = executeQuery(query);
-            if (rs == null || rs.next() == false) {
-                throw new NotFoundException("No Hotel with id " + hotelId);
-            }
-            Hotel hotel = new Hotel(rs.getInt("hotelId"), rs.getString("name"), rs.getString("location"), null);
-            var rooms = getRoomsForHotel(hotelId);
-            hotel.setRooms(rooms);
-            return hotel;
-        } catch (Exception e) {
-            System.out.print(Arrays.toString(e.getStackTrace()));
-            throw new NotFoundException("Error occurred");
-        }
-
+		try {
+			var query = "SELECT * FROM Hotel WHERE hotelId = " + hotelId;
+			var rs = executeQuery(query);
+			if (rs == null || rs.next() == false) {
+				throw new NotFoundException("No Hotel with id " + hotelId);
+			}
+			Hotel hotel = new Hotel(rs.getInt("hotelId"), rs.getString("name"), rs.getString("location"), null);
+			var rooms = getRoomsForHotel(hotelId);
+			hotel.setRooms(rooms);
+			return hotel;
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
     }
 
     public List<Hotel> getAllHotels()  {
@@ -98,34 +96,31 @@ public class HotelRepository implements IHotelRepository {
         return hotels;
     }
 
-    public int createHotel(Hotel hotel) throws BadInputException {
-        var query = "INSERT INTO Hotel(id,name,location) VALUES("+hotel.getHotelId()+","+hotel.getName()+","+hotel.getLocation()+")";
-        var rs = executeQuery(query);
-        Hotel resultHotel;
-        try {
-            resultHotel = getHotelById(hotel.getHotelId());
-        } catch (NotFoundException e) {
-            throw new BadInputException("Could not create hotel");
-        }
-        return resultHotel.getHotelId();
+	public int createHotel(Hotel hotel) throws BadInputException {
+		/*
+		  var query = "INSERT INTO Hotel(id,name,location,rooms) VALUES("+hotelId+","+name+","+location+","+rooms+")";
+		  var rs = executeQuery(query);
+		  var hotelId = getHotelById(hotelId);
+		  return hotelId;
+		*/
+		return 0;
     }
 
 
-
     public Room getRoom(int roomId) throws NotFoundException {
-        try {
-        var query = "SELECT * FROM Room WHERE roomId=" + roomId;
-        var rs = executeQuery(query);
-        if (rs == null || rs.next() == false) {
-            throw new NotFoundException("No room with id " + roomId);
-        }
-        Room room = new Room(rs.getInt("roomId"), rs.getInt("capacity"), null, rs.getInt("price"));
-        var bookedDates = getBookedDatesForRoom(roomId);
-        room.setBookedDates(bookedDates);
-        return room;
-        } catch (SQLException e) {
-            System.out.print(Arrays.toString(e.getStackTrace()));
-            throw new NotFoundException("Error occurred");
-        }
+		try {
+			var query = "SELECT * FROM Room WHERE roomId=" + roomId;
+			var rs = executeQuery(query);
+			if (rs == null || rs.next() == false) {
+				throw new NotFoundException("No room with id " + roomId);
+			}
+			Room room = new Room(rs.getInt("roomId"), rs.getInt("capacity"), null, rs.getInt("price"));
+			var bookedDates = getBookedDatesForRoom(roomId);
+			room.setBookedDates(bookedDates);
+			return room;
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
     }
 }

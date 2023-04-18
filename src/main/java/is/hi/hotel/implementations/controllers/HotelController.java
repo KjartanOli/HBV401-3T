@@ -50,14 +50,18 @@ public class HotelController implements IHotelController {
         return _hotelRepository.getAllHotels();
     }
 
-   public int createHotel(Hotel hotel) throws BadInputException {
+	public int createHotel(Hotel hotel) throws BadInputException {
+		return 0;
+	}
+
+	public int createHotel(String name, String location, List<Room> rooms) throws BadInputException {
+		return 0;
+	}
+
+   /* public int createHotel(Hotel hotel) throws BadInputException {
         //Validate hotel
         validateCreateHotelRequest(hotel);
-        try {
-            return _hotelRepository.createHotel(hotel);
-        } catch (Exception e) {
-            throw new BadInputException(e.getMessage());
-        }
+        return _hotelRepository.createHotel(hotel);
     }
 
     public int createHotel(String name, String location, List<Room> rooms) throws BadInputException {
@@ -67,7 +71,7 @@ public class HotelController implements IHotelController {
         validateCreateHotelRequest(hotel);
         return _hotelRepository.createHotel(hotel);
     }
-
+*/
     public Hotel getHotelById(int hotelId) throws NotFoundException, SQLException {
         return _hotelRepository.getHotelById(hotelId);
     }

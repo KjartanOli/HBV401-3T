@@ -3,15 +3,10 @@ package is.hi.hotel.implementations.db;
 import java.sql.*;
 
 public class DatabaseConnection {
-    private final Connection connection;
-    private final Statement statement;
+    private Connection connection;
+    private Statement statement;
 
     public DatabaseConnection(String connectionUrl) throws SQLException {
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
         this.connection = DriverManager.getConnection(connectionUrl);
         this.statement = connection.createStatement();
     }
