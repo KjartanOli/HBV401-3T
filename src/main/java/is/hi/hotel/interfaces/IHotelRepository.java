@@ -15,5 +15,7 @@ public interface IHotelRepository {
 
     int createHotel(Hotel hotel) throws BadInputException;
 
-    Room getRoom(int roomId) throws NotFoundException;
+    int createRoom(Room room, int hotelId) throws BadInputException;
+
+    Room getRoomById(int roomId) throws NotFoundException;
 }

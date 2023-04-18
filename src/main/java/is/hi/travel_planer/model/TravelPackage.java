@@ -24,7 +24,7 @@ public class TravelPackage {
 	public Hotel getHotel() { return this.hotel; }
 	public DayTourDetails getTour() { return this.tour; }
 	public int getPrice() {
-		return (int)(1.1 * groupSize * (flight.getPrice() + hotel.getRooms().get(0).get_price() + tour.getPrice()));
+		return (int)(1.1 * groupSize * (flight.getPrice() + hotel.getRooms().get(0).getPrice() + tour.getPrice()));
 	}
 
 	@Override

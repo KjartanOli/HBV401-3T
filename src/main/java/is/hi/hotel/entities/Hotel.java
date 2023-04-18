@@ -72,4 +72,18 @@ public class Hotel {
     public void setName(String name) {
         this.name = name;
     }
+    @Override
+    public String toString() {
+        return this.name + "    " + this.location + "  " + findCheapestRoomPrice() + "kr";
+    }
+
+    private int findCheapestRoomPrice() {
+        int min = 0;
+        for(Room room : this.rooms) {
+            if (room.getPrice() > min){
+                min = room.getPrice();
+            }
+        }
+        return min;
+    }
 }

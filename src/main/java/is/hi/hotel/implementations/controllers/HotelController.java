@@ -7,6 +7,7 @@ import is.hi.hotel.exceptions.BadInputException;
 import is.hi.hotel.exceptions.NotFoundException;
 import is.hi.hotel.interfaces.IHotelController;
 import is.hi.hotel.interfaces.IHotelRepository;
+
 import java.sql.SQLException;
 
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class HotelController implements IHotelController {
 
     public List<Hotel> searchHotels(BookingDate dates, int adults, int children, String location) {
         var hotels = _hotelRepository.getAllHotels();
+        hotels = filterHotelsByValidation(hotels);
         // filter hotel list, filter the list in steps, if at any time the list becomes empty return the empty list
         if (location != null) {
             hotels = filterHotelsByLocation(hotels, location);
@@ -50,18 +52,14 @@ public class HotelController implements IHotelController {
         return _hotelRepository.getAllHotels();
     }
 
-	public int createHotel(Hotel hotel) throws BadInputException {
-		return 0;
-	}
-
-	public int createHotel(String name, String location, List<Room> rooms) throws BadInputException {
-		return 0;
-	}
-
-   /* public int createHotel(Hotel hotel) throws BadInputException {
+   public int createHotel(Hotel hotel) throws BadInputException {
         //Validate hotel
         validateCreateHotelRequest(hotel);
-        return _hotelRepository.createHotel(hotel);
+        try {
+            return _hotelRepository.createHotel(hotel);
+        } catch (Exception e) {
+            throw new BadInputException(e.getMessage());
+        }
     }
 
     public int createHotel(String name, String location, List<Room> rooms) throws BadInputException {
@@ -69,11 +67,31 @@ public class HotelController implements IHotelController {
         Hotel hotel = new Hotel(getNewHotelId(), name, location, rooms);
         //Validate hotel
         validateCreateHotelRequest(hotel);
+        for (Room room : rooms) {
+            _hotelRepository.createRoom(room, hotel.getHotelId());
+        }
         return _hotelRepository.createHotel(hotel);
     }
-*/
+
     public Hotel getHotelById(int hotelId) throws NotFoundException, SQLException {
         return _hotelRepository.getHotelById(hotelId);
+    }
+
+    public Room getRoomById(int roomId) throws NotFoundException {
+        return _hotelRepository.getRoomById(roomId);
+    }
+
+    private List<Hotel> filterHotelsByValidation(List<Hotel> hotels) {
+        // Filter out invalid hotels
+        var filteredHotels = new ArrayList<Hotel>();
+        for (Hotel hotel : hotels) {
+            var location = hotel.getLocation();
+            var name = hotel.getName();
+            if (hotel.getRooms().size() > 0 && name != null && !name.equals("") && location != null && !location.equals("")) {
+                filteredHotels.add(hotel);
+            }
+        }
+        return filteredHotels;
     }
 
     private List<Hotel> filterHotelsByLocation(List<Hotel> hotels, String location) {
@@ -102,7 +120,7 @@ public class HotelController implements IHotelController {
                 // if execution arrives here, all dates from filterDateRange are found in availableDates
                 // add hotel, since there is a room that has the date range available.
                 filteredHotels.add(hotel);
-				break;
+                break;
             }
         }
         return filteredHotels;
@@ -114,7 +132,6 @@ public class HotelController implements IHotelController {
             for (Room room : hotel.getRooms()) {
                 if (room.getCapacity() >= (children + adults)) {
                     filteredHotels.add(hotel);
-					break;
                 }
             }
         }
@@ -141,11 +158,14 @@ public class HotelController implements IHotelController {
             }
         }
         // capacity > 0
-        for (Room room : hotel.getRooms()) {
-            if (room.getCapacity() <= 0) {
-                throw new BadInputException("Hotel includes room with 0 or less capacity");
+        if (hotel.getRooms() != null) {
+            for (Room room : hotel.getRooms()) {
+                if (room.getCapacity() <= 0) {
+                    throw new BadInputException("Hotel includes room with 0 or less capacity");
+                }
             }
         }
+
         // Check if name already exists
         for (Hotel _hotel : hotels) {
             if (_hotel.getName().equals(hotel.getName())) {
@@ -153,7 +173,7 @@ public class HotelController implements IHotelController {
             }
         }
         // Rooms.size() > 0
-        if (hotel.getRooms().size() <= 0) {
+        if (hotel.getRooms() != null && hotel.getRooms().size() <= 0) {
             throw new BadInputException("Hotel cannot have 0 or less rooms");
         }
     }

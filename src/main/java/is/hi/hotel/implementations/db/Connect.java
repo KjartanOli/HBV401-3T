@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Connect {
     private static int cnt = 0;
-    private static final String myRelativePath = "hotel.db";
+    private static final String myRelativePath = "/Users/lenamaria/Documents/Hi23/Þróun hugbúnaðar/Iceleep/db/hotel.db";
 
     public static Connection getConnection() {
         String connectionUrl = "jdbc:sqlite:" + myRelativePath;

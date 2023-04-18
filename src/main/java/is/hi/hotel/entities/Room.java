@@ -59,11 +59,11 @@ public class Room {
         this._bookedDates = bookedDates;
     }
 
-    public int get_price() {
+    public int getPrice() {
         return _price;
     }
 
-    public void set_price(int price) {
+    public void setPrice(int price) {
         this._price = price;
     }
 }

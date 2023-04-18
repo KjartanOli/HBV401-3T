@@ -21,4 +21,5 @@ public interface IHotelController {
     int createHotel(String name, String location, List<Room> rooms) throws BadInputException;
 
     Hotel getHotelById(int HotelId) throws NotFoundException, SQLException;
+    Room getRoomById(int roomId) throws NotFoundException;
 }

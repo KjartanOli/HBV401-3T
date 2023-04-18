@@ -14,6 +14,6 @@ public class HotelCellController {
 
 	public void setHotel(Hotel hotel) {
 		name.setText(hotel.getName());
-		price.setText(Integer.toString(hotel.getRooms().get(0).get_price()));
+		price.setText(Integer.toString(hotel.getRooms().get(0).getPrice()));
 	}
 }

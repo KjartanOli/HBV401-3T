@@ -64,13 +64,14 @@ public class PackageSelectionController {
 		try {
 			String flightDB = "flights.db";
 			var hotelDB = new is.hi.hotel.implementations.db.DatabaseConnection("jdbc:sqlite:hotel.db");
+			var hotelRepo = new is.hi.hotel.implementations.repositories.HotelRepository(hotelDB);
 			pkg = null;
 			packageController = new PackageController(
 				user,
 				new FlightController(flightDB),
 				new is.hi.flight_booking.controller.BookingController(flightDB),
-				new HotelController(new is.hi.hotel.implementations.repositories.HotelRepository(hotelDB)),
-				new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository(hotelDB)),
+				new HotelController(hotelRepo),
+				new is.hi.hotel.implementations.controllers.BookingController(new is.hi.hotel.implementations.repositories.BookingRepository(hotelDB), hotelRepo),
 				new Query()
 			);
 		}

@@ -4,11 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookingDate {
+    private int _bookingDateId;
     private LocalDate _checkInDate;
     private LocalDate _checkoutDate;
 
-    public BookingDate(LocalDate checkInDate, LocalDate checkoutDate) {
+    public BookingDate(int bookingDateId, LocalDate checkInDate, LocalDate checkoutDate) throws IllegalArgumentException {
         //TODO: Validate that checkin date is before checkoutdate, and not the same
+        _bookingDateId = bookingDateId;
+        // if checkout date is before checkindate
+        if (checkoutDate.compareTo(checkInDate) < 0) {
+            throw new IllegalArgumentException("Checkout date is before checkin date");
+        }
         _checkInDate = checkInDate;
         _checkoutDate = checkoutDate;
     }
@@ -34,4 +40,11 @@ public class BookingDate {
         return _checkInDate.datesUntil(_checkoutDate).collect(Collectors.toList());
     }
 
+    public int getBookingDateId() {
+        return _bookingDateId;
+    }
+
+    public void setBookingDateId(int _bookingDateId) {
+        this._bookingDateId = _bookingDateId;
+    }
 }

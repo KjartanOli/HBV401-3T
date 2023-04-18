@@ -9,4 +9,6 @@ import java.util.List;
 public interface IBookingController {
     int createBooking(Booking booking) throws BadInputException;
     int createBooking(Room room, BookingDate dates, User user) throws BadInputException;
+    List<Booking> getAllBookings();
+    User getUserById(int userId) throws NotFoundException;
 }
