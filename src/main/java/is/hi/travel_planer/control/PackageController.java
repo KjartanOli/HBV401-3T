@@ -1,9 +1,11 @@
 package is.hi.travel_planer.control;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.time.LocalTime;
+import java.time.LocalDate;
 
 import is.hi.travel_planer.model.TravelPackage;
 import is.hi.travel_planer.model.User;
@@ -31,9 +33,9 @@ public class PackageController {
 	private IBookingController hotelBooking;
 	private QueryInterface tourController;
 
-	private Flight[] flights;
-	private DayTourDetails[] tours;
-	private Hotel[] hotels;
+	private List<Flight> flights;
+	private List<DayTourDetails> tours;
+	private List<Hotel> hotels;
 
 	public PackageController(
 		User user,
@@ -51,38 +53,80 @@ public class PackageController {
 		this.tourController = tourController;
 	}
 
+	private void clearCache() {
+		this.flights = null;
+		this.hotels = null;
+		this.tours = null;
+	}
+
+	public void setGroupSize(int groupSize) {
+		this.clearCache();
+		this.user.setGroupSize(groupSize);
+	}
+
+	public void setInterest(String interest) {
+		this.clearCache();
+		this.user.setInterest(interest);
+	}
+
+	public void setDestination(String destination) {
+		this.clearCache();
+		this.user.setDestination(destination);
+	}
+
+	public void setDepartureDate(LocalDate departureDate) {
+		this.clearCache();
+		this.user.setDepartureDate(departureDate);
+	}
+
+	public void setReturnDate(LocalDate returnDate) {
+		this.clearCache();
+		this.user.setReturnDate(returnDate);
+	}
+
 	public User getUser() {
 		return this.user;
 	}
 
 	public List<Flight> getFlights() {
-		return this.flightController.searchFlights(
-			user.getOrigin(),
-			user.getDestination(),
-			user.getDepartureDate()
-		);
+		if (this.flights == null) {
+			this.flights = this.flightController.searchFlights(
+				user.getOrigin(),
+				user.getDestination(),
+				user.getDepartureDate()
+			);
+		}
+		return this.flights;
 	}
 
 	public List<Hotel> getHotels() {
-		return this.hotelController.searchHotels(
-			user.getTripDuration(),
-			user.getGroupSize(),
-			0,
-			user.getDestination()
-		);
+		if (this.hotels == null) {
+			System.err.printf("%s, %s, %s%n", user.getTripDuration(), user.getGroupSize(), user.getDestination());
+			this.hotels = this.hotelController.searchHotels(
+				user.getTripDuration(),
+				user.getGroupSize(),
+				0,
+				user.getDestination()
+			);
+			for (var h : hotels)
+				System.err.println(h);
+		}
+		return this.hotels;
 	}
 
 	public List<DayTourDetails> getTours() {
-		System.out.printf("%s, %s %s '%s'%n", user.getDestination(),user.getDepartureDate(),user.getReturnDate(),user.getInterest());
-		return Arrays.asList(
-			tourController.searchTourDetails(
-				user.getDestination(),
-				user.getDepartureDate(),
-				user.getReturnDate(),
-				' ',
-				user.getInterest()
-			)
-		);
+		if (this.tours == null) {
+			this.tours =  Arrays.asList(
+				tourController.searchTourDetails(
+					user.getDestination(),
+					user.getDepartureDate(),
+					user.getReturnDate(),
+					' ',
+					user.getInterest()
+				)
+			);
+		}
+		return this.tours;
 	}
 
 	public List<TravelPackage> createPackages(Flight flight) {
@@ -182,6 +226,7 @@ public class PackageController {
 	}
 
 	private List<TravelPackage> choosePackages(List<TravelPackage> packages) {
+		Collections.shuffle(packages);
 		return packages.size() > 3 ? packages.subList(0, 3) : packages;
 	}
 

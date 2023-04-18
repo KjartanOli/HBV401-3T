@@ -174,20 +174,20 @@ public class PackageSelectionController {
 
 	@FXML
 	private void handleDestinationSelection(ActionEvent event) {
-		packageController.getUser().setDestination(destination.getValue());
+		packageController.setDestination(destination.getValue());
 		generateRecomendations();
 		setOptions();
 	}
 
 	@FXML
 	private void handleInterestSelection(ActionEvent event) {
-		packageController.getUser().setInterest(interest.getValue());
+		packageController.setInterest(interest.getValue());
 		generateRecomendations();
 	}
 
 	@FXML
 	private void handleGroupSizeSelection(ActionEvent event) {
-		packageController.getUser().setGroupSize(groupSize.getValue().intValue());
+		packageController.setGroupSize(groupSize.getValue().intValue());
 		generateRecomendations();
 		if (pkg != null)
 			pkg = new TravelPackage(pkg.getFlight(), pkg.getHotel(), pkg.getTour(), packageController.getUser().getGroupSize());
@@ -197,13 +197,13 @@ public class PackageSelectionController {
 
 	@FXML
 	private void handleDepartureDateSelection(ActionEvent event) {
-		packageController.getUser().setDepartureDate(departureDate.getValue());
+		packageController.setDepartureDate(departureDate.getValue());
 		generateRecomendations();
 	}
 
 	@FXML
 	private void handleReturnDateSelection(ActionEvent event) {
-		packageController.getUser().setReturnDate(returnDate.getValue());
+		packageController.setReturnDate(returnDate.getValue());
 		generateRecomendations();
 	}
 
