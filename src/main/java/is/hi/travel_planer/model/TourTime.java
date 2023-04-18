@@ -34,4 +34,10 @@ public class TourTime {
 
 		return times;
 	}
+
+	public String toString(){
+		String d = this.date.toString();
+		String t = this.time.toString();
+		return t + " " + d;
+	}
 }
