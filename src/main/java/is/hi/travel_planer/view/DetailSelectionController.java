@@ -63,7 +63,6 @@ public class DetailSelectionController {
 		roomSelector.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Room>() {
 			@Override
 			public void changed(ObservableValue<? extends Room> observable, Room oldValue, Room newValue) {
-				System.err.println("test1");
 				enableNextButton();
 			}
 		});
@@ -73,7 +72,6 @@ public class DetailSelectionController {
 		tourTimeSelector.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TourTime>() {
 			@Override
 			public void changed(ObservableValue<? extends TourTime> observable, TourTime oldValue, TourTime newValue) {
-				System.err.println("test2");
 				enableNextButton();
 			}
 		});

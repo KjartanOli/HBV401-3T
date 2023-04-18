@@ -143,7 +143,6 @@ public class UserController {
 				mp
 			);
 
-			System.err.println(name.getText());
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 			var loader = new FXMLLoader(getClass().getResource("/fxml/TravelPlanner_PackageView.fxml"));

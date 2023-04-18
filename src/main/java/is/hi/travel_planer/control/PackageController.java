@@ -101,7 +101,6 @@ public class PackageController {
 
 	public List<Hotel> getHotels() {
 		if (this.hotels == null) {
-			System.err.printf("%s, %s, %s%n", user.getTripDuration(), user.getGroupSize(), user.getDestination());
 			this.hotels = this.hotelController.searchHotels(
 				user.getTripDuration(),
 				user.getGroupSize(),
