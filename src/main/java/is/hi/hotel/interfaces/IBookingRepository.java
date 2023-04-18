@@ -10,7 +10,9 @@ import java.util.List;
 
 public interface IBookingRepository {
     int createBooking(Booking booking) throws BadInputException;
+    int createUser(User user) throws BadInputException;
     List<Booking> getAllBookings();
+    List<User> getAllUsers();
     List<BookingDate> getAllBookingDates();
     User getUserById(int userId) throws NotFoundException;
 }

@@ -70,10 +70,24 @@ public class BookingRepository implements IBookingRepository {
             }
             return new User(rs.getInt("userId"), rs.getString("name"), rs.getString("email"));
         } catch (Exception e) {
-            System.out.print(Arrays.toString(e.getStackTrace()));
-            throw new NotFoundException("Error occurred");
+			//          System.out.print(Arrays.toString(e.getStackTrace()));
+			throw new RuntimeException(e);
+//            throw new NotFoundException("Error occurred");
         }
     }
+
+    public int createUser(User user) throws BadInputException {
+        var query = "INSERT INTO User(userId, name, email) values (" + user.getUserId() + ", '" + user.getName() + "', '" + user.getEmail() + "')";
+        executeUpdate(query);
+        User resultUser;
+        try {
+            resultUser = getUserById(user.getUserId());
+        } catch (NotFoundException e) {
+            throw new BadInputException("Error occurred");
+        }
+        return resultUser.getUserId();
+    }
+
 
     public BookingDate getBookingDateById(int dateId) throws NotFoundException {
         try {
@@ -117,6 +131,23 @@ public class BookingRepository implements IBookingRepository {
             System.out.print(e.getMessage());
         }
         return bookings;
+    }
+
+    public List<User> getAllUsers() {
+        var query = "SELECT * FROM User";
+        var rs = executeQuery(query);
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                int userId = rs.getInt("userId");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                users.add(new User(userId, name, email));
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return users;
     }
 
     public List<BookingDate> getAllBookingDates() {

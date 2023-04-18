@@ -27,10 +27,20 @@ public class BookingController implements IBookingController{
     }
 
     public int createBooking(Room room, BookingDate dates, User user) throws BadInputException {
-        var booking = new Booking(getNewBookingId(), room, user, dates);
-        setBookingDateId(dates);
-        validateBooking(booking);
-        return _bookingRepository.createBooking(booking);
+		// Creating a new user every time is horrendous, but it is the
+		// simplest way to solve a problem I have neither the will to
+		// solve myself, or the time to have H fix themselves.
+		// - Kjartan
+		int id = createUser(user.getName(), user.getEmail());
+		try {
+			var booking = new Booking(getNewBookingId(), room, getUserById(id), dates);
+			setBookingDateId(dates);
+			validateBooking(booking);
+			return _bookingRepository.createBooking(booking);
+		}
+		catch (NotFoundException e) {
+			throw new RuntimeException(e.getMessage());
+		}
     }
 
     private void setBookingDateId(BookingDate dates) {
@@ -41,6 +51,10 @@ public class BookingController implements IBookingController{
 
     public User getUserById(int userId) throws NotFoundException {
         return _bookingRepository.getUserById(userId);
+    }
+
+    public int createUser(String name, String email) throws BadInputException {
+        return _bookingRepository.createUser(new User(getNewUserId(), name, email));
     }
 
     public List<Booking> getAllBookings() {
@@ -81,6 +95,17 @@ public class BookingController implements IBookingController{
         var max = 0;
         for (BookingDate bookingDate: _bookingRepository.getAllBookingDates()){
             var id = bookingDate.getBookingDateId();
+            if (id >= max) {
+                max = id;
+            }
+        }
+        return max + 1;
+    }
+
+    private int getNewUserId() {
+        var max = 0;
+        for (User user: _bookingRepository.getAllUsers()){
+            var id = user.getUserId();
             if (id >= max) {
                 max = id;
             }

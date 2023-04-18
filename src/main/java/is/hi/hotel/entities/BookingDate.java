@@ -11,6 +11,10 @@ public class BookingDate {
     public BookingDate(int bookingDateId, LocalDate checkInDate, LocalDate checkoutDate) throws IllegalArgumentException {
         //TODO: Validate that checkin date is before checkoutdate, and not the same
         _bookingDateId = bookingDateId;
+        if (checkInDate == null || checkoutDate == null) {
+            throw new IllegalArgumentException("Checkindate or checkoutDate are null");
+        }
+
         // if checkout date is before checkindate
         if (checkoutDate.compareTo(checkInDate) < 0) {
             throw new IllegalArgumentException("Checkout date is before checkin date");

@@ -52,7 +52,7 @@ public class HotelController implements IHotelController {
         return _hotelRepository.getAllHotels();
     }
 
-   public int createHotel(Hotel hotel) throws BadInputException {
+    public int createHotel(Hotel hotel) throws BadInputException {
         //Validate hotel
         validateCreateHotelRequest(hotel);
         try {
@@ -105,11 +105,14 @@ public class HotelController implements IHotelController {
     }
 
     private List<Hotel> filterHotelsByDates(List<Hotel> hotels, BookingDate bookingDate) {
+        // filters hotels and their rooms by room availability
         var filterDateRange = bookingDate.getDateRange(); //Get all dates in range of checkIn and checkout
         var filteredHotels = new ArrayList<Hotel>();
         for (Hotel hotel : hotels) {
+            // rooms that fit filter criteria
+            var filteredRooms = new ArrayList<Room>();
             roomLoop:
-            for (Room room : hotel.getRooms()) { // give loop name for outer loop break
+            for (Room room : hotel.getRooms()) {
                 var roomBookedDates = room.getBookedDates();
                 for (LocalDate date : filterDateRange) {
                     // if a date from filterDateRange is not found in availableDates, break
@@ -117,22 +120,32 @@ public class HotelController implements IHotelController {
                         break roomLoop;
                     }
                 }
-                // if execution arrives here, all dates from filterDateRange are found in availableDates
-                // add hotel, since there is a room that has the date range available.
+                // add room to filteredRooms
+                filteredRooms.add(room);
+            }
+            if (filteredRooms.size() > 0) {
+                // set room list as rooms that fit filter criteria
+                hotel.setRooms(filteredRooms);
                 filteredHotels.add(hotel);
-                break;
             }
         }
         return filteredHotels;
     }
 
     private List<Hotel> filterHotelByCapacity(List<Hotel> hotels, int adults, int children) {
+        // filters hotels and their rooms by capacity
         var filteredHotels = new ArrayList<Hotel>();
         for (Hotel hotel : hotels) {
+            // rooms that fit filter criteria
+            var filteredRooms = new ArrayList<Room>();
             for (Room room : hotel.getRooms()) {
                 if (room.getCapacity() >= (children + adults)) {
-                    filteredHotels.add(hotel);
+                    filteredRooms.add(room);
                 }
+            }
+            if (filteredRooms.size() > 0){
+                hotel.setRooms(filteredRooms);
+                filteredHotels.add(hotel);
             }
         }
         return filteredHotels;

@@ -42,7 +42,7 @@ public class User {
 	public LocalDate getDepartureDate() { return this.departureDate; }
 	public LocalDate getReturnDate() { return this.returnDate; }
 	public BookingDate getTripDuration() {
-		return new BookingDate(0, this.getDepartureDate(), this.getReturnDate());
+		return new BookingDate(-1, this.getDepartureDate(), this.getReturnDate());
 	}
 	public String getInterest() {return this.interest; }
 	public int getMaxPrice() {return this.maxPrice; }

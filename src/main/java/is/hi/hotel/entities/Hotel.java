@@ -86,4 +86,16 @@ public class Hotel {
         }
         return min;
     }
+
+    public Room getCheapestRoom() {
+        int max = Integer.MAX_VALUE;
+        Room returnRoom = this.rooms.get(0);
+        for(Room room : this.rooms) {
+            if (room.getPrice() < max){
+                max = room.getPrice();
+                returnRoom = room;
+            }
+        }
+        return returnRoom;
+    }
 }
