@@ -102,6 +102,7 @@ public class HotelController implements IHotelController {
                 // if execution arrives here, all dates from filterDateRange are found in availableDates
                 // add hotel, since there is a room that has the date range available.
                 filteredHotels.add(hotel);
+				break;
             }
         }
         return filteredHotels;
@@ -113,6 +114,7 @@ public class HotelController implements IHotelController {
             for (Room room : hotel.getRooms()) {
                 if (room.getCapacity() >= (children + adults)) {
                     filteredHotels.add(hotel);
+					break;
                 }
             }
         }
