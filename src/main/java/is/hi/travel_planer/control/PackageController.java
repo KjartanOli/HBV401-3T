@@ -107,8 +107,6 @@ public class PackageController {
 				0,
 				user.getDestination()
 			);
-			for (var h : hotels)
-				System.err.println(h);
 		}
 		return this.hotels;
 	}
