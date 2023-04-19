@@ -134,7 +134,8 @@ public class PackageController {
 		for (var hotel : this.getHotels()) {
 			for (var tour : this.getTours()) {
 				var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-				packages.add(t);
+				if (t.getPrice() <= user.getMaxPrice())
+					packages.add(t);
 			}
 		}
 
@@ -147,7 +148,8 @@ public class PackageController {
 		for (var flight : this.getFlights()) {
 			for (var tour : this.getTours()) {
 				var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-				packages.add(t);
+				if (t.getPrice() <= user.getMaxPrice())
+					packages.add(t);
 			}
 		}
 
@@ -164,7 +166,8 @@ public class PackageController {
 		for (var flight : this.getFlights()) {
 			for (var hotel : this.getHotels()) {
 				var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-				packages.add(t);
+				if (t.getPrice() <= user.getMaxPrice())
+					packages.add(t);
 			}
 		}
 
@@ -175,7 +178,8 @@ public class PackageController {
 		List<TravelPackage> packages = new ArrayList<TravelPackage>();
 		for (var tour : this.getTours()) {
 			var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-			packages.add(t);
+			if (t.getPrice() <= user.getMaxPrice())
+				packages.add(t);
 		}
 
 		return choosePackages(packages);
@@ -185,7 +189,8 @@ public class PackageController {
 		List<TravelPackage> packages = new ArrayList<TravelPackage>();
 		for (var hotel : this.getHotels()) {
 			var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-			packages.add(t);
+			if (t.getPrice() <= user.getMaxPrice())
+				packages.add(t);
 		}
 
 		return choosePackages(packages);
@@ -195,7 +200,8 @@ public class PackageController {
 		List<TravelPackage> packages = new ArrayList<TravelPackage>();
 		for (var flight : this.getFlights()) {
 			var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-			packages.add(t);
+			if (t.getPrice() <= user.getMaxPrice())
+				packages.add(t);
 		}
 
 		return choosePackages(packages);
@@ -205,7 +211,8 @@ public class PackageController {
 	public List<TravelPackage> createPackages(Flight flight, Hotel hotel, DayTourDetails tour) {
 		List<TravelPackage> packages = new ArrayList<TravelPackage>();
 		var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-		packages.add(t);
+		if (t.getPrice() <= user.getMaxPrice())
+			packages.add(t);
 
 		return choosePackages(packages);
 	}
@@ -216,7 +223,8 @@ public class PackageController {
 			for (var hotel : this.getHotels()) {
 				for (var tour : this.getTours()) {
 					var t = new TravelPackage(flight, hotel, tour, user.getGroupSize());
-					packages.add(t);
+					if (t.getPrice() <= user.getMaxPrice())
+						packages.add(t);
 				}
 			}
 		}
