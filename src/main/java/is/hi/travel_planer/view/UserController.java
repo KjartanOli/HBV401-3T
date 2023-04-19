@@ -42,7 +42,7 @@ public class UserController {
 	private Optional<Integer> maxPrice = Optional.empty();
 
 	private static List<String> placesList = Arrays.asList(
-		"Reykjavík", "Akureyri", "Egilsstaðir", "Húsavík", "Vík", "Keflavík", "Sauðárkrókur", "Stykkishólmur", "Ísafjörður", "Vestmannaeyjar"
+		"Reykjavík", "Akureyri", "Egilsstaðir", "Keflavík", "Ísafjörður", "Vestmannaeyjar"
 	); // man ekki alla staðina, bætum þeim við
 	private static List<String> interestList = Arrays.asList(
 		"Ekkert áhugamál","Fjölskylduvænt", "Upplifun/Ævintýri", "Bátur", "Safn", "Ganga", "Laug", "Dýr"
@@ -50,7 +50,7 @@ public class UserController {
 
 	@FXML
 	private void initialize() {
-		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
+		groupSize.getItems().addAll(1,2,3,4,5,6);
 		groupSize.setValue(1);
 		origin.getItems().addAll(placesList);
 		destination.getItems().addAll(placesList);

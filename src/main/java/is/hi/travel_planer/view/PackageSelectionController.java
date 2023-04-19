@@ -91,7 +91,7 @@ public class PackageSelectionController {
 		destination.getItems().addAll(UserController.getPlacesList());
 		destination.setValue(packageController.getUser().getDestination());
 
-		groupSize.getItems().addAll(1,2,3,4,5,6); // set 6 til að byrja með
+		groupSize.getItems().addAll(1,2,3,4,5,6);
 		groupSize.setValue(packageController.getUser().getGroupSize());
 
 		generateRecomendations();
