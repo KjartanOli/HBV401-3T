@@ -122,7 +122,7 @@ public class UserController {
 		}
 		else{
 			int mp;
-			if (maxPriceSelect.getValue().isPresent()){
+			if ((maxPriceSelect.getValue() != null) && maxPriceSelect.getValue().isPresent()){
 				mp = maxPriceSelect.getValue().get();
 			}
 			else {

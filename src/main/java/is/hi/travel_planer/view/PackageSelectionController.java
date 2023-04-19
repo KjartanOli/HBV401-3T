@@ -184,6 +184,7 @@ public class PackageSelectionController {
 	private void handleInterestSelection(ActionEvent event) {
 		packageController.setInterest(interest.getValue());
 		generateRecomendations();
+		setOptions();
 	}
 
 	@FXML
@@ -194,18 +195,21 @@ public class PackageSelectionController {
 			pkg = new TravelPackage(pkg.getFlight(), pkg.getHotel(), pkg.getTour(), packageController.getUser().getGroupSize());
 
 		updateSelectedPackageView();
+		setOptions();
 	}
 
 	@FXML
 	private void handleDepartureDateSelection(ActionEvent event) {
 		packageController.setDepartureDate(departureDate.getValue());
 		generateRecomendations();
+		setOptions();
 	}
 
 	@FXML
 	private void handleReturnDateSelection(ActionEvent event) {
 		packageController.setReturnDate(returnDate.getValue());
 		generateRecomendations();
+		setOptions();
 	}
 
 	@FXML
